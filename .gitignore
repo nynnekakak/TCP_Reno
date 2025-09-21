@@ -1,0 +1,82 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ns-3 specific
+build/
+.lock-ns3
+.ns3rc
+.lock-waf*
+waf
+.waf*
+*.pcap
+*.tr
+*.xml
+
+# Python
+*.pyc
+*.pyo
+__pycache__/
+*.py[cod]
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+
+# Results and traces (unless specifically wanted)
+results/*.pcap
+results/*.tr
+results/*.dat
+results/*.txt
+!results/README.md
+
+# Documentation build
+docs/_build/
+docs/html/
+docs/latex/
+
+# Backup files
+*.bak
+*.backup
+*~
