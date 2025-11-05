@@ -1,0 +1,87 @@
+========================================
+SIMULATION SUMMARY (DropTail Queue)
+========================================
+
+Simulation Configuration:
+  - Duration: 5 seconds
+  - Number of Flows: 3
+  - MTU: 1500 bytes
+  - Initial CWND: 1 segments
+  - Initial SSThresh: 65535 segments
+  - SACK: Enabled
+  - Error Rate: 0
+
+Network Topology:
+  - 3 Senders (n0, n1, n2)
+  - 2 Routers (n3: aggregation, n4: bottleneck)
+  - 2 Receivers (n5, n6)
+  - Sender Links: 10Mbps, 5ms delay
+  - Bottleneck Link: 5Mbps, 10ms delay
+  - Receiver Links: 10Mbps, 5ms delay
+
+Flow 1 (10.1.1.1 -> 10.1.5.2)
+  Tx Packets: 802
+  Rx Packets: 740
+  Lost Packets: 62 (7.73%)
+  Throughput: 1.786 Mbps
+  Avg Delay: 41.15 ms
+--------------------------------------
+Flow 2 (10.1.5.2 -> 10.1.1.1)
+  Tx Packets: 739
+  Rx Packets: 732
+  Lost Packets: 7 (0.95%)
+  Throughput: 0.069 Mbps
+  Avg Delay: 20.19 ms
+--------------------------------------
+Flow 3 (10.1.2.1 -> 10.1.6.2)
+  Tx Packets: 429
+  Rx Packets: 358
+  Lost Packets: 71 (16.55%)
+  Throughput: 0.861 Mbps
+  Avg Delay: 41.16 ms
+--------------------------------------
+Flow 4 (10.1.6.2 -> 10.1.2.1)
+  Tx Packets: 357
+  Rx Packets: 357
+  Lost Packets: 0 (0.00%)
+  Throughput: 0.037 Mbps
+  Avg Delay: 20.21 ms
+--------------------------------------
+Flow 5 (10.1.3.1 -> 10.1.5.2)
+  Tx Packets: 461
+  Rx Packets: 442
+  Lost Packets: 19 (4.12%)
+  Throughput: 1.065 Mbps
+  Avg Delay: 37.64 ms
+--------------------------------------
+Flow 6 (10.1.5.2 -> 10.1.3.1)
+  Tx Packets: 442
+  Rx Packets: 440
+  Lost Packets: 2 (0.45%)
+  Throughput: 0.039 Mbps
+  Avg Delay: 20.18 ms
+--------------------------------------
+
+AGGREGATE STATISTICS:
+  Total Throughput: 3.855 Mbps
+  Average Throughput per Flow: 0.643 Mbps
+  Total Packets Sent: 3230
+  Total Packets Received: 3069
+  Total Lost Packets: 161 (4.98%)
+  Average Delay: 30.09 ms
+
+TCP STATE MACHINE STATISTICS:
+  Total State Changes: 22
+  Total Duplicate ACKs: 261
+  Total Fast Retransmits: 10
+  Total Fast Recoveries: 10
+  Total Timeouts: 2
+
+========================================
+KEY OBSERVATIONS:
+========================================
+DropTail queue uses tail-drop policy, which typically:
+  - Causes bursty packet losses
+  - May lead to global synchronization
+  - Higher queueing delay during congestion
+  - More aggressive retransmission patterns

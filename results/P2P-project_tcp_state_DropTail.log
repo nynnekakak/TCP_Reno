@@ -1,0 +1,1821 @@
+# time      EVENT                DETAILS
+---------------------------------------------
+0.000   QUEUE_SETUP         Using DropTail (FIFO) Queue Discipline on bottleneck
+1.100   TRACE_SETUP         Connected TcpSocketBase traces
+1.130   NEW_ACK             Ack=2921
+1.130   TX-DATA             Seq=4381 Size=1460
+1.130   TX-DATA             Seq=5841 Size=1460
+1.133   NEW_ACK             Ack=4381
+1.133   TX-DATA             Seq=7301 Size=1460
+1.133   TX-DATA             Seq=8761 Size=1460
+1.175   NEW_ACK             Ack=5841
+1.175   TX-DATA             Seq=10221 Size=1460
+1.175   TX-DATA             Seq=11681 Size=1460
+1.178   NEW_ACK             Ack=7301
+1.178   TX-DATA             Seq=13141 Size=1460
+1.178   TX-DATA             Seq=14601 Size=1460
+1.180   NEW_ACK             Ack=8761
+1.180   TX-DATA             Seq=16061 Size=1460
+1.180   TX-DATA             Seq=17521 Size=1460
+1.183   NEW_ACK             Ack=10221
+1.183   TX-DATA             Seq=18981 Size=1460
+1.183   TX-DATA             Seq=20441 Size=1460
+1.220   NEW_ACK             Ack=11681
+1.220   TX-DATA             Seq=21901 Size=1460
+1.220   TX-DATA             Seq=23361 Size=1460
+1.223   NEW_ACK             Ack=13141
+1.223   TX-DATA             Seq=24821 Size=1460
+1.223   TX-DATA             Seq=26281 Size=1460
+1.225   NEW_ACK             Ack=14601
+1.225   TX-DATA             Seq=27741 Size=1460
+1.225   TX-DATA             Seq=29201 Size=1460
+1.228   NEW_ACK             Ack=16061
+1.228   TX-DATA             Seq=30661 Size=1460
+1.228   TX-DATA             Seq=32121 Size=1460
+1.230   NEW_ACK             Ack=17521
+1.230   TX-DATA             Seq=33581 Size=1460
+1.230   TX-DATA             Seq=35041 Size=1460
+1.233   NEW_ACK             Ack=18981
+1.233   TX-DATA             Seq=36501 Size=1460
+1.233   TX-DATA             Seq=37961 Size=1460
+1.235   NEW_ACK             Ack=20441
+1.235   TX-DATA             Seq=39421 Size=1460
+1.235   TX-DATA             Seq=40881 Size=1460
+1.238   NEW_ACK             Ack=21901
+1.238   TX-DATA             Seq=42341 Size=1460
+1.238   TX-DATA             Seq=43801 Size=1460
+1.265   NEW_ACK             Ack=23361
+1.265   TX-DATA             Seq=45261 Size=1460
+1.265   TX-DATA             Seq=46721 Size=1460
+1.268   NEW_ACK             Ack=24821
+1.268   TX-DATA             Seq=48181 Size=1460
+1.268   TX-DATA             Seq=49641 Size=1460
+1.270   NEW_ACK             Ack=26281
+1.270   TX-DATA             Seq=51101 Size=1460
+1.270   TX-DATA             Seq=52561 Size=1460
+1.273   NEW_ACK             Ack=27741
+1.273   TX-DATA             Seq=54021 Size=1460
+1.273   TX-DATA             Seq=55481 Size=1460
+1.275   NEW_ACK             Ack=29201
+1.275   TX-DATA             Seq=56941 Size=1460
+1.275   TX-DATA             Seq=58401 Size=1460
+1.278   NEW_ACK             Ack=30661
+1.278   TX-DATA             Seq=59861 Size=1460
+1.278   TX-DATA             Seq=61321 Size=1460
+1.280   NEW_ACK             Ack=32121
+1.280   TX-DATA             Seq=62781 Size=1460
+1.280   TX-DATA             Seq=64241 Size=1460
+1.283   NEW_ACK             Ack=33581
+1.283   TX-DATA             Seq=65701 Size=1460
+1.283   TX-DATA             Seq=67161 Size=1460
+1.285   NEW_ACK             Ack=35041
+1.285   TX-DATA             Seq=68621 Size=1460
+1.285   TX-DATA             Seq=70081 Size=1460
+1.288   NEW_ACK             Ack=36501
+1.288   TX-DATA             Seq=71541 Size=1460
+1.288   TX-DATA             Seq=73001 Size=1460
+1.290   NEW_ACK             Ack=37961
+1.290   TX-DATA             Seq=74461 Size=1460
+1.290   TX-DATA             Seq=75921 Size=1460
+1.292   NEW_ACK             Ack=39421
+1.292   TX-DATA             Seq=77381 Size=1460
+1.292   TX-DATA             Seq=78841 Size=1460
+1.295   NEW_ACK             Ack=40881
+1.295   TX-DATA             Seq=80301 Size=1460
+1.295   TX-DATA             Seq=81761 Size=1460
+1.297   NEW_ACK             Ack=42341
+1.297   TX-DATA             Seq=83221 Size=1460
+1.297   TX-DATA             Seq=84681 Size=1460
+1.300   NEW_ACK             Ack=43801
+1.300   TX-DATA             Seq=86141 Size=1460
+1.300   TX-DATA             Seq=87601 Size=1460
+1.302   NEW_ACK             Ack=45261
+1.302   TX-DATA             Seq=89061 Size=1460
+1.302   TX-DATA             Seq=90521 Size=1460
+1.310   NEW_ACK             Ack=46721
+1.310   TX-DATA             Seq=91981 Size=1460
+1.310   TX-DATA             Seq=93441 Size=1460
+1.313   NEW_ACK             Ack=48181
+1.313   TX-DATA             Seq=94901 Size=1460
+1.313   TX-DATA             Seq=96361 Size=1460
+1.315   NEW_ACK             Ack=49641
+1.315   TX-DATA             Seq=97821 Size=1460
+1.315   TX-DATA             Seq=99281 Size=1460
+1.318   NEW_ACK             Ack=51101
+1.318   TX-DATA             Seq=100741 Size=1460
+1.318   TX-DATA             Seq=102201 Size=1460
+1.320   NEW_ACK             Ack=52561
+1.320   TX-DATA             Seq=103661 Size=1460
+1.320   TX-DATA             Seq=105121 Size=1460
+1.323   NEW_ACK             Ack=54021
+1.323   TX-DATA             Seq=106581 Size=1460
+1.323   TX-DATA             Seq=108041 Size=1460
+1.325   NEW_ACK             Ack=55481
+1.325   TX-DATA             Seq=109501 Size=1460
+1.325   TX-DATA             Seq=110961 Size=1460
+1.328   NEW_ACK             Ack=56941
+1.328   TX-DATA             Seq=112421 Size=1460
+1.328   TX-DATA             Seq=113881 Size=1460
+1.330   NEW_ACK             Ack=58401
+1.330   TX-DATA             Seq=115341 Size=1460
+1.330   TX-DATA             Seq=116801 Size=1460
+1.333   NEW_ACK             Ack=59861
+1.333   TX-DATA             Seq=118261 Size=1460
+1.333   TX-DATA             Seq=119721 Size=1460
+1.335   NEW_ACK             Ack=61321
+1.335   TX-DATA             Seq=121181 Size=1460
+1.335   TX-DATA             Seq=122641 Size=1460
+1.337   NEW_ACK             Ack=62781
+1.337   TX-DATA             Seq=124101 Size=1460
+1.337   TX-DATA             Seq=125561 Size=1460
+1.340   NEW_ACK             Ack=64241
+1.340   TX-DATA             Seq=127021 Size=1460
+1.340   TX-DATA             Seq=128481 Size=1460
+1.342   NEW_ACK             Ack=65701
+1.342   TX-DATA             Seq=129941 Size=1460
+1.342   TX-DATA             Seq=131401 Size=1460
+1.345   NEW_ACK             Ack=67161
+1.345   TX-DATA             Seq=132861 Size=1460
+1.345   TX-DATA             Seq=134321 Size=1460
+1.347   NEW_ACK             Ack=68621
+1.347   TX-DATA             Seq=135781 Size=1460
+1.347   TX-DATA             Seq=137241 Size=1460
+1.350   NEW_ACK             Ack=70081
+1.350   TX-DATA             Seq=138701 Size=1460
+1.350   TX-DATA             Seq=140161 Size=1460
+1.352   NEW_ACK             Ack=71541
+1.352   TX-DATA             Seq=141621 Size=1460
+1.352   TX-DATA             Seq=143081 Size=1460
+1.355   NEW_ACK             Ack=73001
+1.355   TX-DATA             Seq=144541 Size=1460
+1.355   TX-DATA             Seq=146001 Size=1460
+1.357   NEW_ACK             Ack=74461
+1.357   TX-DATA             Seq=147461 Size=1460
+1.357   TX-DATA             Seq=148921 Size=1460
+1.360   NEW_ACK             Ack=75921
+1.360   TX-DATA             Seq=150381 Size=1460
+1.360   TX-DATA             Seq=151841 Size=1460
+1.362   NEW_ACK             Ack=77381
+1.362   TX-DATA             Seq=153301 Size=1460
+1.362   TX-DATA             Seq=154761 Size=1460
+1.365   NEW_ACK             Ack=78841
+1.365   TX-DATA             Seq=156221 Size=1460
+1.365   TX-DATA             Seq=157681 Size=1460
+1.367   NEW_ACK             Ack=80301
+1.367   TX-DATA             Seq=159141 Size=1460
+1.367   TX-DATA             Seq=160601 Size=1460
+1.369   NEW_ACK             Ack=81761
+1.369   TX-DATA             Seq=162061 Size=1460
+1.369   TX-DATA             Seq=163521 Size=1460
+1.374   DUP_ACK             Ack=81761 dupCount=1
+1.374   TX-DATA             Seq=164981 Size=1460
+1.377   DUP_ACK             Ack=81761 dupCount=2
+1.377   TX-DATA             Seq=166441 Size=1460
+1.379   DUP_ACK             Ack=81761 dupCount=3
+1.379   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+1.379   STATE_CHANGE        SlowStart -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+1.379   UPDATE              ssthresh=41610
+1.379   SSTHRESH_UPDATE     old=4294967295 new=56940 [Cause: Triple Duplicate ACK]
+1.379   TX-DATA             Seq=81761 Size=1460
+1.382   DUP_ACK             Ack=81761 dupCount=4
+1.382   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.382   TX-DATA             Seq=84681 Size=1460
+1.384   DUP_ACK             Ack=81761 dupCount=5
+1.384   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.384   TX-DATA             Seq=87601 Size=1460
+1.384   TX-DATA             Seq=167901 Size=1460
+1.387   DUP_ACK             Ack=81761 dupCount=6
+1.387   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.387   TX-DATA             Seq=90521 Size=1460
+1.389   DUP_ACK             Ack=81761 dupCount=7
+1.389   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.389   TX-DATA             Seq=169361 Size=1460
+1.389   TX-DATA             Seq=170821 Size=1460
+1.392   DUP_ACK             Ack=81761 dupCount=8
+1.392   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.392   TX-DATA             Seq=172281 Size=1460
+1.394   DUP_ACK             Ack=81761 dupCount=9
+1.394   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.394   TX-DATA             Seq=173741 Size=1460
+1.396   DUP_ACK             Ack=81761 dupCount=10
+1.396   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.396   TX-DATA             Seq=175201 Size=1460
+1.396   TX-DATA             Seq=176661 Size=1460
+1.399   DUP_ACK             Ack=81761 dupCount=11
+1.399   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.399   TX-DATA             Seq=99281 Size=1460
+1.401   DUP_ACK             Ack=81761 dupCount=12
+1.401   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.401   TX-DATA             Seq=102201 Size=1460
+1.401   TX-DATA             Seq=178121 Size=1460
+1.404   DUP_ACK             Ack=81761 dupCount=13
+1.404   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.404   TX-DATA             Seq=105121 Size=1460
+1.409   DUP_ACK             Ack=81761 dupCount=14
+1.409   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.409   TX-DATA             Seq=108041 Size=1460
+1.409   TX-DATA             Seq=179581 Size=1460
+1.411   DUP_ACK             Ack=81761 dupCount=15
+1.411   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.411   TX-DATA             Seq=110961 Size=1460
+1.414   DUP_ACK             Ack=81761 dupCount=16
+1.414   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.414   TX-DATA             Seq=113881 Size=1460
+1.416   DUP_ACK             Ack=81761 dupCount=17
+1.416   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.416   TX-DATA             Seq=115341 Size=1460
+1.416   TX-DATA             Seq=116801 Size=1460
+1.419   DUP_ACK             Ack=81761 dupCount=18
+1.419   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.419   TX-DATA             Seq=119721 Size=1460
+1.421   DUP_ACK             Ack=81761 dupCount=19
+1.421   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.421   TX-DATA             Seq=122641 Size=1460
+1.421   TX-DATA             Seq=125561 Size=1460
+1.423   DUP_ACK             Ack=81761 dupCount=20
+1.423   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.423   TX-DATA             Seq=128481 Size=1460
+1.426   DUP_ACK             Ack=81761 dupCount=21
+1.426   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.426   TX-DATA             Seq=131401 Size=1460
+1.428   DUP_ACK             Ack=81761 dupCount=22
+1.428   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.428   TX-DATA             Seq=134321 Size=1460
+1.428   TX-DATA             Seq=181041 Size=1460
+1.431   DUP_ACK             Ack=81761 dupCount=23
+1.431   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.431   TX-DATA             Seq=137241 Size=1460
+1.433   DUP_ACK             Ack=81761 dupCount=24
+1.433   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.433   TX-DATA             Seq=140161 Size=1460
+1.433   TX-DATA             Seq=182501 Size=1460
+1.436   DUP_ACK             Ack=81761 dupCount=25
+1.436   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.436   TX-DATA             Seq=143081 Size=1460
+1.438   DUP_ACK             Ack=81761 dupCount=26
+1.438   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.438   TX-DATA             Seq=146001 Size=1460
+1.438   TX-DATA             Seq=183961 Size=1460
+1.443   DUP_ACK             Ack=81761 dupCount=27
+1.443   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.443   TX-DATA             Seq=148921 Size=1460
+1.446   DUP_ACK             Ack=81761 dupCount=28
+1.446   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.448   DUP_ACK             Ack=81761 dupCount=29
+1.448   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.448   TX-DATA             Seq=151841 Size=1460
+1.450   DUP_ACK             Ack=81761 dupCount=30
+1.450   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=81761
+1.450   TX-DATA             Seq=154761 Size=1460
+1.450   TX-DATA             Seq=156221 Size=1460
+1.453   NEW_ACK             Ack=84681
+1.453   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+1.453   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+1.453   TX-DATA             Seq=157681 Size=1460
+1.455   NEW_ACK             Ack=87601
+1.455   TX-DATA             Seq=160601 Size=1460
+1.458   NEW_ACK             Ack=90521
+1.458   TX-DATA             Seq=185421 Size=1460
+1.460   DUP_ACK             Ack=90521 dupCount=1
+1.460   TX-DATA             Seq=163521 Size=1460
+1.460   TX-DATA             Seq=186881 Size=1460
+1.463   NEW_ACK             Ack=99281
+1.463   TX-DATA             Seq=188341 Size=1460
+1.465   DUP_ACK             Ack=99281 dupCount=1
+1.465   TX-DATA             Seq=189801 Size=1460
+1.468   DUP_ACK             Ack=99281 dupCount=2
+1.468   TX-DATA             Seq=191261 Size=1460
+1.470   DUP_ACK             Ack=99281 dupCount=3
+1.470   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+1.470   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+1.470   UPDATE              ssthresh=28470
+1.470   TX-DATA             Seq=192721 Size=1460
+1.473   DUP_ACK             Ack=99281 dupCount=4
+1.473   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.473   TX-DATA             Seq=170821 Size=1460
+1.473   TX-DATA             Seq=194181 Size=1460
+1.477   DUP_ACK             Ack=99281 dupCount=5
+1.477   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.480   DUP_ACK             Ack=99281 dupCount=6
+1.480   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.482   DUP_ACK             Ack=99281 dupCount=7
+1.482   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.485   DUP_ACK             Ack=99281 dupCount=8
+1.485   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.485   TX-DATA             Seq=195641 Size=1460
+1.487   DUP_ACK             Ack=99281 dupCount=9
+1.487   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.490   DUP_ACK             Ack=99281 dupCount=10
+1.490   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.492   DUP_ACK             Ack=99281 dupCount=11
+1.492   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.495   DUP_ACK             Ack=99281 dupCount=12
+1.495   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.497   DUP_ACK             Ack=99281 dupCount=13
+1.497   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.500   DUP_ACK             Ack=99281 dupCount=14
+1.500   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.502   DUP_ACK             Ack=99281 dupCount=15
+1.502   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.504   DUP_ACK             Ack=99281 dupCount=16
+1.504   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.507   DUP_ACK             Ack=99281 dupCount=17
+1.507   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.512   DUP_ACK             Ack=99281 dupCount=18
+1.512   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.514   DUP_ACK             Ack=99281 dupCount=19
+1.514   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.517   DUP_ACK             Ack=99281 dupCount=20
+1.517   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.519   DUP_ACK             Ack=99281 dupCount=21
+1.519   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.522   DUP_ACK             Ack=99281 dupCount=22
+1.522   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.524   DUP_ACK             Ack=99281 dupCount=23
+1.524   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.527   DUP_ACK             Ack=99281 dupCount=24
+1.527   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.529   DUP_ACK             Ack=99281 dupCount=25
+1.529   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.531   DUP_ACK             Ack=99281 dupCount=26
+1.531   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.531   TX-DATA             Seq=197101 Size=1460
+1.534   DUP_ACK             Ack=99281 dupCount=27
+1.534   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.536   DUP_ACK             Ack=99281 dupCount=28
+1.536   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.536   TX-DATA             Seq=176661 Size=1460
+1.536   TX-DATA             Seq=178121 Size=1460
+1.536   TX-DATA             Seq=198561 Size=1460
+1.539   DUP_ACK             Ack=99281 dupCount=29
+1.539   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.539   TX-DATA             Seq=181041 Size=1460
+1.539   TX-DATA             Seq=182501 Size=1460
+1.539   TX-DATA             Seq=183961 Size=1460
+1.539   TX-DATA             Seq=200021 Size=1460
+1.541   DUP_ACK             Ack=99281 dupCount=30
+1.541   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.541   TX-DATA             Seq=201481 Size=1460
+1.546   DUP_ACK             Ack=99281 dupCount=31
+1.546   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.546   TX-DATA             Seq=202941 Size=1460
+1.549   DUP_ACK             Ack=99281 dupCount=32
+1.549   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.551   DUP_ACK             Ack=99281 dupCount=33
+1.551   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.551   TX-DATA             Seq=204401 Size=1460
+1.577   DUP_ACK             Ack=99281 dupCount=34
+1.577   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.577   TX-DATA             Seq=191261 Size=1460
+1.577   TX-DATA             Seq=205861 Size=1460
+1.581   DUP_ACK             Ack=99281 dupCount=35
+1.581   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.584   DUP_ACK             Ack=99281 dupCount=36
+1.584   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.586   DUP_ACK             Ack=99281 dupCount=37
+1.586   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.586   TX-DATA             Seq=194181 Size=1460
+1.586   TX-DATA             Seq=207321 Size=1460
+1.589   DUP_ACK             Ack=99281 dupCount=38
+1.589   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.591   DUP_ACK             Ack=99281 dupCount=39
+1.591   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.594   DUP_ACK             Ack=99281 dupCount=40
+1.594   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.596   DUP_ACK             Ack=99281 dupCount=41
+1.596   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.596   TX-DATA             Seq=208781 Size=1460
+1.599   DUP_ACK             Ack=99281 dupCount=42
+1.599   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.599   TX-DATA             Seq=210241 Size=1460
+1.601   DUP_ACK             Ack=99281 dupCount=43
+1.601   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.601   TX-DATA             Seq=211701 Size=1460
+1.604   DUP_ACK             Ack=99281 dupCount=44
+1.604   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.604   TX-DATA             Seq=213161 Size=1460
+1.622   DUP_ACK             Ack=99281 dupCount=45
+1.622   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.624   DUP_ACK             Ack=99281 dupCount=46
+1.624   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.624   TX-DATA             Seq=214621 Size=1460
+1.631   DUP_ACK             Ack=99281 dupCount=47
+1.631   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.634   DUP_ACK             Ack=99281 dupCount=48
+1.634   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.634   TX-DATA             Seq=216081 Size=1460
+1.641   DUP_ACK             Ack=99281 dupCount=49
+1.641   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.641   TX-DATA             Seq=217541 Size=1460
+1.644   DUP_ACK             Ack=99281 dupCount=50
+1.644   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.644   TX-DATA             Seq=219001 Size=1460
+1.646   DUP_ACK             Ack=99281 dupCount=51
+1.646   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.646   TX-DATA             Seq=220461 Size=1460
+1.649   DUP_ACK             Ack=99281 dupCount=52
+1.649   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.649   TX-DATA             Seq=221921 Size=1460
+1.669   DUP_ACK             Ack=99281 dupCount=53
+1.669   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.669   TX-DATA             Seq=223381 Size=1460
+1.679   DUP_ACK             Ack=99281 dupCount=54
+1.679   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.679   TX-DATA             Seq=224841 Size=1460
+1.686   DUP_ACK             Ack=99281 dupCount=55
+1.686   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.686   TX-DATA             Seq=226301 Size=1460
+1.689   DUP_ACK             Ack=99281 dupCount=56
+1.689   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.689   TX-DATA             Seq=227761 Size=1460
+1.691   DUP_ACK             Ack=99281 dupCount=57
+1.691   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.694   DUP_ACK             Ack=99281 dupCount=58
+1.694   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.714   DUP_ACK             Ack=99281 dupCount=59
+1.714   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.724   DUP_ACK             Ack=99281 dupCount=60
+1.724   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.731   DUP_ACK             Ack=99281 dupCount=61
+1.731   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+1.734   DUP_ACK             Ack=99281 dupCount=62
+1.734   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=99281
+2.453   RTO_CHANGE          oldRTO=1s newRTO=2s
+2.453   TIMEOUT_EVENT       RTO backoff -> Timeout retransmission
+2.453   STATE_CHANGE        FastRecovery -> SlowStart [Reason: Timeout event (packet loss)]
+2.453   SSTHRESH_UPDATE     old=56940 new=39420 [Cause: Timeout]
+2.453   TX-DATA             Seq=99281 Size=1460
+2.528   NEW_ACK             Ack=116801
+2.528   RTO_CHANGE          oldRTO=2s newRTO=1s
+2.528   TX-DATA             Seq=116801 Size=1460
+2.528   TX-DATA             Seq=125561 Size=1460
+2.573   NEW_ACK             Ack=125561
+2.573   TX-DATA             Seq=140161 Size=1460
+2.573   TX-DATA             Seq=229221 Size=1460
+2.575   NEW_ACK             Ack=140161
+2.575   TX-DATA             Seq=230681 Size=1460
+2.575   TX-DATA             Seq=232141 Size=1460
+2.618   NEW_ACK             Ack=229221
+2.618   TX-DATA             Seq=233601 Size=1460
+2.620   NEW_ACK             Ack=230681
+2.620   TX-DATA             Seq=235061 Size=1460
+2.620   TX-DATA             Seq=236521 Size=1460
+2.623   NEW_ACK             Ack=232141
+2.623   TX-DATA             Seq=237981 Size=1460
+2.623   TX-DATA             Seq=239441 Size=1460
+2.625   NEW_ACK             Ack=233601
+2.625   TX-DATA             Seq=240901 Size=1460
+2.625   TX-DATA             Seq=242361 Size=1460
+2.663   NEW_ACK             Ack=235061
+2.663   TX-DATA             Seq=243821 Size=1460
+2.663   TX-DATA             Seq=245281 Size=1460
+2.665   NEW_ACK             Ack=236521
+2.665   TX-DATA             Seq=246741 Size=1460
+2.665   TX-DATA             Seq=248201 Size=1460
+2.668   NEW_ACK             Ack=237981
+2.668   TX-DATA             Seq=249661 Size=1460
+2.668   TX-DATA             Seq=251121 Size=1460
+2.670   NEW_ACK             Ack=239441
+2.670   TX-DATA             Seq=252581 Size=1460
+2.670   TX-DATA             Seq=254041 Size=1460
+2.673   NEW_ACK             Ack=240901
+2.673   TX-DATA             Seq=255501 Size=1460
+2.673   TX-DATA             Seq=256961 Size=1460
+2.675   NEW_ACK             Ack=242361
+2.675   TX-DATA             Seq=258421 Size=1460
+2.675   TX-DATA             Seq=259881 Size=1460
+2.678   NEW_ACK             Ack=243821
+2.678   TX-DATA             Seq=261341 Size=1460
+2.678   TX-DATA             Seq=262801 Size=1460
+2.708   NEW_ACK             Ack=245281
+2.708   TX-DATA             Seq=264261 Size=1460
+2.708   TX-DATA             Seq=265721 Size=1460
+2.710   NEW_ACK             Ack=246741
+2.710   TX-DATA             Seq=267181 Size=1460
+2.710   TX-DATA             Seq=268641 Size=1460
+2.713   NEW_ACK             Ack=248201
+2.713   TX-DATA             Seq=270101 Size=1460
+2.713   TX-DATA             Seq=271561 Size=1460
+2.715   NEW_ACK             Ack=249661
+2.715   TX-DATA             Seq=273021 Size=1460
+2.715   TX-DATA             Seq=274481 Size=1460
+2.718   NEW_ACK             Ack=251121
+2.718   TX-DATA             Seq=275941 Size=1460
+2.718   TX-DATA             Seq=277401 Size=1460
+2.720   NEW_ACK             Ack=252581
+2.720   TX-DATA             Seq=278861 Size=1460
+2.720   TX-DATA             Seq=280321 Size=1460
+2.723   NEW_ACK             Ack=254041
+2.723   TX-DATA             Seq=281781 Size=1460
+2.723   TX-DATA             Seq=283241 Size=1460
+2.725   NEW_ACK             Ack=255501
+2.725   TX-DATA             Seq=284701 Size=1460
+2.725   TX-DATA             Seq=286161 Size=1460
+2.728   NEW_ACK             Ack=256961
+2.728   TX-DATA             Seq=287621 Size=1460
+2.728   TX-DATA             Seq=289081 Size=1460
+2.730   NEW_ACK             Ack=258421
+2.730   TX-DATA             Seq=290541 Size=1460
+2.730   TX-DATA             Seq=292001 Size=1460
+2.732   NEW_ACK             Ack=259881
+2.732   TX-DATA             Seq=293461 Size=1460
+2.732   TX-DATA             Seq=294921 Size=1460
+2.735   NEW_ACK             Ack=261341
+2.735   TX-DATA             Seq=296381 Size=1460
+2.735   TX-DATA             Seq=297841 Size=1460
+2.737   NEW_ACK             Ack=262801
+2.737   STATE_CHANGE        SlowStart -> CongestionAvoidance [Reason: cwnd >= ssthresh]
+2.737   TX-DATA             Seq=299301 Size=1460
+2.737   TX-DATA             Seq=300761 Size=1460
+2.740   NEW_ACK             Ack=264261
+2.740   TX-DATA             Seq=302221 Size=1460
+2.755   NEW_ACK             Ack=265721
+2.755   TX-DATA             Seq=303681 Size=1460
+2.757   NEW_ACK             Ack=267181
+2.757   TX-DATA             Seq=305141 Size=1460
+2.759   NEW_ACK             Ack=268641
+2.759   TX-DATA             Seq=306601 Size=1460
+2.762   NEW_ACK             Ack=270101
+2.762   TX-DATA             Seq=308061 Size=1460
+2.764   NEW_ACK             Ack=271561
+2.764   TX-DATA             Seq=309521 Size=1460
+2.767   NEW_ACK             Ack=273021
+2.767   TX-DATA             Seq=310981 Size=1460
+2.769   NEW_ACK             Ack=274481
+2.769   TX-DATA             Seq=312441 Size=1460
+2.772   NEW_ACK             Ack=275941
+2.772   TX-DATA             Seq=313901 Size=1460
+2.774   NEW_ACK             Ack=277401
+2.774   TX-DATA             Seq=315361 Size=1460
+2.777   NEW_ACK             Ack=278861
+2.777   TX-DATA             Seq=316821 Size=1460
+2.779   NEW_ACK             Ack=280321
+2.779   TX-DATA             Seq=318281 Size=1460
+2.782   NEW_ACK             Ack=281781
+2.782   TX-DATA             Seq=319741 Size=1460
+2.784   NEW_ACK             Ack=283241
+2.784   TX-DATA             Seq=321201 Size=1460
+2.787   NEW_ACK             Ack=284701
+2.787   TX-DATA             Seq=322661 Size=1460
+2.789   NEW_ACK             Ack=286161
+2.789   TX-DATA             Seq=324121 Size=1460
+2.791   NEW_ACK             Ack=287621
+2.791   TX-DATA             Seq=325581 Size=1460
+2.794   NEW_ACK             Ack=289081
+2.794   TX-DATA             Seq=327041 Size=1460
+2.796   NEW_ACK             Ack=290541
+2.796   TX-DATA             Seq=328501 Size=1460
+2.799   NEW_ACK             Ack=292001
+2.799   TX-DATA             Seq=329961 Size=1460
+2.801   NEW_ACK             Ack=293461
+2.801   TX-DATA             Seq=331421 Size=1460
+2.804   NEW_ACK             Ack=294921
+2.804   TX-DATA             Seq=332881 Size=1460
+2.806   NEW_ACK             Ack=296381
+2.806   TX-DATA             Seq=334341 Size=1460
+2.809   NEW_ACK             Ack=297841
+2.809   TX-DATA             Seq=335801 Size=1460
+2.814   DUP_ACK             Ack=297841 dupCount=1
+2.814   TX-DATA             Seq=337261 Size=1460
+2.816   DUP_ACK             Ack=297841 dupCount=2
+2.816   TX-DATA             Seq=338721 Size=1460
+2.823   DUP_ACK             Ack=297841 dupCount=3
+2.823   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+2.823   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+2.823   UPDATE              ssthresh=19710
+2.823   SSTHRESH_UPDATE     old=39420 new=26280 [Cause: Triple Duplicate ACK]
+2.823   TX-DATA             Seq=297841 Size=1460
+2.826   DUP_ACK             Ack=297841 dupCount=4
+2.826   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.826   TX-DATA             Seq=300761 Size=1460
+2.828   DUP_ACK             Ack=297841 dupCount=5
+2.828   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.828   TX-DATA             Seq=340181 Size=1460
+2.828   TX-DATA             Seq=341641 Size=1460
+2.831   DUP_ACK             Ack=297841 dupCount=6
+2.831   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.831   TX-DATA             Seq=343101 Size=1460
+2.833   DUP_ACK             Ack=297841 dupCount=7
+2.833   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.833   TX-DATA             Seq=344561 Size=1460
+2.833   TX-DATA             Seq=346021 Size=1460
+2.836   DUP_ACK             Ack=297841 dupCount=8
+2.836   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.836   TX-DATA             Seq=347481 Size=1460
+2.838   DUP_ACK             Ack=297841 dupCount=9
+2.838   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.838   TX-DATA             Seq=348941 Size=1460
+2.838   TX-DATA             Seq=350401 Size=1460
+2.841   DUP_ACK             Ack=297841 dupCount=10
+2.841   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.841   TX-DATA             Seq=351861 Size=1460
+2.843   DUP_ACK             Ack=297841 dupCount=11
+2.843   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.843   TX-DATA             Seq=353321 Size=1460
+2.846   DUP_ACK             Ack=297841 dupCount=12
+2.846   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.846   TX-DATA             Seq=354781 Size=1460
+2.846   TX-DATA             Seq=356241 Size=1460
+2.848   DUP_ACK             Ack=297841 dupCount=13
+2.848   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.848   TX-DATA             Seq=357701 Size=1460
+2.850   DUP_ACK             Ack=297841 dupCount=14
+2.850   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.850   TX-DATA             Seq=359161 Size=1460
+2.850   TX-DATA             Seq=360621 Size=1460
+2.853   DUP_ACK             Ack=297841 dupCount=15
+2.853   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.853   TX-DATA             Seq=362081 Size=1460
+2.855   DUP_ACK             Ack=297841 dupCount=16
+2.855   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.855   TX-DATA             Seq=363541 Size=1460
+2.858   DUP_ACK             Ack=297841 dupCount=17
+2.858   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.858   TX-DATA             Seq=365001 Size=1460
+2.860   DUP_ACK             Ack=297841 dupCount=18
+2.860   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.863   DUP_ACK             Ack=297841 dupCount=19
+2.863   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.863   TX-DATA             Seq=366461 Size=1460
+2.865   DUP_ACK             Ack=297841 dupCount=20
+2.865   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.865   TX-DATA             Seq=367921 Size=1460
+2.868   DUP_ACK             Ack=297841 dupCount=21
+2.868   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.868   TX-DATA             Seq=369381 Size=1460
+2.870   DUP_ACK             Ack=297841 dupCount=22
+2.870   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.873   DUP_ACK             Ack=297841 dupCount=23
+2.873   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.873   TX-DATA             Seq=370841 Size=1460
+2.875   DUP_ACK             Ack=297841 dupCount=24
+2.875   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.875   TX-DATA             Seq=372301 Size=1460
+2.877   DUP_ACK             Ack=297841 dupCount=25
+2.877   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.880   DUP_ACK             Ack=297841 dupCount=26
+2.880   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.880   TX-DATA             Seq=373761 Size=1460
+2.882   DUP_ACK             Ack=297841 dupCount=27
+2.882   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=297841
+2.882   TX-DATA             Seq=375221 Size=1460
+2.885   NEW_ACK             Ack=300761
+2.885   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+2.885   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+2.885   TX-DATA             Seq=376681 Size=1460
+2.887   NEW_ACK             Ack=340181
+2.890   NEW_ACK             Ack=341641
+2.892   NEW_ACK             Ack=343101
+2.895   NEW_ACK             Ack=344561
+2.897   NEW_ACK             Ack=346021
+2.900   NEW_ACK             Ack=347481
+2.902   NEW_ACK             Ack=348941
+2.904   NEW_ACK             Ack=350401
+2.907   NEW_ACK             Ack=351861
+2.907   TX-DATA             Seq=378141 Size=1460
+2.909   NEW_ACK             Ack=353321
+2.909   TX-DATA             Seq=379601 Size=1460
+2.912   NEW_ACK             Ack=354781
+2.912   TX-DATA             Seq=381061 Size=1460
+2.914   NEW_ACK             Ack=356241
+2.914   TX-DATA             Seq=382521 Size=1460
+2.917   NEW_ACK             Ack=357701
+2.917   TX-DATA             Seq=383981 Size=1460
+2.919   NEW_ACK             Ack=359161
+2.919   TX-DATA             Seq=385441 Size=1460
+2.922   NEW_ACK             Ack=360621
+2.922   TX-DATA             Seq=386901 Size=1460
+2.924   NEW_ACK             Ack=362081
+2.924   TX-DATA             Seq=388361 Size=1460
+2.927   NEW_ACK             Ack=363541
+2.927   TX-DATA             Seq=389821 Size=1460
+2.929   NEW_ACK             Ack=365001
+2.929   TX-DATA             Seq=391281 Size=1460
+2.931   NEW_ACK             Ack=366461
+2.931   TX-DATA             Seq=392741 Size=1460
+2.934   NEW_ACK             Ack=367921
+2.934   TX-DATA             Seq=394201 Size=1460
+2.936   NEW_ACK             Ack=369381
+2.936   TX-DATA             Seq=395661 Size=1460
+2.939   NEW_ACK             Ack=370841
+2.939   TX-DATA             Seq=397121 Size=1460
+2.941   NEW_ACK             Ack=372301
+2.941   TX-DATA             Seq=398581 Size=1460
+2.944   NEW_ACK             Ack=373761
+2.944   TX-DATA             Seq=400041 Size=1460
+2.946   NEW_ACK             Ack=375221
+2.946   TX-DATA             Seq=401501 Size=1460
+2.949   NEW_ACK             Ack=376681
+2.949   TX-DATA             Seq=402961 Size=1460
+2.951   NEW_ACK             Ack=378141
+2.951   TX-DATA             Seq=404421 Size=1460
+2.954   NEW_ACK             Ack=379601
+2.954   TX-DATA             Seq=405881 Size=1460
+2.956   NEW_ACK             Ack=381061
+2.956   TX-DATA             Seq=407341 Size=1460
+2.959   NEW_ACK             Ack=382521
+2.959   TX-DATA             Seq=408801 Size=1460
+2.961   NEW_ACK             Ack=383981
+2.961   TX-DATA             Seq=410261 Size=1460
+2.963   NEW_ACK             Ack=385441
+2.963   TX-DATA             Seq=411721 Size=1460
+2.966   NEW_ACK             Ack=386901
+2.966   TX-DATA             Seq=413181 Size=1460
+2.968   NEW_ACK             Ack=388361
+2.968   TX-DATA             Seq=414641 Size=1460
+2.971   NEW_ACK             Ack=389821
+2.971   TX-DATA             Seq=416101 Size=1460
+2.973   NEW_ACK             Ack=391281
+2.973   TX-DATA             Seq=417561 Size=1460
+2.976   NEW_ACK             Ack=392741
+2.976   TX-DATA             Seq=419021 Size=1460
+2.978   NEW_ACK             Ack=394201
+2.978   TX-DATA             Seq=420481 Size=1460
+2.981   NEW_ACK             Ack=395661
+2.981   TX-DATA             Seq=421941 Size=1460
+2.983   NEW_ACK             Ack=397121
+2.983   TX-DATA             Seq=423401 Size=1460
+2.986   NEW_ACK             Ack=398581
+2.986   TX-DATA             Seq=424861 Size=1460
+2.988   NEW_ACK             Ack=400041
+2.988   TX-DATA             Seq=426321 Size=1460
+2.990   NEW_ACK             Ack=401501
+2.990   TX-DATA             Seq=427781 Size=1460
+2.993   NEW_ACK             Ack=402961
+2.993   TX-DATA             Seq=429241 Size=1460
+2.995   NEW_ACK             Ack=404421
+2.995   TX-DATA             Seq=430701 Size=1460
+2.995   TX-DATA             Seq=432161 Size=1460
+2.998   NEW_ACK             Ack=405881
+2.998   TX-DATA             Seq=433621 Size=1460
+3.000   NEW_ACK             Ack=407341
+3.000   TX-DATA             Seq=435081 Size=1460
+3.003   NEW_ACK             Ack=408801
+3.003   TX-DATA             Seq=436541 Size=1460
+3.005   NEW_ACK             Ack=410261
+3.005   TX-DATA             Seq=438001 Size=1460
+3.008   NEW_ACK             Ack=411721
+3.008   TX-DATA             Seq=439461 Size=1460
+3.010   NEW_ACK             Ack=413181
+3.010   TX-DATA             Seq=440921 Size=1460
+3.013   NEW_ACK             Ack=414641
+3.013   TX-DATA             Seq=442381 Size=1460
+3.015   NEW_ACK             Ack=416101
+3.015   TX-DATA             Seq=443841 Size=1460
+3.017   NEW_ACK             Ack=417561
+3.017   TX-DATA             Seq=445301 Size=1460
+3.020   NEW_ACK             Ack=419021
+3.020   TX-DATA             Seq=446761 Size=1460
+3.022   NEW_ACK             Ack=420481
+3.022   TX-DATA             Seq=448221 Size=1460
+3.025   NEW_ACK             Ack=421941
+3.025   TX-DATA             Seq=449681 Size=1460
+3.027   NEW_ACK             Ack=423401
+3.027   TX-DATA             Seq=451141 Size=1460
+3.030   NEW_ACK             Ack=424861
+3.030   TX-DATA             Seq=452601 Size=1460
+3.032   NEW_ACK             Ack=426321
+3.032   TX-DATA             Seq=454061 Size=1460
+3.035   NEW_ACK             Ack=427781
+3.035   TX-DATA             Seq=455521 Size=1460
+3.037   NEW_ACK             Ack=429241
+3.037   TX-DATA             Seq=456981 Size=1460
+3.040   NEW_ACK             Ack=430701
+3.040   TX-DATA             Seq=458441 Size=1460
+3.042   NEW_ACK             Ack=432161
+3.042   TX-DATA             Seq=459901 Size=1460
+3.045   NEW_ACK             Ack=433621
+3.045   TX-DATA             Seq=461361 Size=1460
+3.047   NEW_ACK             Ack=435081
+3.047   TX-DATA             Seq=462821 Size=1460
+3.050   NEW_ACK             Ack=436541
+3.050   TX-DATA             Seq=464281 Size=1460
+3.052   NEW_ACK             Ack=438001
+3.052   TX-DATA             Seq=465741 Size=1460
+3.054   NEW_ACK             Ack=439461
+3.054   TX-DATA             Seq=467201 Size=1460
+3.057   NEW_ACK             Ack=440921
+3.057   TX-DATA             Seq=468661 Size=1460
+3.059   NEW_ACK             Ack=442381
+3.059   TX-DATA             Seq=470121 Size=1460
+3.062   NEW_ACK             Ack=443841
+3.062   TX-DATA             Seq=471581 Size=1460
+3.064   NEW_ACK             Ack=445301
+3.064   TX-DATA             Seq=473041 Size=1460
+3.067   NEW_ACK             Ack=446761
+3.067   TX-DATA             Seq=474501 Size=1460
+3.069   NEW_ACK             Ack=448221
+3.069   TX-DATA             Seq=475961 Size=1460
+3.072   NEW_ACK             Ack=449681
+3.072   TX-DATA             Seq=477421 Size=1460
+3.074   NEW_ACK             Ack=451141
+3.074   TX-DATA             Seq=478881 Size=1460
+3.077   NEW_ACK             Ack=452601
+3.077   TX-DATA             Seq=480341 Size=1460
+3.079   NEW_ACK             Ack=454061
+3.079   TX-DATA             Seq=481801 Size=1460
+3.081   NEW_ACK             Ack=455521
+3.081   TX-DATA             Seq=483261 Size=1460
+3.084   NEW_ACK             Ack=456981
+3.084   TX-DATA             Seq=484721 Size=1460
+3.086   NEW_ACK             Ack=458441
+3.086   TX-DATA             Seq=486181 Size=1460
+3.086   TX-DATA             Seq=487641 Size=1460
+3.089   NEW_ACK             Ack=459901
+3.089   TX-DATA             Seq=489101 Size=1460
+3.091   NEW_ACK             Ack=461361
+3.091   TX-DATA             Seq=490561 Size=1460
+3.094   NEW_ACK             Ack=462821
+3.094   TX-DATA             Seq=492021 Size=1460
+3.096   NEW_ACK             Ack=464281
+3.096   TX-DATA             Seq=493481 Size=1460
+3.101   NEW_ACK             Ack=465741
+3.101   TX-DATA             Seq=494941 Size=1460
+3.104   NEW_ACK             Ack=467201
+3.104   TX-DATA             Seq=496401 Size=1460
+3.106   NEW_ACK             Ack=468661
+3.106   TX-DATA             Seq=497861 Size=1460
+3.109   NEW_ACK             Ack=470121
+3.109   TX-DATA             Seq=499321 Size=1460
+3.111   NEW_ACK             Ack=471581
+3.111   TX-DATA             Seq=500781 Size=1460
+3.114   NEW_ACK             Ack=473041
+3.114   TX-DATA             Seq=502241 Size=1460
+3.116   NEW_ACK             Ack=474501
+3.116   TX-DATA             Seq=503701 Size=1460
+3.118   NEW_ACK             Ack=475961
+3.118   TX-DATA             Seq=505161 Size=1460
+3.121   NEW_ACK             Ack=477421
+3.121   TX-DATA             Seq=506621 Size=1460
+3.123   NEW_ACK             Ack=478881
+3.123   TX-DATA             Seq=508081 Size=1460
+3.126   NEW_ACK             Ack=480341
+3.126   TX-DATA             Seq=509541 Size=1460
+3.128   NEW_ACK             Ack=481801
+3.128   TX-DATA             Seq=511001 Size=1460
+3.131   NEW_ACK             Ack=483261
+3.131   TX-DATA             Seq=512461 Size=1460
+3.133   NEW_ACK             Ack=484721
+3.133   TX-DATA             Seq=513921 Size=1460
+3.136   NEW_ACK             Ack=486181
+3.136   TX-DATA             Seq=515381 Size=1460
+3.138   NEW_ACK             Ack=487641
+3.138   TX-DATA             Seq=516841 Size=1460
+3.141   NEW_ACK             Ack=489101
+3.141   TX-DATA             Seq=518301 Size=1460
+3.143   NEW_ACK             Ack=490561
+3.143   TX-DATA             Seq=519761 Size=1460
+3.145   NEW_ACK             Ack=492021
+3.145   TX-DATA             Seq=521221 Size=1460
+3.148   NEW_ACK             Ack=493481
+3.148   TX-DATA             Seq=522681 Size=1460
+3.150   NEW_ACK             Ack=494941
+3.150   TX-DATA             Seq=524141 Size=1460
+3.158   NEW_ACK             Ack=496401
+3.158   TX-DATA             Seq=525601 Size=1460
+3.160   NEW_ACK             Ack=497861
+3.160   TX-DATA             Seq=527061 Size=1460
+3.163   NEW_ACK             Ack=499321
+3.163   TX-DATA             Seq=528521 Size=1460
+3.165   NEW_ACK             Ack=500781
+3.165   TX-DATA             Seq=529981 Size=1460
+3.168   NEW_ACK             Ack=502241
+3.168   TX-DATA             Seq=531441 Size=1460
+3.170   NEW_ACK             Ack=503701
+3.170   TX-DATA             Seq=532901 Size=1460
+3.172   NEW_ACK             Ack=505161
+3.172   TX-DATA             Seq=534361 Size=1460
+3.175   NEW_ACK             Ack=506621
+3.175   TX-DATA             Seq=535821 Size=1460
+3.177   NEW_ACK             Ack=508081
+3.177   TX-DATA             Seq=537281 Size=1460
+3.180   NEW_ACK             Ack=509541
+3.180   TX-DATA             Seq=538741 Size=1460
+3.182   NEW_ACK             Ack=511001
+3.182   TX-DATA             Seq=540201 Size=1460
+3.185   NEW_ACK             Ack=512461
+3.185   TX-DATA             Seq=541661 Size=1460
+3.187   NEW_ACK             Ack=513921
+3.187   TX-DATA             Seq=543121 Size=1460
+3.190   NEW_ACK             Ack=515381
+3.190   TX-DATA             Seq=544581 Size=1460
+3.190   TX-DATA             Seq=546041 Size=1460
+3.192   NEW_ACK             Ack=516841
+3.192   TX-DATA             Seq=547501 Size=1460
+3.195   NEW_ACK             Ack=518301
+3.195   TX-DATA             Seq=548961 Size=1460
+3.197   NEW_ACK             Ack=519761
+3.197   TX-DATA             Seq=550421 Size=1460
+3.200   NEW_ACK             Ack=521221
+3.200   TX-DATA             Seq=551881 Size=1460
+3.202   NEW_ACK             Ack=522681
+3.202   TX-DATA             Seq=553341 Size=1460
+3.204   NEW_ACK             Ack=524141
+3.204   TX-DATA             Seq=554801 Size=1460
+3.207   NEW_ACK             Ack=525601
+3.207   TX-DATA             Seq=556261 Size=1460
+3.219   NEW_ACK             Ack=527061
+3.219   TX-DATA             Seq=557721 Size=1460
+3.222   NEW_ACK             Ack=528521
+3.222   TX-DATA             Seq=559181 Size=1460
+3.224   NEW_ACK             Ack=529981
+3.224   TX-DATA             Seq=560641 Size=1460
+3.227   NEW_ACK             Ack=531441
+3.227   TX-DATA             Seq=562101 Size=1460
+3.229   NEW_ACK             Ack=532901
+3.229   TX-DATA             Seq=563561 Size=1460
+3.231   NEW_ACK             Ack=534361
+3.231   TX-DATA             Seq=565021 Size=1460
+3.234   NEW_ACK             Ack=535821
+3.234   TX-DATA             Seq=566481 Size=1460
+3.236   NEW_ACK             Ack=537281
+3.236   TX-DATA             Seq=567941 Size=1460
+3.239   NEW_ACK             Ack=538741
+3.239   TX-DATA             Seq=569401 Size=1460
+3.241   NEW_ACK             Ack=540201
+3.241   TX-DATA             Seq=570861 Size=1460
+3.244   NEW_ACK             Ack=541661
+3.244   TX-DATA             Seq=572321 Size=1460
+3.246   NEW_ACK             Ack=543121
+3.246   TX-DATA             Seq=573781 Size=1460
+3.249   NEW_ACK             Ack=544581
+3.249   TX-DATA             Seq=575241 Size=1460
+3.251   NEW_ACK             Ack=546041
+3.251   TX-DATA             Seq=576701 Size=1460
+3.254   NEW_ACK             Ack=547501
+3.254   TX-DATA             Seq=578161 Size=1460
+3.256   NEW_ACK             Ack=548961
+3.256   TX-DATA             Seq=579621 Size=1460
+3.259   NEW_ACK             Ack=550421
+3.259   TX-DATA             Seq=581081 Size=1460
+3.261   NEW_ACK             Ack=551881
+3.261   TX-DATA             Seq=582541 Size=1460
+3.263   NEW_ACK             Ack=553341
+3.263   TX-DATA             Seq=584001 Size=1460
+3.266   NEW_ACK             Ack=554801
+3.266   TX-DATA             Seq=585461 Size=1460
+3.268   NEW_ACK             Ack=556261
+3.268   TX-DATA             Seq=586921 Size=1460
+3.271   NEW_ACK             Ack=557721
+3.271   TX-DATA             Seq=588381 Size=1460
+3.293   NEW_ACK             Ack=559181
+3.293   TX-DATA             Seq=589841 Size=1460
+3.295   NEW_ACK             Ack=560641
+3.295   TX-DATA             Seq=591301 Size=1460
+3.298   NEW_ACK             Ack=562101
+3.298   TX-DATA             Seq=592761 Size=1460
+3.300   NEW_ACK             Ack=563561
+3.300   TX-DATA             Seq=594221 Size=1460
+3.303   NEW_ACK             Ack=565021
+3.303   TX-DATA             Seq=595681 Size=1460
+3.305   NEW_ACK             Ack=566481
+3.305   TX-DATA             Seq=597141 Size=1460
+3.308   NEW_ACK             Ack=567941
+3.308   TX-DATA             Seq=598601 Size=1460
+3.310   NEW_ACK             Ack=569401
+3.310   TX-DATA             Seq=600061 Size=1460
+3.313   NEW_ACK             Ack=570861
+3.313   TX-DATA             Seq=601521 Size=1460
+3.315   NEW_ACK             Ack=572321
+3.315   TX-DATA             Seq=602981 Size=1460
+3.317   NEW_ACK             Ack=573781
+3.317   TX-DATA             Seq=604441 Size=1460
+3.320   NEW_ACK             Ack=575241
+3.320   TX-DATA             Seq=605901 Size=1460
+3.320   TX-DATA             Seq=607361 Size=1460
+3.322   NEW_ACK             Ack=576701
+3.322   TX-DATA             Seq=608821 Size=1460
+3.325   NEW_ACK             Ack=578161
+3.325   TX-DATA             Seq=610281 Size=1460
+3.327   NEW_ACK             Ack=579621
+3.327   TX-DATA             Seq=611741 Size=1460
+3.330   NEW_ACK             Ack=581081
+3.330   TX-DATA             Seq=613201 Size=1460
+3.332   NEW_ACK             Ack=582541
+3.332   TX-DATA             Seq=614661 Size=1460
+3.335   NEW_ACK             Ack=584001
+3.335   TX-DATA             Seq=616121 Size=1460
+3.337   NEW_ACK             Ack=585461
+3.337   TX-DATA             Seq=617581 Size=1460
+3.340   NEW_ACK             Ack=586921
+3.340   TX-DATA             Seq=619041 Size=1460
+3.342   NEW_ACK             Ack=588381
+3.342   TX-DATA             Seq=620501 Size=1460
+3.345   NEW_ACK             Ack=589841
+3.345   TX-DATA             Seq=621961 Size=1460
+3.369   NEW_ACK             Ack=591301
+3.369   TX-DATA             Seq=623421 Size=1460
+3.372   NEW_ACK             Ack=592761
+3.372   TX-DATA             Seq=624881 Size=1460
+3.374   NEW_ACK             Ack=594221
+3.374   TX-DATA             Seq=626341 Size=1460
+3.376   NEW_ACK             Ack=595681
+3.376   TX-DATA             Seq=627801 Size=1460
+3.379   NEW_ACK             Ack=597141
+3.379   TX-DATA             Seq=629261 Size=1460
+3.381   NEW_ACK             Ack=598601
+3.381   TX-DATA             Seq=630721 Size=1460
+3.386   DUP_ACK             Ack=598601 dupCount=1
+3.386   TX-DATA             Seq=632181 Size=1460
+3.389   DUP_ACK             Ack=598601 dupCount=2
+3.389   TX-DATA             Seq=633641 Size=1460
+3.391   DUP_ACK             Ack=598601 dupCount=3
+3.391   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+3.391   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+3.391   UPDATE              ssthresh=16790
+3.391   SSTHRESH_UPDATE     old=26280 new=23360 [Cause: Triple Duplicate ACK]
+3.391   TX-DATA             Seq=598601 Size=1460
+3.394   DUP_ACK             Ack=598601 dupCount=4
+3.394   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.394   TX-DATA             Seq=635101 Size=1460
+3.394   TX-DATA             Seq=636561 Size=1460
+3.396   DUP_ACK             Ack=598601 dupCount=5
+3.396   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.396   TX-DATA             Seq=638021 Size=1460
+3.399   DUP_ACK             Ack=598601 dupCount=6
+3.399   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.399   TX-DATA             Seq=639481 Size=1460
+3.399   TX-DATA             Seq=640941 Size=1460
+3.401   DUP_ACK             Ack=598601 dupCount=7
+3.401   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.401   TX-DATA             Seq=642401 Size=1460
+3.403   DUP_ACK             Ack=598601 dupCount=8
+3.403   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.403   TX-DATA             Seq=607361 Size=1460
+3.403   TX-DATA             Seq=643861 Size=1460
+3.406   DUP_ACK             Ack=598601 dupCount=9
+3.406   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.406   TX-DATA             Seq=645321 Size=1460
+3.408   DUP_ACK             Ack=598601 dupCount=10
+3.408   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.408   TX-DATA             Seq=646781 Size=1460
+3.408   TX-DATA             Seq=648241 Size=1460
+3.411   DUP_ACK             Ack=598601 dupCount=11
+3.411   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.411   TX-DATA             Seq=649701 Size=1460
+3.413   DUP_ACK             Ack=598601 dupCount=12
+3.413   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.413   TX-DATA             Seq=651161 Size=1460
+3.413   TX-DATA             Seq=652621 Size=1460
+3.416   DUP_ACK             Ack=598601 dupCount=13
+3.416   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.416   TX-DATA             Seq=654081 Size=1460
+3.421   DUP_ACK             Ack=598601 dupCount=14
+3.421   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.421   TX-DATA             Seq=655541 Size=1460
+3.445   DUP_ACK             Ack=598601 dupCount=15
+3.445   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.445   TX-DATA             Seq=657001 Size=1460
+3.448   DUP_ACK             Ack=598601 dupCount=16
+3.448   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.448   TX-DATA             Seq=620501 Size=1460
+3.450   DUP_ACK             Ack=598601 dupCount=17
+3.450   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.455   DUP_ACK             Ack=598601 dupCount=18
+3.455   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.455   TX-DATA             Seq=658461 Size=1460
+3.457   DUP_ACK             Ack=598601 dupCount=19
+3.457   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.457   TX-DATA             Seq=659921 Size=1460
+3.460   DUP_ACK             Ack=598601 dupCount=20
+3.460   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.460   TX-DATA             Seq=627801 Size=1460
+3.462   DUP_ACK             Ack=598601 dupCount=21
+3.462   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=598601
+3.465   NEW_ACK             Ack=607361
+3.465   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+3.465   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+3.465   TX-DATA             Seq=661381 Size=1460
+3.467   DUP_ACK             Ack=607361 dupCount=1
+3.467   TX-DATA             Seq=662841 Size=1460
+3.470   DUP_ACK             Ack=607361 dupCount=2
+3.470   TX-DATA             Seq=664301 Size=1460
+3.472   DUP_ACK             Ack=607361 dupCount=3
+3.472   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+3.472   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+3.472   UPDATE              ssthresh=16164
+3.475   DUP_ACK             Ack=607361 dupCount=4
+3.475   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=607361
+3.475   TX-DATA             Seq=665761 Size=1460
+3.477   DUP_ACK             Ack=607361 dupCount=5
+3.477   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=607361
+3.477   TX-DATA             Seq=667221 Size=1460
+3.480   NEW_ACK             Ack=620501
+3.480   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+3.480   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+3.480   TX-DATA             Seq=668681 Size=1460
+3.482   DUP_ACK             Ack=620501 dupCount=1
+3.484   DUP_ACK             Ack=620501 dupCount=2
+3.484   TX-DATA             Seq=640941 Size=1460
+3.489   DUP_ACK             Ack=620501 dupCount=3
+3.489   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+3.489   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+3.489   UPDATE              ssthresh=14391
+3.489   TX-DATA             Seq=643861 Size=1460
+3.492   DUP_ACK             Ack=620501 dupCount=4
+3.492   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=620501
+3.492   TX-DATA             Seq=670141 Size=1460
+3.494   DUP_ACK             Ack=620501 dupCount=5
+3.494   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=620501
+3.494   TX-DATA             Seq=648241 Size=1460
+3.524   NEW_ACK             Ack=627801
+3.524   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+3.524   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+3.524   TX-DATA             Seq=649701 Size=1460
+3.529   DUP_ACK             Ack=627801 dupCount=1
+3.529   TX-DATA             Seq=652621 Size=1460
+3.529   TX-DATA             Seq=671601 Size=1460
+3.531   DUP_ACK             Ack=627801 dupCount=2
+3.531   TX-DATA             Seq=673061 Size=1460
+3.534   NEW_ACK             Ack=640941
+3.534   TX-DATA             Seq=674521 Size=1460
+3.534   TX-DATA             Seq=675981 Size=1460
+3.536   DUP_ACK             Ack=640941 dupCount=1
+3.536   SSTHRESH_UPDATE     old=23360 new=16060 [Cause: Timeout]
+3.536   TX-DATA             Seq=640941 Size=1460
+3.536   TX-DATA             Seq=657001 Size=1460
+3.538   DUP_ACK             Ack=640941 dupCount=2
+3.541   DUP_ACK             Ack=640941 dupCount=3
+3.541   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+3.541   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+3.541   UPDATE              ssthresh=11631
+3.541   TX-DATA             Seq=677441 Size=1460
+3.541   TX-DATA             Seq=678901 Size=1460
+3.543   DUP_ACK             Ack=640941 dupCount=4
+3.543   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=640941
+3.543   TX-DATA             Seq=680361 Size=1460
+3.546   DUP_ACK             Ack=640941 dupCount=5
+3.546   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=640941
+3.546   TX-DATA             Seq=681821 Size=1460
+3.546   TX-DATA             Seq=683281 Size=1460
+3.548   DUP_ACK             Ack=640941 dupCount=6
+3.548   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=640941
+3.548   TX-DATA             Seq=684741 Size=1460
+3.551   NEW_ACK             Ack=643861
+3.551   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+3.551   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+3.551   TX-DATA             Seq=686201 Size=1460
+3.553   NEW_ACK             Ack=648241
+3.553   TX-DATA             Seq=687661 Size=1460
+3.556   DUP_ACK             Ack=648241 dupCount=1
+3.556   TX-DATA             Seq=689121 Size=1460
+3.558   NEW_ACK             Ack=649701
+3.558   TX-DATA             Seq=690581 Size=1460
+3.590   NEW_ACK             Ack=652621
+3.590   TX-DATA             Seq=692041 Size=1460
+3.597   NEW_ACK             Ack=657001
+3.600   DUP_ACK             Ack=657001 dupCount=1
+3.600   TX-DATA             Seq=693501 Size=1460
+3.602   DUP_ACK             Ack=657001 dupCount=2
+3.602   TX-DATA             Seq=694961 Size=1460
+3.605   DUP_ACK             Ack=657001 dupCount=3
+3.605   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+3.605   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+3.605   UPDATE              ssthresh=11972
+3.605   TX-DATA             Seq=696421 Size=1460
+3.607   DUP_ACK             Ack=657001 dupCount=4
+3.607   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.610   DUP_ACK             Ack=657001 dupCount=5
+3.610   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.615   DUP_ACK             Ack=657001 dupCount=6
+3.615   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.615   TX-DATA             Seq=697881 Size=1460
+3.617   DUP_ACK             Ack=657001 dupCount=7
+3.617   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.617   TX-DATA             Seq=699341 Size=1460
+3.619   DUP_ACK             Ack=657001 dupCount=8
+3.619   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.619   TX-DATA             Seq=700801 Size=1460
+3.622   DUP_ACK             Ack=657001 dupCount=9
+3.622   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.624   DUP_ACK             Ack=657001 dupCount=10
+3.624   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.624   TX-DATA             Seq=702261 Size=1460
+3.627   DUP_ACK             Ack=657001 dupCount=11
+3.627   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.627   TX-DATA             Seq=703721 Size=1460
+3.629   DUP_ACK             Ack=657001 dupCount=12
+3.629   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.629   TX-DATA             Seq=683281 Size=1460
+3.632   DUP_ACK             Ack=657001 dupCount=13
+3.632   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.634   DUP_ACK             Ack=657001 dupCount=14
+3.634   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.654   DUP_ACK             Ack=657001 dupCount=15
+3.654   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.654   TX-DATA             Seq=705181 Size=1460
+3.666   DUP_ACK             Ack=657001 dupCount=16
+3.666   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.666   TX-DATA             Seq=706641 Size=1460
+3.669   DUP_ACK             Ack=657001 dupCount=17
+3.669   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.669   TX-DATA             Seq=708101 Size=1460
+3.671   DUP_ACK             Ack=657001 dupCount=18
+3.671   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.671   TX-DATA             Seq=709561 Size=1460
+3.674   DUP_ACK             Ack=657001 dupCount=19
+3.674   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.674   TX-DATA             Seq=711021 Size=1460
+3.676   DUP_ACK             Ack=657001 dupCount=20
+3.676   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.676   TX-DATA             Seq=712481 Size=1460
+3.678   DUP_ACK             Ack=657001 dupCount=21
+3.678   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.678   TX-DATA             Seq=713941 Size=1460
+3.681   DUP_ACK             Ack=657001 dupCount=22
+3.681   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.681   TX-DATA             Seq=715401 Size=1460
+3.683   DUP_ACK             Ack=657001 dupCount=23
+3.683   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.683   TX-DATA             Seq=716861 Size=1460
+3.686   DUP_ACK             Ack=657001 dupCount=24
+3.686   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.710   DUP_ACK             Ack=657001 dupCount=25
+3.710   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.710   TX-DATA             Seq=718321 Size=1460
+3.730   DUP_ACK             Ack=657001 dupCount=26
+3.730   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.730   TX-DATA             Seq=719781 Size=1460
+3.732   DUP_ACK             Ack=657001 dupCount=27
+3.732   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.732   TX-DATA             Seq=721241 Size=1460
+3.735   DUP_ACK             Ack=657001 dupCount=28
+3.735   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.735   TX-DATA             Seq=722701 Size=1460
+3.737   DUP_ACK             Ack=657001 dupCount=29
+3.737   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.737   TX-DATA             Seq=724161 Size=1460
+3.740   DUP_ACK             Ack=657001 dupCount=30
+3.740   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.740   TX-DATA             Seq=725621 Size=1460
+3.742   DUP_ACK             Ack=657001 dupCount=31
+3.742   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.742   TX-DATA             Seq=727081 Size=1460
+3.745   DUP_ACK             Ack=657001 dupCount=32
+3.745   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.745   TX-DATA             Seq=728541 Size=1460
+3.747   DUP_ACK             Ack=657001 dupCount=33
+3.747   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.747   TX-DATA             Seq=730001 Size=1460
+3.764   DUP_ACK             Ack=657001 dupCount=34
+3.764   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.764   TX-DATA             Seq=731461 Size=1460
+3.801   DUP_ACK             Ack=657001 dupCount=35
+3.801   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.801   TX-DATA             Seq=732921 Size=1460
+3.804   DUP_ACK             Ack=657001 dupCount=36
+3.804   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.804   TX-DATA             Seq=734381 Size=1460
+3.806   DUP_ACK             Ack=657001 dupCount=37
+3.806   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.806   TX-DATA             Seq=735841 Size=1460
+3.809   DUP_ACK             Ack=657001 dupCount=38
+3.809   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.809   TX-DATA             Seq=737301 Size=1460
+3.811   DUP_ACK             Ack=657001 dupCount=39
+3.811   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.811   TX-DATA             Seq=738761 Size=1460
+3.814   DUP_ACK             Ack=657001 dupCount=40
+3.814   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.814   TX-DATA             Seq=740221 Size=1460
+3.816   DUP_ACK             Ack=657001 dupCount=41
+3.816   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.816   TX-DATA             Seq=741681 Size=1460
+3.818   DUP_ACK             Ack=657001 dupCount=42
+3.818   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.818   TX-DATA             Seq=743141 Size=1460
+3.836   DUP_ACK             Ack=657001 dupCount=43
+3.836   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.836   TX-DATA             Seq=744601 Size=1460
+3.877   DUP_ACK             Ack=657001 dupCount=44
+3.877   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.877   TX-DATA             Seq=746061 Size=1460
+3.882   DUP_ACK             Ack=657001 dupCount=45
+3.882   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.882   TX-DATA             Seq=747521 Size=1460
+3.885   DUP_ACK             Ack=657001 dupCount=46
+3.885   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.885   TX-DATA             Seq=748981 Size=1460
+3.887   DUP_ACK             Ack=657001 dupCount=47
+3.887   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.887   TX-DATA             Seq=734381 Size=1460
+3.887   TX-DATA             Seq=750441 Size=1460
+3.890   DUP_ACK             Ack=657001 dupCount=48
+3.890   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.890   TX-DATA             Seq=751901 Size=1460
+3.892   DUP_ACK             Ack=657001 dupCount=49
+3.892   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.892   TX-DATA             Seq=753361 Size=1460
+3.895   DUP_ACK             Ack=657001 dupCount=50
+3.895   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.895   TX-DATA             Seq=754821 Size=1460
+3.912   DUP_ACK             Ack=657001 dupCount=51
+3.912   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.912   TX-DATA             Seq=756281 Size=1460
+3.953   DUP_ACK             Ack=657001 dupCount=52
+3.953   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.953   TX-DATA             Seq=757741 Size=1460
+3.956   DUP_ACK             Ack=657001 dupCount=53
+3.956   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.956   TX-DATA             Seq=759201 Size=1460
+3.958   DUP_ACK             Ack=657001 dupCount=54
+3.958   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.958   TX-DATA             Seq=760661 Size=1460
+3.961   DUP_ACK             Ack=657001 dupCount=55
+3.961   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.963   DUP_ACK             Ack=657001 dupCount=56
+3.963   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.963   TX-DATA             Seq=762121 Size=1460
+3.966   DUP_ACK             Ack=657001 dupCount=57
+3.966   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.966   TX-DATA             Seq=763581 Size=1460
+3.968   DUP_ACK             Ack=657001 dupCount=58
+3.968   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.968   TX-DATA             Seq=765041 Size=1460
+3.971   DUP_ACK             Ack=657001 dupCount=59
+3.971   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.971   TX-DATA             Seq=766501 Size=1460
+3.988   DUP_ACK             Ack=657001 dupCount=60
+3.988   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+3.988   TX-DATA             Seq=767961 Size=1460
+4.022   DUP_ACK             Ack=657001 dupCount=61
+4.022   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.022   TX-DATA             Seq=769421 Size=1460
+4.025   DUP_ACK             Ack=657001 dupCount=62
+4.025   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.025   TX-DATA             Seq=770881 Size=1460
+4.027   DUP_ACK             Ack=657001 dupCount=63
+4.027   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.027   TX-DATA             Seq=772341 Size=1460
+4.030   DUP_ACK             Ack=657001 dupCount=64
+4.030   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.030   TX-DATA             Seq=773801 Size=1460
+4.032   DUP_ACK             Ack=657001 dupCount=65
+4.032   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.032   TX-DATA             Seq=775261 Size=1460
+4.034   DUP_ACK             Ack=657001 dupCount=66
+4.034   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.034   TX-DATA             Seq=776721 Size=1460
+4.037   DUP_ACK             Ack=657001 dupCount=67
+4.037   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.037   TX-DATA             Seq=778181 Size=1460
+4.047   DUP_ACK             Ack=657001 dupCount=68
+4.047   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.047   TX-DATA             Seq=779641 Size=1460
+4.081   DUP_ACK             Ack=657001 dupCount=69
+4.081   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.081   TX-DATA             Seq=781101 Size=1460
+4.084   DUP_ACK             Ack=657001 dupCount=70
+4.084   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.084   TX-DATA             Seq=782561 Size=1460
+4.086   DUP_ACK             Ack=657001 dupCount=71
+4.086   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.086   TX-DATA             Seq=784021 Size=1460
+4.089   DUP_ACK             Ack=657001 dupCount=72
+4.089   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.089   TX-DATA             Seq=785481 Size=1460
+4.091   DUP_ACK             Ack=657001 dupCount=73
+4.091   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.093   DUP_ACK             Ack=657001 dupCount=74
+4.093   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.096   DUP_ACK             Ack=657001 dupCount=75
+4.096   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.106   DUP_ACK             Ack=657001 dupCount=76
+4.106   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.133   DUP_ACK             Ack=657001 dupCount=77
+4.133   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.135   DUP_ACK             Ack=657001 dupCount=78
+4.135   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.138   DUP_ACK             Ack=657001 dupCount=79
+4.138   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.140   DUP_ACK             Ack=657001 dupCount=80
+4.140   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=657001
+4.551   RTO_CHANGE          oldRTO=1s newRTO=2s
+4.551   TIMEOUT_EVENT       RTO backoff -> Timeout retransmission
+4.551   STATE_CHANGE        FastRecovery -> SlowStart [Reason: Timeout event (packet loss)]
+4.551   SSTHRESH_UPDATE     old=16060 new=10220 [Cause: Timeout]
+4.551   TX-DATA             Seq=657001 Size=1460
+4.596   NEW_ACK             Ack=786941
+4.596   RTO_CHANGE          oldRTO=2s newRTO=1s
+4.596   TX-DATA             Seq=786941 Size=1460
+4.641   NEW_ACK             Ack=788401
+4.641   TX-DATA             Seq=788401 Size=1460
+4.641   TX-DATA             Seq=789861 Size=1460
+4.686   NEW_ACK             Ack=789861
+4.686   TX-DATA             Seq=791321 Size=1460
+4.686   TX-DATA             Seq=792781 Size=1460
+4.688   NEW_ACK             Ack=791321
+4.688   TX-DATA             Seq=794241 Size=1460
+4.688   TX-DATA             Seq=795701 Size=1460
+4.731   NEW_ACK             Ack=792781
+4.731   TX-DATA             Seq=797161 Size=1460
+4.731   TX-DATA             Seq=798621 Size=1460
+4.733   NEW_ACK             Ack=794241
+4.733   TX-DATA             Seq=800081 Size=1460
+4.733   TX-DATA             Seq=801541 Size=1460
+4.736   NEW_ACK             Ack=795701
+4.736   STATE_CHANGE        SlowStart -> CongestionAvoidance [Reason: cwnd >= ssthresh]
+4.736   TX-DATA             Seq=803001 Size=1460
+4.736   TX-DATA             Seq=804461 Size=1460
+4.738   NEW_ACK             Ack=797161
+4.738   TX-DATA             Seq=805921 Size=1460
+4.738   TX-DATA             Seq=807381 Size=1460
+4.778   NEW_ACK             Ack=798621
+4.778   TX-DATA             Seq=808841 Size=1460
+4.781   NEW_ACK             Ack=800081
+4.781   TX-DATA             Seq=810301 Size=1460
+4.783   NEW_ACK             Ack=801541
+4.783   TX-DATA             Seq=811761 Size=1460
+4.786   NEW_ACK             Ack=803001
+4.786   TX-DATA             Seq=813221 Size=1460
+4.788   NEW_ACK             Ack=804461
+4.788   TX-DATA             Seq=814681 Size=1460
+4.791   NEW_ACK             Ack=805921
+4.791   TX-DATA             Seq=816141 Size=1460
+4.793   NEW_ACK             Ack=807381
+4.793   TX-DATA             Seq=817601 Size=1460
+4.796   NEW_ACK             Ack=808841
+4.796   TX-DATA             Seq=819061 Size=1460
+4.825   NEW_ACK             Ack=810301
+4.825   TX-DATA             Seq=820521 Size=1460
+4.828   NEW_ACK             Ack=811761
+4.828   TX-DATA             Seq=821981 Size=1460
+4.830   NEW_ACK             Ack=813221
+4.830   TX-DATA             Seq=823441 Size=1460
+4.832   NEW_ACK             Ack=814681
+4.832   TX-DATA             Seq=824901 Size=1460
+4.835   NEW_ACK             Ack=816141
+4.835   TX-DATA             Seq=826361 Size=1460
+4.837   NEW_ACK             Ack=817601
+4.837   TX-DATA             Seq=827821 Size=1460
+4.840   NEW_ACK             Ack=819061
+4.840   TX-DATA             Seq=829281 Size=1460
+4.842   NEW_ACK             Ack=820521
+4.842   TX-DATA             Seq=830741 Size=1460
+4.874   NEW_ACK             Ack=821981
+4.874   TX-DATA             Seq=832201 Size=1460
+4.877   NEW_ACK             Ack=823441
+4.877   TX-DATA             Seq=833661 Size=1460
+4.879   NEW_ACK             Ack=824901
+4.879   TX-DATA             Seq=835121 Size=1460
+4.882   NEW_ACK             Ack=826361
+4.882   TX-DATA             Seq=836581 Size=1460
+4.884   NEW_ACK             Ack=827821
+4.884   TX-DATA             Seq=838041 Size=1460
+4.887   NEW_ACK             Ack=829281
+4.887   TX-DATA             Seq=839501 Size=1460
+4.889   NEW_ACK             Ack=830741
+4.889   TX-DATA             Seq=840961 Size=1460
+4.891   NEW_ACK             Ack=832201
+4.891   TX-DATA             Seq=842421 Size=1460
+4.923   NEW_ACK             Ack=833661
+4.923   TX-DATA             Seq=843881 Size=1460
+4.926   NEW_ACK             Ack=835121
+4.926   TX-DATA             Seq=845341 Size=1460
+4.928   NEW_ACK             Ack=836581
+4.928   TX-DATA             Seq=846801 Size=1460
+4.931   NEW_ACK             Ack=838041
+4.931   TX-DATA             Seq=848261 Size=1460
+4.933   NEW_ACK             Ack=839501
+4.933   TX-DATA             Seq=849721 Size=1460
+4.936   NEW_ACK             Ack=840961
+4.936   TX-DATA             Seq=851181 Size=1460
+4.936   TX-DATA             Seq=852641 Size=1460
+4.938   NEW_ACK             Ack=842421
+4.938   TX-DATA             Seq=854101 Size=1460
+4.941   NEW_ACK             Ack=843881
+4.941   TX-DATA             Seq=855561 Size=1460
+4.975   NEW_ACK             Ack=845341
+4.975   TX-DATA             Seq=857021 Size=1460
+4.977   NEW_ACK             Ack=846801
+4.977   TX-DATA             Seq=858481 Size=1460
+4.982   NEW_ACK             Ack=848261
+4.982   TX-DATA             Seq=859941 Size=1460
+4.985   NEW_ACK             Ack=849721
+4.985   TX-DATA             Seq=861401 Size=1460
+4.987   NEW_ACK             Ack=851181
+4.987   TX-DATA             Seq=862861 Size=1460
+4.990   NEW_ACK             Ack=852641
+4.990   TX-DATA             Seq=864321 Size=1460
+4.992   NEW_ACK             Ack=854101
+4.992   TX-DATA             Seq=865781 Size=1460
+4.995   NEW_ACK             Ack=855561
+4.995   TX-DATA             Seq=867241 Size=1460
+4.997   NEW_ACK             Ack=857021
+4.997   TX-DATA             Seq=868701 Size=1460
+5.032   NEW_ACK             Ack=858481
+5.032   TX-DATA             Seq=870161 Size=1460
+5.034   NEW_ACK             Ack=859941
+5.034   TX-DATA             Seq=871621 Size=1460
+5.039   NEW_ACK             Ack=861401
+5.039   TX-DATA             Seq=873081 Size=1460
+5.041   NEW_ACK             Ack=862861
+5.041   TX-DATA             Seq=874541 Size=1460
+5.044   NEW_ACK             Ack=864321
+5.044   TX-DATA             Seq=876001 Size=1460
+5.044   TX-DATA             Seq=877461 Size=1460
+5.046   NEW_ACK             Ack=865781
+5.046   TX-DATA             Seq=878921 Size=1460
+5.049   NEW_ACK             Ack=867241
+5.049   TX-DATA             Seq=880381 Size=1460
+5.051   NEW_ACK             Ack=868701
+5.051   TX-DATA             Seq=881841 Size=1460
+5.054   NEW_ACK             Ack=870161
+5.054   TX-DATA             Seq=883301 Size=1460
+5.091   NEW_ACK             Ack=871621
+5.091   TX-DATA             Seq=884761 Size=1460
+5.093   NEW_ACK             Ack=873081
+5.093   TX-DATA             Seq=886221 Size=1460
+5.100   NEW_ACK             Ack=874541
+5.100   TX-DATA             Seq=887681 Size=1460
+5.103   NEW_ACK             Ack=876001
+5.103   TX-DATA             Seq=889141 Size=1460
+5.105   NEW_ACK             Ack=877461
+5.105   TX-DATA             Seq=890601 Size=1460
+5.108   NEW_ACK             Ack=878921
+5.108   TX-DATA             Seq=892061 Size=1460
+5.110   NEW_ACK             Ack=880381
+5.110   TX-DATA             Seq=893521 Size=1460
+5.113   NEW_ACK             Ack=881841
+5.113   TX-DATA             Seq=894981 Size=1460
+5.115   NEW_ACK             Ack=883301
+5.115   TX-DATA             Seq=896441 Size=1460
+5.118   NEW_ACK             Ack=884761
+5.118   TX-DATA             Seq=897901 Size=1460
+5.154   NEW_ACK             Ack=886221
+5.154   TX-DATA             Seq=899361 Size=1460
+5.157   NEW_ACK             Ack=887681
+5.157   TX-DATA             Seq=900821 Size=1460
+5.169   NEW_ACK             Ack=889141
+5.169   TX-DATA             Seq=902281 Size=1460
+5.172   NEW_ACK             Ack=890601
+5.172   TX-DATA             Seq=903741 Size=1460
+5.172   TX-DATA             Seq=905201 Size=1460
+5.174   NEW_ACK             Ack=892061
+5.174   TX-DATA             Seq=906661 Size=1460
+5.177   NEW_ACK             Ack=893521
+5.177   TX-DATA             Seq=908121 Size=1460
+5.179   NEW_ACK             Ack=894981
+5.179   TX-DATA             Seq=909581 Size=1460
+5.181   NEW_ACK             Ack=896441
+5.181   TX-DATA             Seq=911041 Size=1460
+5.184   NEW_ACK             Ack=897901
+5.184   TX-DATA             Seq=912501 Size=1460
+5.186   NEW_ACK             Ack=899361
+5.186   TX-DATA             Seq=913961 Size=1460
+5.226   NEW_ACK             Ack=900821
+5.226   TX-DATA             Seq=915421 Size=1460
+5.228   NEW_ACK             Ack=902281
+5.228   TX-DATA             Seq=916881 Size=1460
+5.245   NEW_ACK             Ack=903741
+5.245   TX-DATA             Seq=918341 Size=1460
+5.248   NEW_ACK             Ack=905201
+5.248   TX-DATA             Seq=919801 Size=1460
+5.250   DUP_ACK             Ack=905201 dupCount=1
+5.250   TX-DATA             Seq=921261 Size=1460
+5.253   DUP_ACK             Ack=905201 dupCount=2
+5.253   TX-DATA             Seq=922721 Size=1460
+5.255   DUP_ACK             Ack=905201 dupCount=3
+5.255   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+5.255   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+5.255   UPDATE              ssthresh=8030
+5.255   TX-DATA             Seq=905201 Size=1460
+5.258   DUP_ACK             Ack=905201 dupCount=4
+5.258   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.258   TX-DATA             Seq=924181 Size=1460
+5.258   TX-DATA             Seq=925641 Size=1460
+5.260   DUP_ACK             Ack=905201 dupCount=5
+5.260   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.260   TX-DATA             Seq=927101 Size=1460
+5.263   DUP_ACK             Ack=905201 dupCount=6
+5.263   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.263   TX-DATA             Seq=928561 Size=1460
+5.263   TX-DATA             Seq=930021 Size=1460
+5.302   DUP_ACK             Ack=905201 dupCount=7
+5.302   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.302   TX-DATA             Seq=931481 Size=1460
+5.304   DUP_ACK             Ack=905201 dupCount=8
+5.304   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.304   TX-DATA             Seq=932941 Size=1460
+5.319   DUP_ACK             Ack=905201 dupCount=9
+5.319   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.319   TX-DATA             Seq=934401 Size=1460
+5.321   DUP_ACK             Ack=905201 dupCount=10
+5.321   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.321   TX-DATA             Seq=935861 Size=1460
+5.324   DUP_ACK             Ack=905201 dupCount=11
+5.324   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.326   DUP_ACK             Ack=905201 dupCount=12
+5.326   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=905201
+5.326   TX-DATA             Seq=937321 Size=1460
+5.329   NEW_ACK             Ack=924181
+5.329   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+5.329   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+5.331   NEW_ACK             Ack=925641
+5.334   NEW_ACK             Ack=927101
+5.336   NEW_ACK             Ack=928561
+5.336   TX-DATA             Seq=938781 Size=1460
+5.339   NEW_ACK             Ack=930021
+5.339   TX-DATA             Seq=940241 Size=1460
+5.378   DUP_ACK             Ack=930021 dupCount=1
+5.378   TX-DATA             Seq=941701 Size=1460
+5.380   DUP_ACK             Ack=930021 dupCount=2
+5.380   TX-DATA             Seq=943161 Size=1460
+5.395   DUP_ACK             Ack=930021 dupCount=3
+5.395   TRIPLE_DUP_ACK      Detected 3 duplicate ACKs -> Fast Retransmit
+5.395   STATE_CHANGE        CongestionAvoidance -> FastRecovery [Reason: Triple Duplicate ACKs (Fast Retransmit)]
+5.395   UPDATE              ssthresh=5840
+5.395   SSTHRESH_UPDATE     old=10220 new=7300 [Cause: Triple Duplicate ACK]
+5.395   TX-DATA             Seq=930021 Size=1460
+5.397   DUP_ACK             Ack=930021 dupCount=4
+5.397   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=930021
+5.397   TX-DATA             Seq=944621 Size=1460
+5.397   TX-DATA             Seq=946081 Size=1460
+5.400   DUP_ACK             Ack=930021 dupCount=5
+5.400   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=930021
+5.400   TX-DATA             Seq=947541 Size=1460
+5.400   TX-DATA             Seq=949001 Size=1460
+5.402   DUP_ACK             Ack=930021 dupCount=6
+5.402   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=930021
+5.405   DUP_ACK             Ack=930021 dupCount=7
+5.405   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=930021
+5.405   TX-DATA             Seq=950461 Size=1460
+5.432   DUP_ACK             Ack=930021 dupCount=8
+5.432   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=930021
+5.432   TX-DATA             Seq=951921 Size=1460
+5.434   DUP_ACK             Ack=930021 dupCount=9
+5.434   FAST_RECOVERY_DUP   Still in Fast Recovery, Ack=930021
+5.434   TX-DATA             Seq=953381 Size=1460
+5.452   NEW_ACK             Ack=944621
+5.452   EXIT_FAST_RECOVERY  New ACK received, leaving Fast Recovery
+5.452   STATE_CHANGE        FastRecovery -> CongestionAvoidance [Reason: Recovery complete (new ACK)]
+5.454   NEW_ACK             Ack=946081
+5.456   NEW_ACK             Ack=947541
+5.456   TX-DATA             Seq=954841 Size=1460
+5.459   NEW_ACK             Ack=949001
+5.459   TX-DATA             Seq=956301 Size=1460
+5.461   NEW_ACK             Ack=950461
+5.461   TX-DATA             Seq=957761 Size=1460
+5.464   NEW_ACK             Ack=951921
+5.464   TX-DATA             Seq=959221 Size=1460
+5.493   NEW_ACK             Ack=953381
+5.493   TX-DATA             Seq=960681 Size=1460
+5.496   NEW_ACK             Ack=954841
+5.496   TX-DATA             Seq=962141 Size=1460
+5.508   NEW_ACK             Ack=956301
+5.508   TX-DATA             Seq=963601 Size=1460
+5.510   NEW_ACK             Ack=957761
+5.510   TX-DATA             Seq=965061 Size=1460
+5.513   NEW_ACK             Ack=959221
+5.513   TX-DATA             Seq=966521 Size=1460
+5.515   NEW_ACK             Ack=960681
+5.515   TX-DATA             Seq=967981 Size=1460
+5.515   TX-DATA             Seq=969441 Size=1460
+5.538   NEW_ACK             Ack=962141
+5.538   TX-DATA             Seq=970901 Size=1460
+5.541   NEW_ACK             Ack=963601
+5.541   TX-DATA             Seq=972361 Size=1460
+5.553   NEW_ACK             Ack=965061
+5.553   TX-DATA             Seq=973821 Size=1460
+5.556   NEW_ACK             Ack=966521
+5.556   TX-DATA             Seq=975281 Size=1460
+5.558   NEW_ACK             Ack=967981
+5.558   TX-DATA             Seq=976741 Size=1460
+5.560   NEW_ACK             Ack=969441
+5.560   TX-DATA             Seq=978201 Size=1460
+5.563   NEW_ACK             Ack=970901
+5.563   TX-DATA             Seq=979661 Size=1460
+5.585   NEW_ACK             Ack=972361
+5.585   TX-DATA             Seq=981121 Size=1460
+5.587   NEW_ACK             Ack=973821
+5.587   TX-DATA             Seq=982581 Size=1460
+5.600   NEW_ACK             Ack=975281
+5.600   TX-DATA             Seq=984041 Size=1460
+5.602   NEW_ACK             Ack=976741
+5.602   TX-DATA             Seq=985501 Size=1460
+5.605   NEW_ACK             Ack=978201
+5.605   TX-DATA             Seq=986961 Size=1460
+5.607   NEW_ACK             Ack=979661
+5.607   TX-DATA             Seq=988421 Size=1460
+5.607   TX-DATA             Seq=989881 Size=1460
+5.610   NEW_ACK             Ack=981121
+5.610   TX-DATA             Seq=991341 Size=1460
+5.634   NEW_ACK             Ack=982581
+5.634   TX-DATA             Seq=992801 Size=1460
+5.637   NEW_ACK             Ack=984041
+5.637   TX-DATA             Seq=994261 Size=1460
+5.649   NEW_ACK             Ack=985501
+5.649   TX-DATA             Seq=995721 Size=1460
+5.651   NEW_ACK             Ack=986961
+5.651   TX-DATA             Seq=997181 Size=1460
+5.654   NEW_ACK             Ack=988421
+5.654   TX-DATA             Seq=998641 Size=1460
+5.656   NEW_ACK             Ack=989881
+5.656   TX-DATA             Seq=1000101 Size=1460
+5.659   NEW_ACK             Ack=991341
+5.659   TX-DATA             Seq=1001561 Size=1460
+5.661   NEW_ACK             Ack=992801
+5.661   TX-DATA             Seq=1003021 Size=1460
+5.686   NEW_ACK             Ack=994261
+5.686   TX-DATA             Seq=1004481 Size=1460
+5.688   NEW_ACK             Ack=995721
+5.688   TX-DATA             Seq=1005941 Size=1460
+5.701   NEW_ACK             Ack=997181
+5.701   TX-DATA             Seq=1007401 Size=1460
+5.703   NEW_ACK             Ack=998641
+5.703   TX-DATA             Seq=1008861 Size=1460
+5.705   NEW_ACK             Ack=1000101
+5.705   TX-DATA             Seq=1010321 Size=1460
+5.708   NEW_ACK             Ack=1001561
+5.708   TX-DATA             Seq=1011781 Size=1460
+5.708   TX-DATA             Seq=1013241 Size=1460
+5.710   NEW_ACK             Ack=1003021
+5.710   TX-DATA             Seq=1014701 Size=1460
+5.713   NEW_ACK             Ack=1004481
+5.713   TX-DATA             Seq=1016161 Size=1460
+5.740   NEW_ACK             Ack=1005941
+5.740   TX-DATA             Seq=1017621 Size=1460
+5.742   NEW_ACK             Ack=1007401
+5.742   TX-DATA             Seq=1019081 Size=1460
+5.755   NEW_ACK             Ack=1008861
+5.755   TX-DATA             Seq=1020541 Size=1460
+5.757   NEW_ACK             Ack=1010321
+5.757   TX-DATA             Seq=1022001 Size=1460
+5.760   NEW_ACK             Ack=1011781
+5.760   TX-DATA             Seq=1023461 Size=1460
+5.762   NEW_ACK             Ack=1013241
+5.762   TX-DATA             Seq=1024921 Size=1460
+5.764   NEW_ACK             Ack=1014701
+5.764   TX-DATA             Seq=1026381 Size=1460
+5.767   NEW_ACK             Ack=1016161
+5.767   TX-DATA             Seq=1027841 Size=1460
+5.769   NEW_ACK             Ack=1017621
+5.769   TX-DATA             Seq=1029301 Size=1460
+5.796   NEW_ACK             Ack=1019081
+5.796   TX-DATA             Seq=1030761 Size=1460
+5.799   NEW_ACK             Ack=1020541
+5.799   TX-DATA             Seq=1032221 Size=1460
+5.811   NEW_ACK             Ack=1022001
+5.811   TX-DATA             Seq=1033681 Size=1460
+5.814   NEW_ACK             Ack=1023461
+5.814   TX-DATA             Seq=1035141 Size=1460
+5.816   NEW_ACK             Ack=1024921
+5.816   TX-DATA             Seq=1036601 Size=1460
+5.816   TX-DATA             Seq=1038061 Size=1460
+5.818   NEW_ACK             Ack=1026381
+5.818   TX-DATA             Seq=1039521 Size=1460
+5.821   NEW_ACK             Ack=1027841
+5.821   TX-DATA             Seq=1040981 Size=1460
+5.823   NEW_ACK             Ack=1029301
+5.823   TX-DATA             Seq=1042441 Size=1460
+5.826   NEW_ACK             Ack=1030761
+5.826   TX-DATA             Seq=1043901 Size=1460
+5.855   NEW_ACK             Ack=1032221
+5.855   TX-DATA             Seq=1045361 Size=1460
+5.858   NEW_ACK             Ack=1033681
+5.858   TX-DATA             Seq=1046821 Size=1460
+5.870   NEW_ACK             Ack=1035141
+5.870   TX-DATA             Seq=1048281 Size=1460
+5.873   NEW_ACK             Ack=1036601
+5.873   TX-DATA             Seq=1049741 Size=1460
+5.875   NEW_ACK             Ack=1038061
+5.875   TX-DATA             Seq=1051201 Size=1460
+5.877   NEW_ACK             Ack=1039521
+5.877   TX-DATA             Seq=1052661 Size=1460
+5.880   NEW_ACK             Ack=1040981
+5.880   TX-DATA             Seq=1054121 Size=1460
+5.882   NEW_ACK             Ack=1042441
+5.882   TX-DATA             Seq=1055581 Size=1460
+5.885   NEW_ACK             Ack=1043901
+5.885   TX-DATA             Seq=1057041 Size=1460
+5.887   NEW_ACK             Ack=1045361
+5.887   TX-DATA             Seq=1058501 Size=1460
+5.917   NEW_ACK             Ack=1046821
+5.917   TX-DATA             Seq=1059961 Size=1460
+5.919   NEW_ACK             Ack=1048281
+5.919   TX-DATA             Seq=1061421 Size=1460
+5.932   NEW_ACK             Ack=1049741
+5.932   TX-DATA             Seq=1062881 Size=1460
+5.934   NEW_ACK             Ack=1051201
+5.934   TX-DATA             Seq=1064341 Size=1460
+5.934   TX-DATA             Seq=1065801 Size=1460
+5.936   NEW_ACK             Ack=1052661
+5.936   TX-DATA             Seq=1067261 Size=1460
+5.939   NEW_ACK             Ack=1054121
+5.939   TX-DATA             Seq=1068721 Size=1460
+5.941   NEW_ACK             Ack=1055581
+5.941   TX-DATA             Seq=1070181 Size=1460
+5.944   NEW_ACK             Ack=1057041
+5.944   TX-DATA             Seq=1071641 Size=1460
+5.946   NEW_ACK             Ack=1058501
+5.946   TX-DATA             Seq=1073101 Size=1460
+5.949   NEW_ACK             Ack=1059961
+5.949   TX-DATA             Seq=1074561 Size=1460
+5.981   NEW_ACK             Ack=1061421
+5.981   TX-DATA             Seq=1076021 Size=1460
+5.983   NEW_ACK             Ack=1062881
+5.983   TX-DATA             Seq=1077481 Size=1460
+5.995   NEW_ACK             Ack=1064341
+5.995   TX-DATA             Seq=1078941 Size=1460
+5.998   NEW_ACK             Ack=1065801
+5.998   TX-DATA             Seq=1080401 Size=1460

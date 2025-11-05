@@ -1,0 +1,88 @@
+========================================
+SIMULATION SUMMARY (RED Queue)
+========================================
+
+Simulation Configuration:
+  - Duration: 5 seconds
+  - Number of Flows: 3
+  - MTU: 1500 bytes
+  - Initial CWND: 1 segments
+  - Initial SSThresh: 65535 segments
+  - SACK: Enabled
+  - Error Rate: 0
+
+Network Topology:
+  - 3 Senders (n0, n1, n2)
+  - 2 Routers (n3: aggregation, n4: bottleneck)
+  - 2 Receivers (n5, n6)
+  - Sender Links: 10Mbps, 5ms delay
+  - Bottleneck Link: 5Mbps, 10ms delay
+  - Receiver Links: 10Mbps, 5ms delay
+
+Flow 1 (10.1.1.1 -> 10.1.5.2)
+  Tx Packets: 954
+  Rx Packets: 886
+  Lost Packets: 68 (7.13%)
+  Throughput: 2.139 Mbps
+  Avg Delay: 39.15 ms
+--------------------------------------
+Flow 2 (10.1.5.2 -> 10.1.1.1)
+  Tx Packets: 885
+  Rx Packets: 883
+  Lost Packets: 2 (0.23%)
+  Throughput: 0.081 Mbps
+  Avg Delay: 20.19 ms
+--------------------------------------
+Flow 3 (10.1.2.1 -> 10.1.6.2)
+  Tx Packets: 422
+  Rx Packets: 360
+  Lost Packets: 62 (14.69%)
+  Throughput: 0.866 Mbps
+  Avg Delay: 41.11 ms
+--------------------------------------
+Flow 4 (10.1.6.2 -> 10.1.2.1)
+  Tx Packets: 359
+  Rx Packets: 354
+  Lost Packets: 5 (1.39%)
+  Throughput: 0.037 Mbps
+  Avg Delay: 20.22 ms
+--------------------------------------
+Flow 5 (10.1.3.1 -> 10.1.5.2)
+  Tx Packets: 371
+  Rx Packets: 347
+  Lost Packets: 24 (6.47%)
+  Throughput: 0.835 Mbps
+  Avg Delay: 40.52 ms
+--------------------------------------
+Flow 6 (10.1.5.2 -> 10.1.3.1)
+  Tx Packets: 346
+  Rx Packets: 345
+  Lost Packets: 1 (0.29%)
+  Throughput: 0.033 Mbps
+  Avg Delay: 20.20 ms
+--------------------------------------
+
+AGGREGATE STATISTICS:
+  Total Throughput: 3.991 Mbps
+  Average Throughput per Flow: 0.665 Mbps
+  Total Packets Sent: 3337
+  Total Packets Received: 3175
+  Total Lost Packets: 162 (4.85%)
+  Average Delay: 30.23 ms
+
+TCP STATE MACHINE STATISTICS:
+  Total State Changes: 30
+  Total Duplicate ACKs: 270
+  Total Fast Retransmits: 15
+  Total Fast Recoveries: 15
+  Total Timeouts: 1
+
+========================================
+KEY OBSERVATIONS:
+========================================
+RED queue provides early congestion signaling through
+probabilistic packet drops, which should result in:
+  - More evenly distributed packet losses
+  - Better flow fairness
+  - Reduced queueing delay
+  - Smoother throughput variations
