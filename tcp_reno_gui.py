@@ -403,7 +403,7 @@ class TCPRenoGUI:
         self.tab_help.columnconfigure(0, weight=1)
         self.tab_help.rowconfigure(0, weight=1)
         
-        help_content = """
+        help_content = r"""
 📚 TCP RENO SIMULATION & ANALYSIS TOOL - USER GUIDE
 
 ═══════════════════════════════════════════════════════════════════════════════
@@ -607,7 +607,7 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         
         help_text.insert('1.0', help_content)
         help_text.configure(state='disabled')
-        
+    
     # ============= SIMULATION METHODS =============
     
     def run_simulation(self):
