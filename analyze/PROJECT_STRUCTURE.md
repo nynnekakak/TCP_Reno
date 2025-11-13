@@ -3,14 +3,13 @@
 ## ✅ Completed File Structure
 
 ```
-d:\Ky5\PBL\analyze/
+TCP_Reno/analyze/
 │
 ├── 📄 main.py                           # ✅ Entry point
 ├── 📄 README.md                         # ✅ Documentation
-├── 📄 analyze_detailed.py               # ⚠️  Original file (giữ lại)
+├── 📄 PROJECT_STRUCTURE.md              # ✅ This file
 │
 ├── 📁 config/
-│   ├── 📄 __init__.py                   # (empty)
 │   └── 📄 plot_config.py                # ✅ Color & style config
 │
 └── 📁 analyzer/

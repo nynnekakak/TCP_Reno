@@ -83,6 +83,6 @@ echo -e "${GREEN}All simulations completed successfully!${NC}"
 echo -e "${BLUE}========================================${NC}\n"
 
 echo -e "${YELLOW}Next steps:${NC}"
-echo -e "1. Analyze results with: ${GREEN}cd analyze && python main.py --compare --dashboard${NC}"
+echo -e "1. Analyze results with: ${GREEN}cd analyze && python3 main.py --compare --dashboard${NC}"
 echo -e "2. View summary files in: ${GREEN}${RESULTS_DIR}${NC}"
-echo -e "3. Generate comparison: ${GREEN}cd analyze && python main.py --infographic${NC}\n"
+echo -e "3. Generate comparison: ${GREEN}cd analyze && python3 main.py --infographic${NC}\n"

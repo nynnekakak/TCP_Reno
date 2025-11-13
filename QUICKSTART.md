@@ -16,7 +16,7 @@ cd ~/ns-allinone-3.43/ns-3.43
 
 # 3. Phân tích kết quả
 cd scratch/tcp_reno_project/analyze
-python main.py --compare --dashboard
+python3 main.py --compare --dashboard
 ```
 
 ### 📊 Xem kết quả

@@ -8,7 +8,122 @@ import datetime
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.widgets import Button
 from .data_utils import count_events
+
+
+def show_interactive_infographic(figures):
+    """Show all pages in ONE window with proper scrolling
+    
+    Args:
+        figures: List of (title, figure) tuples
+    """
+    import tkinter as tk
+    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+    from matplotlib.figure import Figure
+    
+    print("\n   📖 Creating scrollable infographic window...")
+    
+    total_pages = len(figures)
+    
+    # Close any existing matplotlib figures
+    plt.close('all')
+    
+    # Create Tkinter window
+    root = tk.Tk()
+    root.title("TCP RENO INFOGRAPHIC - Complete Analysis")
+    root.geometry("1400x800")
+    
+    # Create main frame with scrollbar
+    main_frame = tk.Frame(root)
+    main_frame.pack(fill=tk.BOTH, expand=1)
+    
+    # Create canvas for scrolling
+    canvas = tk.Canvas(main_frame, bg='white')
+    canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
+    
+    # Add scrollbar
+    scrollbar = tk.Scrollbar(main_frame, orient=tk.VERTICAL, command=canvas.yview)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    
+    # Configure canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+    
+    # Create frame inside canvas for content
+    content_frame = tk.Frame(canvas, bg='white')
+    canvas.create_window((0, 0), window=content_frame, anchor="nw")
+    
+    # Add title
+    title_label = tk.Label(content_frame, 
+                          text="TCP RENO INFOGRAPHIC - Complete Analysis",
+                          font=('Arial', 24, 'bold'),
+                          bg='white', fg='#2C3E50',
+                          pady=15)
+    title_label.pack(pady=(10, 20), padx=10)
+    
+    print(f"   Adding {total_pages} pages with full resolution...")
+    
+    # Add each page figure
+    for i, (title, source_fig) in enumerate(figures):
+        print(f"   ├─ Page {i+1}: {title}")
+        
+        # Page title
+        page_title = tk.Label(content_frame,
+                             text=title,
+                             font=('Arial', 18, 'bold'),
+                             bg='#E3F2FD', fg='#2C3E50',
+                             relief=tk.RAISED, bd=3,
+                             pady=12)
+        page_title.pack(pady=(25, 15), padx=20, fill=tk.X)
+        
+        # Create a frame for the figure with proper spacing
+        fig_frame = tk.Frame(content_frame, bg='white', relief=tk.SOLID, bd=1)
+        fig_frame.pack(pady=(0, 20), padx=20, fill=tk.BOTH)
+        
+        # Remove all text elements from figure (titles, suptitles)
+        # Keep only the plots and charts
+        for text_obj in source_fig.texts:
+            text_obj.set_visible(False)
+        
+        # Adjust margins to use full space
+        source_fig.subplots_adjust(top=0.95, bottom=0.05)
+        
+        # Embed matplotlib figure
+        canvas_fig = FigureCanvasTkAgg(source_fig, master=fig_frame)
+        canvas_fig.draw()
+        canvas_fig.get_tk_widget().pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        
+        # Add divider (except last page)
+        if i < total_pages - 1:
+            divider = tk.Frame(content_frame, height=3, bg='#BDC3C7', relief=tk.SUNKEN)
+            divider.pack(fill=tk.X, padx=20, pady=(10, 20))
+    
+    # Instructions at bottom
+    instructions = tk.Label(content_frame,
+                           text="📜 Scroll to view all pages | 💾 Right-click on charts to save | ❌ Close window when done",
+                           font=('Arial', 10, 'italic'),
+                           bg='#ECF0F1', fg='#7F8C8D',
+                           pady=10)
+    instructions.pack(pady=20, fill=tk.X)
+    
+    # Update scroll region
+    content_frame.update_idletasks()
+    canvas.configure(scrollregion=canvas.bbox("all"))
+    
+    # Mouse wheel scrolling
+    def _on_mousewheel(event):
+        canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+    
+    canvas.bind_all("<MouseWheel>", _on_mousewheel)
+    
+    print("   └─ Complete! Opening scrollable window...")
+    print("\n   ✅ Displaying in scrollable window...")
+    print("   💡 Use mouse wheel or scrollbar to view all pages")
+    print("   ⏳ Window will stay open until you close it...")
+    
+    # Start GUI loop
+    root.mainloop()
 
 
 def print_analysis(analyzer, queue_type):
@@ -191,23 +306,23 @@ DropTail (Tail Drop)                                           RED (Random Early
         ['Throughput (Mbps)', 
          f"{dt_summary.get('avg_throughput', 0):.3f}", 
          f"{red_summary.get('avg_throughput', 0):.3f}",
-         '🏆 DT' if dt_summary.get('avg_throughput', 0) > red_summary.get('avg_throughput', 0) else '🏆 RED'],
+         '[*] DT' if dt_summary.get('avg_throughput', 0) > red_summary.get('avg_throughput', 0) else '[*] RED'],
         ['Packet Loss Rate (%)', 
          f"{dt_summary.get('loss_rate', 0):.2f}", 
          f"{red_summary.get('loss_rate', 0):.2f}",
-         '🏆 DT' if dt_summary.get('loss_rate', 0) < red_summary.get('loss_rate', 0) else '🏆 RED'],
+         '[*] DT' if dt_summary.get('loss_rate', 0) < red_summary.get('loss_rate', 0) else '[*] RED'],
         ['Average Delay (ms)', 
          f"{dt_summary.get('avg_delay', 0):.2f}", 
          f"{red_summary.get('avg_delay', 0):.2f}",
-         '🏆 DT' if dt_summary.get('avg_delay', 0) < red_summary.get('avg_delay', 0) else '🏆 RED'],
+         '[*] DT' if dt_summary.get('avg_delay', 0) < red_summary.get('avg_delay', 0) else '[*] RED'],
         ['Timeout Events', 
          f"{int(dt_summary.get('timeouts', 0))}", 
          f"{int(red_summary.get('timeouts', 0))}",
-         '🏆 DT' if dt_summary.get('timeouts', 0) < red_summary.get('timeouts', 0) else '🏆 RED'],
+         '[*] DT' if dt_summary.get('timeouts', 0) < red_summary.get('timeouts', 0) else '[*] RED'],
         ['Fast Retransmits', 
          f"{int(dt_summary.get('fast_retransmits', 0))}", 
          f"{int(red_summary.get('fast_retransmits', 0))}",
-         '🏆 DT' if dt_summary.get('fast_retransmits', 0) < red_summary.get('fast_retransmits', 0) else '🏆 RED'],
+         '[*] DT' if dt_summary.get('fast_retransmits', 0) < red_summary.get('fast_retransmits', 0) else '[*] RED'],
     ]
     
     table = ax2.table(cellText=metrics_data, 
@@ -500,29 +615,35 @@ def create_page5_recommendation(analyzer):
     delay_winner = "RED" if red_summary.get('avg_delay', 0) < dt_summary.get('avg_delay', 0) else "DropTail"
     loss_winner = "RED" if red_summary.get('loss_rate', 0) < dt_summary.get('loss_rate', 0) else "DropTail"
     
+    # Get actual values for display
+    dt_delay = dt_summary.get('avg_delay', 0)
+    red_delay = red_summary.get('avg_delay', 0)
+    dt_loss = dt_summary.get('loss_rate', 0)
+    red_loss = red_summary.get('loss_rate', 0)
+    
     recommendation = f"""PERFORMANCE SUMMARY
 
 Winners:
-    ⏱️  Lower Delay:  {delay_winner}
-    📉 Lower Loss:   {loss_winner}
+    [DELAY]  Lower Delay:  {delay_winner} ({red_delay:.2f} ms vs {dt_delay:.2f} ms)
+    [LOSS]   Lower Loss:   {loss_winner} ({red_loss:.2f}% vs {dt_loss:.2f}%)
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────
 
 Choose DropTail When:                                    Choose RED When:
 
-• Simplicity and ease of implementation                  • Minimizing latency is critical
+* Simplicity and ease of implementation                  * Minimizing latency is critical
   are top priorities                                       for applications
 
-• CPU and memory resources are limited                   • Handling high traffic with multiple
+* CPU and memory resources are limited                   * Handling high traffic with multiple
                                                            concurrent flows
 
-• Network load is light to moderate                      • Preventing global synchronization
+* Network load is light to moderate                      * Preventing global synchronization
                                                            is important
 
-• Basic queue management is sufficient                   • Better fairness among flows
+* Basic queue management is sufficient                   * Better fairness among flows
                                                            is required
 
-• Low maintenance overhead is needed                     • Advanced congestion control
+* Low maintenance overhead is needed                     * Advanced congestion control
                                                            is beneficial"""
     
     ax.text(0.5, 0.5, recommendation, ha='center', va='center',
@@ -535,52 +656,103 @@ Choose DropTail When:                                    Choose RED When:
     return fig
 
 
-def create_infographic(analyzer):
-    """Create multi-page infographic PDF"""
-    output_file = analyzer.results_dir / f"{analyzer.prefix}_infographic.pdf"
+def create_infographic(analyzer, show_gui=False):
+    """Create multi-page infographic PDF or display interactively
     
-    print(f"\n📊 Creating multi-page infographic...")
+    Args:
+        analyzer: EnhancedTCPAnalyzer instance
+        show_gui: If True, display figures interactively instead of saving to PDF
+    """
     
-    with PdfPages(output_file) as pdf:
-        # Page 1: Overview
-        print("   Creating Page 1: Overview...")
-        fig1 = create_page1_overview(analyzer)
-        pdf.savefig(fig1, bbox_inches='tight', dpi=300)
-        plt.close(fig1)
+    if show_gui:
+        # Interactive mode - hiển thị tất cả trong 1 cửa sổ
+        print(f"\n📊 Creating integrated infographic view...")
+        print("💡 All 5 pages in one scrollable window!\n")
         
-        # Page 2: CWND Evolution
-        print("   Creating Page 2: CWND Evolution...")
-        fig2 = create_page2_cwnd(analyzer)
-        pdf.savefig(fig2, bbox_inches='tight', dpi=300)
-        plt.close(fig2)
+        pages = [
+            ("Page 1: Overview", create_page1_overview),
+            ("Page 2: CWND Evolution", create_page2_cwnd),
+            ("Page 3: Performance Comparison", create_page3_performance),
+            ("Page 4: Packet Statistics", create_page4_packets),
+            ("Page 5: Final Recommendation", create_page5_recommendation)
+        ]
         
-        # Page 3: Performance Comparison
-        print("   Creating Page 3: Performance Comparison...")
-        fig3 = create_page3_performance(analyzer)
-        pdf.savefig(fig3, bbox_inches='tight', dpi=300)
-        plt.close(fig3)
+        # CRITICAL: Turn off interactive mode to prevent individual figure windows
+        was_interactive = plt.isinteractive()
+        plt.ioff()
         
-        # Page 4: Packet Statistics
-        print("   Creating Page 4: Packet Statistics...")
-        fig4 = create_page4_packets(analyzer)
-        pdf.savefig(fig4, bbox_inches='tight', dpi=300)
-        plt.close(fig4)
+        # Create all figures in background (no display)
+        print("   Rendering all pages...")
+        figures = []
+        for i, (title, create_func) in enumerate(pages, 1):
+            print(f"   ├─ Page {i}: {title.split(':')[1].strip()}")
+            fig = create_func(analyzer)
+            fig.canvas.draw()  # Force render without showing
+            figures.append((title, fig))
         
-        # Page 5: Recommendation
-        print("   Creating Page 5: Final Recommendation...")
-        fig5 = create_page5_recommendation(analyzer)
-        pdf.savefig(fig5, bbox_inches='tight', dpi=300)
-        plt.close(fig5)
+        print("   └─ Integrating pages into single view...")
         
-        # Set PDF metadata
-        d = pdf.infodict()
-        d['Title'] = 'TCP Reno Performance Analysis'
-        d['Author'] = 'Network Analyzer'
-        d['Subject'] = 'DropTail vs RED Queue Management Comparison'
-        d['Keywords'] = 'TCP, Reno, DropTail, RED, Queue Management'
-        d['CreationDate'] = datetime.datetime.today()
-    
-    print(f"\n✅ Multi-page infographic saved: {output_file}")
-    print(f"   📄 Total pages: 5")
-    print(f"   📁 File size: {output_file.stat().st_size / 1024:.1f} KB")
-    print(f"\n💡 Open the PDF file to view all pages!")
+        # Show with navigation - THIS WILL BE THE ONLY WINDOW
+        show_interactive_infographic(figures)
+        
+        # Clean up background figures AFTER showing the integrated view
+        for _, fig in figures:
+            plt.close(fig)
+        
+        # Restore previous interactive state
+        if was_interactive:
+            plt.ion()
+        
+        print("\n✅ Infographic displayed in ONE window!")
+        print("📜 Scroll down to see all pages in one continuous view")
+        print("💾 Tip: Use --infographic without --gui to save as PDF file")
+        
+    else:
+        # PDF mode - lưu file như cũ
+        output_file = analyzer.results_dir / f"{analyzer.prefix}_infographic.pdf"
+        
+        print(f"\n📊 Creating multi-page infographic PDF...")
+        
+        with PdfPages(output_file) as pdf:
+            # Page 1: Overview
+            print("   Creating Page 1: Overview...")
+            fig1 = create_page1_overview(analyzer)
+            pdf.savefig(fig1, bbox_inches='tight', dpi=300)
+            plt.close(fig1)
+            
+            # Page 2: CWND Evolution
+            print("   Creating Page 2: CWND Evolution...")
+            fig2 = create_page2_cwnd(analyzer)
+            pdf.savefig(fig2, bbox_inches='tight', dpi=300)
+            plt.close(fig2)
+            
+            # Page 3: Performance Comparison
+            print("   Creating Page 3: Performance Comparison...")
+            fig3 = create_page3_performance(analyzer)
+            pdf.savefig(fig3, bbox_inches='tight', dpi=300)
+            plt.close(fig3)
+            
+            # Page 4: Packet Statistics
+            print("   Creating Page 4: Packet Statistics...")
+            fig4 = create_page4_packets(analyzer)
+            pdf.savefig(fig4, bbox_inches='tight', dpi=300)
+            plt.close(fig4)
+            
+            # Page 5: Recommendation
+            print("   Creating Page 5: Final Recommendation...")
+            fig5 = create_page5_recommendation(analyzer)
+            pdf.savefig(fig5, bbox_inches='tight', dpi=300)
+            plt.close(fig5)
+            
+            # Set PDF metadata
+            d = pdf.infodict()
+            d['Title'] = 'TCP Reno Performance Analysis'
+            d['Author'] = 'Network Analyzer'
+            d['Subject'] = 'DropTail vs RED Queue Management Comparison'
+            d['Keywords'] = 'TCP, Reno, DropTail, RED, Queue Management'
+            d['CreationDate'] = datetime.datetime.today()
+        
+        print(f"\n✅ Multi-page infographic saved: {output_file}")
+        print(f"   📄 Total pages: 5")
+        print(f"   📁 File size: {output_file.stat().st_size / 1024:.1f} KB")
+        print(f"\n💡 Open the PDF file to view all pages!")

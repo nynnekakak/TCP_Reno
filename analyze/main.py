@@ -49,6 +49,8 @@ def main():
                        help='Tạo timeline chi tiết')
     parser.add_argument('--infographic', action='store_true',
                        help='Tạo infographic tổng hợp')
+    parser.add_argument('--gui', action='store_true',
+                       help='Hiển thị infographic trực tiếp (thêm với --infographic)')
     parser.add_argument('--print', action='store_true',
                        help='In phân tích chi tiết ra terminal')
 
@@ -64,12 +66,15 @@ def main():
     try:
         if args.infographic:
             # Load both and create infographic
-            print("\n📊 Đang tạo infographic tổng hợp...")
+            if args.gui:
+                print("\n📊 Đang tạo infographic tương tác (GUI mode)...")
+            else:
+                print("\n📊 Đang tạo infographic tổng hợp...")
             analyzer.load_data('DropTail')
             analyzer.load_data('RED')
-            analyzer.create_infographic()
+            analyzer.create_infographic(show_gui=args.gui)
 
-        if args.compare:
+        elif args.compare:
             # Compare mode
             analyzer.load_data('DropTail')
             analyzer.load_data('RED')

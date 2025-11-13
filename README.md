@@ -27,7 +27,6 @@ TCP_Reno/
 ├── analyze/                           # Công cụ phân tích kết quả
 │   ├── README.md                      # Hướng dẫn sử dụng analyzer
 │   ├── main.py                        # Entry point cho analyzer
-│   ├── gui.py                         # GUI interface (nếu có)
 │   ├── PROJECT_STRUCTURE.md           # Cấu trúc analyzer
 │   │
 │   ├── analyzer/                      # Module analyzer
@@ -251,16 +250,16 @@ cd ~/ns-allinone-3.43/ns-3.43/scratch/tcp_reno_project
 cd analyze
 
 # Dashboard cho một loại queue
-python main.py --queue DropTail --dashboard
+python3 main.py --queue DropTail --dashboard
 
 # So sánh cả hai
-python main.py --compare --dashboard
+python3 main.py --compare --dashboard
 
 # Tạo infographic tổng hợp
-python main.py --infographic
+python3 main.py --infographic
 
 # Full analysis
-python main.py --compare --dashboard --infographic --print
+python3 main.py --compare --dashboard --infographic --print
 ```
 
 Chi tiết xem [analyze/README.md](analyze/README.md)

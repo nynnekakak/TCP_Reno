@@ -216,7 +216,7 @@ P2P-project_summary_DropTail.txt
 
 ```bash
 cd scratch/tcp_reno_project/analyze
-python main.py --queue DropTail --print
+python3 main.py --queue DropTail --print
 ```
 
 Nên thấy output với phân tích và statistics.
@@ -224,7 +224,7 @@ Nên thấy output với phân tích và statistics.
 ### Test 4: Test visualization
 
 ```bash
-python main.py --queue DropTail --dashboard
+python3 main.py --queue DropTail --dashboard
 ```
 
 Nên tạo file PNG dashboard trong `results/`.
@@ -281,7 +281,7 @@ chmod +x run.sh
 - Sử dụng analyzer tool thay vì real-time plot:
 ```bash
 cd analyze
-python main.py --compare --dashboard
+python3 main.py --compare --dashboard
 ```
 
 - Hoặc setup X11 forwarding cho WSL:

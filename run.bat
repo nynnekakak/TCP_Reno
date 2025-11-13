@@ -88,9 +88,9 @@ echo ========================================
 echo.
 
 echo Next steps:
-echo 1. Analyze results with: cd analyze ^&^& python main.py --compare --dashboard
+echo 1. Analyze results with: cd analyze ^&^& python3 main.py --compare --dashboard
 echo 2. View summary files in: %RESULTS_DIR%
-echo 3. Generate comparison: cd analyze ^&^& python main.py --infographic
+echo 3. Generate comparison: cd analyze ^&^& python3 main.py --infographic
 echo.
 
 pause
