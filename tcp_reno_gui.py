@@ -433,7 +433,7 @@ queue management algorithms: DropTail and RED (Random Early Detection).
    
    Example paths:
    • Linux: ~/ns-allinone-3.43/ns-3.43
-   • Windows: C:\Users\YourName\ns-allinone-3.43\ns-3.43
+   • Windows: C:/Users/YourName/ns-allinone-3.43/ns-3.43
    
    The GUI will auto-detect common locations, but you can browse to select manually.
 
@@ -534,7 +534,7 @@ Problem: Simulation fails to run
 Problem: "NS-3 directory not found" error
 → Click Browse button and select: ~/ns-allinone-3.43/ns-3.43
 → On Linux/Mac: must have execute permission on ns3 script
-→ On Windows: use full path like C:\Users\Name\ns-allinone-3.43\ns-3.43
+→ On Windows: use full path like C:/Users/Name/ns-allinone-3.43/ns-3.43
 
 Problem: Analysis shows no data
 → Run simulation first to generate trace files
@@ -678,44 +678,66 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
             
             self.log_to_console("\n🔨 Building and running NS-3 simulation...\n", 'info')
             
-            # Build command based on OS
-            if sys.platform == 'win32':
-                # Windows with PowerShell
-                cmd = f'cd "{ns3_dir}"; ./ns3 run "scratch/tcp_reno_project/tcp_reno --simTime={sim_time}"'
-                process = subprocess.Popen(['powershell', '-Command', cmd],
-                                         stdout=subprocess.PIPE,
-                                         stderr=subprocess.STDOUT,
-                                         text=True,
-                                         bufsize=1)
-            else:
-                # Linux/Mac with bash
-                cmd = f'./ns3 run "scratch/tcp_reno_project/tcp_reno --simTime={sim_time}"'
-                process = subprocess.Popen(cmd,
-                                         shell=True,
-                                         cwd=str(ns3_dir),
-                                         stdout=subprocess.PIPE,
-                                         stderr=subprocess.STDOUT,
-                                         text=True,
-                                         bufsize=1)
+            # Build queue types list
+            queue_types = []
+            if self.queue_droptail.get():
+                queue_types.append("DropTail")
+            if self.queue_red.get():
+                queue_types.append("RED")
             
-            self.simulation_process = process
-            
-            # Read output line by line
-            for line in process.stdout:
-                if not self.is_running:
-                    process.kill()
+            # Run simulation for each queue type
+            all_success = True
+            for i, queue_type in enumerate(queue_types):
+                self.log_to_console(f"\n{'='*60}\n", 'info')
+                self.log_to_console(f"🚀 Running simulation {i+1}/{len(queue_types)}: {queue_type}\n", 'info')
+                self.log_to_console(f"{'='*60}\n", 'info')
+                
+                # Build command based on OS
+                if sys.platform == 'win32':
+                    # Windows with PowerShell
+                    cmd = f'cd "{ns3_dir}"; ./ns3 run "scratch/tcp_reno_project/tcp_reno --duration={sim_time} --queueType={queue_type}"'
+                    process = subprocess.Popen(['powershell', '-Command', cmd],
+                                             stdout=subprocess.PIPE,
+                                             stderr=subprocess.STDOUT,
+                                             text=True,
+                                             bufsize=1)
+                else:
+                    # Linux/Mac with bash
+                    cmd = f'./ns3 run "scratch/tcp_reno_project/tcp_reno --duration={sim_time} --queueType={queue_type}"'
+                    process = subprocess.Popen(cmd,
+                                             shell=True,
+                                             cwd=str(ns3_dir),
+                                             stdout=subprocess.PIPE,
+                                             stderr=subprocess.STDOUT,
+                                             text=True,
+                                             bufsize=1)
+                
+                self.simulation_process = process
+                
+                # Read output line by line
+                for line in process.stdout:
+                    if not self.is_running:
+                        process.kill()
+                        all_success = False
+                        break
+                    self.log_to_console(line)
+                
+                # Wait for completion
+                return_code = process.wait()
+                
+                if return_code != 0:
+                    self.log_to_console(f"\n❌ Simulation {queue_type} failed with code {return_code}\n", 'error')
+                    all_success = False
                     break
-                self.log_to_console(line)
+                else:
+                    self.log_to_console(f"\n✅ {queue_type} simulation completed!\n", 'success')
             
-            # Wait for completion
-            return_code = process.wait()
-            
-            if return_code == 0:
-                self.log_to_console("\n✅ Simulation completed successfully!\n", 'success')
-                self.log_to_console("📁 Results saved to: results/\n", 'info')
+            if all_success and self.is_running:
+                self.log_to_console("\n" + "="*60 + "\n", 'info')
+                self.log_to_console("✅ All simulations completed successfully!\n", 'success')
+                self.log_to_console(f"📁 Results saved to: {self.project_dir / 'results'}\n", 'info')
                 self._simulation_finished(True)
             else:
-                self.log_to_console(f"\n❌ Simulation failed with code {return_code}\n", 'error')
                 self._simulation_finished(False)
                 
         except Exception as e:
@@ -772,10 +794,10 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         queue_type = self.analysis_queue.get()
         
         commands = {
-            'dashboard': f'python main.py --dashboard {queue_type}',
-            'timeline': f'python main.py --timeline {queue_type}',
-            'print': f'python main.py --print {queue_type}',
-            'comparison': 'python main.py --comparison',
+            'dashboard': f'python main.py --queue {queue_type} --dashboard',
+            'timeline': f'python main.py --queue {queue_type} --timeline',
+            'print': f'python main.py --queue {queue_type} --print',
+            'comparison': 'python main.py --compare --dashboard',
             'infographic-pdf': 'python main.py --infographic',
             'infographic-gui': 'python main.py --infographic --gui'
         }
