@@ -150,15 +150,19 @@ class TCPRenoGUI:
         
     def create_simulation_tab(self):
         """Create simulation configuration and execution tab"""
+        # Main container with scrollbar
+        main_frame = ttk.Frame(self.tab_simulation)
+        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
         # Configuration section
-        config_frame = ttk.LabelFrame(self.tab_simulation, 
+        config_frame = ttk.LabelFrame(main_frame, 
                                      text="⚙️ Simulation Configuration",
                                      padding=15)
         config_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
         
         # Queue Types
         ttk.Label(config_frame, text="Queue Types to Simulate:", 
-                 font=('Arial', 10, 'bold')).grid(row=0, column=0, sticky=tk.W, pady=5)
+                 font=('Arial', 10, 'bold')).grid(row=0, column=0, columnspan=2, sticky=tk.W, pady=5)
         
         self.queue_droptail = tk.BooleanVar(value=True)
         self.queue_red = tk.BooleanVar(value=True)
@@ -168,23 +172,89 @@ class TCPRenoGUI:
         ttk.Checkbutton(config_frame, text="RED", 
                        variable=self.queue_red).grid(row=1, column=1, sticky=tk.W)
         
-        # Simulation Time
-        ttk.Label(config_frame, text="Simulation Time (seconds):", 
-                 font=('Arial', 10, 'bold')).grid(row=2, column=0, sticky=tk.W, pady=(10, 5))
+        # Basic Parameters
+        ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=2, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
+        ttk.Label(config_frame, text="Basic Parameters:", 
+                 font=('Arial', 10, 'bold')).grid(row=3, column=0, columnspan=2, sticky=tk.W, pady=5)
         
-        self.sim_time = tk.StringVar(value="20.0")
-        ttk.Entry(config_frame, textvariable=self.sim_time, 
-                 width=15).grid(row=3, column=0, sticky=tk.W, padx=(20, 0))
+        # Row 4: Duration and Num Flows
+        ttk.Label(config_frame, text="Duration (s):").grid(row=4, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        self.sim_time = tk.StringVar(value="20")
+        ttk.Entry(config_frame, textvariable=self.sim_time, width=12).grid(row=4, column=1, sticky=tk.W, pady=5)
+        
+        ttk.Label(config_frame, text="Num Flows:").grid(row=4, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.num_flows = tk.StringVar(value="3")
+        ttk.Spinbox(config_frame, from_=1, to=3, textvariable=self.num_flows, width=10).grid(row=4, column=3, sticky=tk.W, pady=5)
+        
+        # Row 5: MTU and CWND
+        ttk.Label(config_frame, text="MTU (bytes):").grid(row=5, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        self.mtu = tk.StringVar(value="1500")
+        ttk.Entry(config_frame, textvariable=self.mtu, width=12).grid(row=5, column=1, sticky=tk.W, pady=5)
+        
+        ttk.Label(config_frame, text="Init CWND:").grid(row=5, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.cwnd = tk.StringVar(value="1")
+        ttk.Entry(config_frame, textvariable=self.cwnd, width=10).grid(row=5, column=3, sticky=tk.W, pady=5)
+        
+        # Row 6: SSThresh and Queue Size
+        ttk.Label(config_frame, text="SSThresh:").grid(row=6, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        self.ssthresh = tk.StringVar(value="65535")
+        ttk.Entry(config_frame, textvariable=self.ssthresh, width=12).grid(row=6, column=1, sticky=tk.W, pady=5)
+        
+        ttk.Label(config_frame, text="Queue Size:").grid(row=6, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.tcp_queue_size = tk.StringVar(value="25")
+        ttk.Entry(config_frame, textvariable=self.tcp_queue_size, width=10).grid(row=6, column=3, sticky=tk.W, pady=5)
+        
+        # Network Parameters
+        ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=7, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
+        ttk.Label(config_frame, text="Network Parameters:", 
+                 font=('Arial', 10, 'bold')).grid(row=8, column=0, columnspan=2, sticky=tk.W, pady=5)
+        
+        # Row 9: Bottleneck
+        ttk.Label(config_frame, text="Bottleneck BW:").grid(row=9, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        self.bottleneck_bw = tk.StringVar(value="5Mbps")
+        ttk.Entry(config_frame, textvariable=self.bottleneck_bw, width=12).grid(row=9, column=1, sticky=tk.W, pady=5)
+        
+        ttk.Label(config_frame, text="Delay:").grid(row=9, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.bottleneck_delay = tk.StringVar(value="10ms")
+        ttk.Entry(config_frame, textvariable=self.bottleneck_delay, width=10).grid(row=9, column=3, sticky=tk.W, pady=5)
+        
+        # Row 10: Sender/Receiver
+        ttk.Label(config_frame, text="Sender BW:").grid(row=10, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        self.sender_bw = tk.StringVar(value="10Mbps")
+        ttk.Entry(config_frame, textvariable=self.sender_bw, width=12).grid(row=10, column=1, sticky=tk.W, pady=5)
+        
+        ttk.Label(config_frame, text="Receiver BW:").grid(row=10, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.receiver_bw = tk.StringVar(value="10Mbps")
+        ttk.Entry(config_frame, textvariable=self.receiver_bw, width=10).grid(row=10, column=3, sticky=tk.W, pady=5)
+        
+        # Row 11: Error Rate
+        ttk.Label(config_frame, text="Error Rate:").grid(row=11, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        self.error_rate = tk.StringVar(value="0")
+        ttk.Entry(config_frame, textvariable=self.error_rate, width=12).grid(row=11, column=1, sticky=tk.W, pady=5)
+        
+        # Options
+        ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=12, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
+        ttk.Label(config_frame, text="Options:", 
+                 font=('Arial', 10, 'bold')).grid(row=13, column=0, columnspan=2, sticky=tk.W, pady=5)
+        
+        self.enable_sack = tk.BooleanVar(value=True)
+        ttk.Checkbutton(config_frame, text="Enable SACK", 
+                       variable=self.enable_sack).grid(row=14, column=0, columnspan=2, sticky=tk.W, padx=(20, 0), pady=2)
+        
+        self.enable_nagle = tk.BooleanVar(value=False)
+        ttk.Checkbutton(config_frame, text="Enable Nagle", 
+                       variable=self.enable_nagle).grid(row=14, column=2, columnspan=2, sticky=tk.W, pady=2)
         
         # NS-3 Directory
+        ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=15, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
         ttk.Label(config_frame, text="NS-3 Directory:", 
-                 font=('Arial', 10, 'bold')).grid(row=4, column=0, sticky=tk.W, pady=(10, 5))
+                 font=('Arial', 10, 'bold')).grid(row=16, column=0, columnspan=4, sticky=tk.W, pady=(5, 5))
         
         ns3_frame = ttk.Frame(config_frame)
-        ns3_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E), padx=(20, 0))
+        ns3_frame.grid(row=17, column=0, columnspan=4, sticky=(tk.W, tk.E), padx=(20, 0))
         
         self.ns3_path = tk.StringVar(value=str(self.ns3_dir))
-        ns3_entry = ttk.Entry(ns3_frame, textvariable=self.ns3_path, width=50)
+        ns3_entry = ttk.Entry(ns3_frame, textvariable=self.ns3_path, width=60)
         ns3_entry.grid(row=0, column=0, sticky=(tk.W, tk.E))
         
         ttk.Button(ns3_frame, text="Browse...", 
@@ -197,11 +267,11 @@ class TCPRenoGUI:
         self.show_realtime = tk.BooleanVar(value=False)
         ttk.Checkbutton(config_frame, 
                        text="Show Real-time Visualization (plot_realtime.py)",
-                       variable=self.show_realtime).grid(row=6, column=0, columnspan=2, 
-                                                         sticky=tk.W, pady=(10, 0))
+                       variable=self.show_realtime).grid(row=18, column=0, columnspan=4, 
+                                                         sticky=tk.W, padx=(20, 0), pady=(10, 0))
         
         # Control buttons
-        button_frame = ttk.Frame(self.tab_simulation)
+        button_frame = ttk.Frame(main_frame)
         button_frame.grid(row=1, column=0, pady=10)
         
         self.btn_run = ttk.Button(button_frame, 
@@ -663,8 +733,19 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 self._simulation_finished(False)
                 return
             
-            # Build NS-3 command
-            sim_time = self.sim_time.get()
+            # Get and validate parameters
+            try:
+                sim_time = int(self.sim_time.get())
+                num_flows = int(self.num_flows.get())
+                mtu = int(self.mtu.get())
+                cwnd = int(self.cwnd.get())
+                ssthresh = int(self.ssthresh.get())
+                tcp_queue_size = int(self.tcp_queue_size.get())
+                error_rate = float(self.error_rate.get())
+            except ValueError:
+                self.log_to_console("\n❌ Invalid parameter values\n", 'error')
+                self._simulation_finished(False)
+                return
             
             self.log_to_console(f"📂 NS-3 Directory: {ns3_dir}\n")
             self.log_to_console(f"📊 Simulation time: {sim_time} seconds\n")
@@ -692,10 +773,30 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 self.log_to_console(f"🚀 Running simulation {i+1}/{len(queue_types)}: {queue_type}\n", 'info')
                 self.log_to_console(f"{'='*60}\n", 'info')
                 
+                # Build command with all parameters
+                cmd_params = [
+                    f"--queueType={queue_type}",
+                    f"--duration={sim_time}",
+                    f"--numFlows={num_flows}",
+                    f"--mtu={mtu}",
+                    f"--cwnd={cwnd}",
+                    f"--ssthresh={ssthresh}",
+                    f"--tcp_queue_size={tcp_queue_size}",
+                    f"--error_p={error_rate}",
+                    f"--bottleneck_bandwidth={self.bottleneck_bw.get()}",
+                    f"--bottleneck_delay={self.bottleneck_delay.get()}",
+                    f"--s_bandwidth={self.sender_bw.get()}",
+                    f"--r_bandwidth={self.receiver_bw.get()}",
+                    f"--sack={'true' if self.enable_sack.get() else 'false'}",
+                    f"--nagle={'true' if self.enable_nagle.get() else 'false'}"
+                ]
+                
+                cmd_string = " ".join(cmd_params)
+                
                 # Build command based on OS
                 if sys.platform == 'win32':
                     # Windows with PowerShell
-                    cmd = f'cd "{ns3_dir}"; ./ns3 run "scratch/tcp_reno_project/tcp_reno --duration={sim_time} --queueType={queue_type}"'
+                    cmd = f'cd "{ns3_dir}"; ./ns3 run "scratch/tcp_reno_project/tcp_reno {cmd_string}"'
                     process = subprocess.Popen(['powershell', '-Command', cmd],
                                              stdout=subprocess.PIPE,
                                              stderr=subprocess.STDOUT,
@@ -703,7 +804,7 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                                              bufsize=1)
                 else:
                     # Linux/Mac with bash
-                    cmd = f'./ns3 run "scratch/tcp_reno_project/tcp_reno --duration={sim_time} --queueType={queue_type}"'
+                    cmd = f'./ns3 run "scratch/tcp_reno_project/tcp_reno {cmd_string}"'
                     process = subprocess.Popen(cmd,
                                              shell=True,
                                              cwd=str(ns3_dir),
