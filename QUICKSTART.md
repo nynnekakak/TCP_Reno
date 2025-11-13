@@ -12,7 +12,7 @@ cp -r /path/to/TCP_Reno tcp_reno_project
 # 2. Build và chạy
 cd ~/ns-allinone-3.43/ns-3.43
 ./ns3 build
-./ns3 run tcp_reno_project
+./ns3 run "scratch/tcp_reno_project/tcp_reno"
 
 # 3. Phân tích kết quả
 cd scratch/tcp_reno_project/analyze

@@ -13,7 +13,7 @@ NC='\033[0m' # No Color
 
 # Configuration
 NS3_DIR="$HOME/ns-allinone-3.43/ns-3.43"
-PROJECT_NAME="tcp_reno_project"
+PROJECT_PATH="scratch/tcp_reno_project/tcp_reno"
 DURATION=20
 NUM_FLOWS=3
 
@@ -45,7 +45,7 @@ echo -e "${YELLOW}Queue Type: DropTail${NC}"
 echo -e "${YELLOW}Duration: ${DURATION}s${NC}"
 echo -e "${YELLOW}Flows: ${NUM_FLOWS}${NC}\n"
 
-./ns3 run "${PROJECT_NAME} --queueType=DropTail --duration=${DURATION} --numFlows=${NUM_FLOWS}"
+./ns3 run "${PROJECT_PATH} --queueType=DropTail --duration=${DURATION} --numFlows=${NUM_FLOWS}"
 if [ $? -ne 0 ]; then
     echo -e "${RED}DropTail simulation failed!${NC}"
     exit 1
@@ -61,7 +61,7 @@ echo -e "${YELLOW}Queue Type: RED${NC}"
 echo -e "${YELLOW}Duration: ${DURATION}s${NC}"
 echo -e "${YELLOW}Flows: ${NUM_FLOWS}${NC}\n"
 
-./ns3 run "${PROJECT_NAME} --queueType=RED --duration=${DURATION} --numFlows=${NUM_FLOWS}"
+./ns3 run "${PROJECT_PATH} --queueType=RED --duration=${DURATION} --numFlows=${NUM_FLOWS}"
 if [ $? -ne 0 ]; then
     echo -e "${RED}RED simulation failed!${NC}"
     exit 1
@@ -70,7 +70,7 @@ echo -e "${GREEN}RED simulation completed!${NC}\n"
 
 # List results
 echo -e "${GREEN}[4/4] Results generated:${NC}"
-RESULTS_DIR="scratch/${PROJECT_NAME}/results"
+RESULTS_DIR="scratch/tcp_reno_project/results"
 if [ -d "$RESULTS_DIR" ]; then
     echo -e "${BLUE}Files in ${RESULTS_DIR}:${NC}"
     ls -lh "$RESULTS_DIR"/*.tr "$RESULTS_DIR"/*.txt "$RESULTS_DIR"/*.log 2>/dev/null

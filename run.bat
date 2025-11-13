@@ -11,7 +11,7 @@ echo.
 
 REM Configuration
 set NS3_DIR=%USERPROFILE%\ns-allinone-3.43\ns-3.43
-set PROJECT_NAME=tcp_reno_project
+set PROJECT_PATH=scratch/tcp_reno_project/tcp_reno
 set DURATION=20
 set NUM_FLOWS=3
 
@@ -43,7 +43,7 @@ echo Duration: %DURATION%s
 echo Flows: %NUM_FLOWS%
 echo.
 
-call ns3 run "%PROJECT_NAME% --queueType=DropTail --duration=%DURATION% --numFlows=%NUM_FLOWS%"
+call ns3 run "%PROJECT_PATH% --queueType=DropTail --duration=%DURATION% --numFlows=%NUM_FLOWS%"
 if errorlevel 1 (
     echo [ERROR] DropTail simulation failed!
     pause
@@ -62,7 +62,7 @@ echo Duration: %DURATION%s
 echo Flows: %NUM_FLOWS%
 echo.
 
-call ns3 run "%PROJECT_NAME% --queueType=RED --duration=%DURATION% --numFlows=%NUM_FLOWS%"
+call ns3 run "%PROJECT_PATH% --queueType=RED --duration=%DURATION% --numFlows=%NUM_FLOWS%"
 if errorlevel 1 (
     echo [ERROR] RED simulation failed!
     pause
@@ -73,7 +73,7 @@ echo.
 
 REM List results
 echo [4/4] Results generated:
-set RESULTS_DIR=scratch\%PROJECT_NAME%\results
+set RESULTS_DIR=scratch\tcp_reno_project\results
 if exist "%RESULTS_DIR%" (
     echo Files in %RESULTS_DIR%:
     dir /b "%RESULTS_DIR%\*.tr" "%RESULTS_DIR%\*.txt" "%RESULTS_DIR%\*.log" 2>nul

@@ -194,13 +194,13 @@ cd ~/ns-allinone-3.43/ns-3.43
 ./ns3 build
 
 # Chạy với DropTail queue (mặc định)
-./ns3 run tcp_reno_project
+./ns3 run "scratch/tcp_reno_project/tcp_reno"
 
 # Chạy với RED queue
-./ns3 run "tcp_reno_project --queueType=RED"
+./ns3 run "scratch/tcp_reno_project/tcp_reno --queueType=RED"
 
 # Chạy với nhiều parameters
-./ns3 run "tcp_reno_project --queueType=RED --duration=30 --numFlows=3"
+./ns3 run "scratch/tcp_reno_project/tcp_reno --queueType=RED --duration=30 --numFlows=3"
 ```
 
 #### Cách 2: Sử dụng script (Linux/Mac)
@@ -232,13 +232,13 @@ cd ~/ns-allinone-3.43/ns-3.43/scratch/tcp_reno_project
 
 ```bash
 # Mô phỏng 30s với RED queue và 2 flows
-./ns3 run "tcp_reno_project --queueType=RED --duration=30 --numFlows=2"
+./ns3 run "scratch/tcp_reno_project/tcp_reno --queueType=RED --duration=30 --numFlows=2"
 
 # Mô phỏng với error rate 1%
-./ns3 run "tcp_reno_project --error_p=0.01"
+./ns3 run "scratch/tcp_reno_project/tcp_reno --error_p=0.01"
 
 # Mô phỏng với bottleneck 2Mbps và queue size 50
-./ns3 run "tcp_reno_project --bottleneck_bandwidth=2Mbps --tcp_queue_size=50"
+./ns3 run "scratch/tcp_reno_project/tcp_reno --bottleneck_bandwidth=2Mbps --tcp_queue_size=50"
 ```
 
 ---

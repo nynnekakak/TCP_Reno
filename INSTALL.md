@@ -192,7 +192,7 @@ cd ~/ns-allinone-3.43/ns-3.43
 
 ```bash
 cd ~/ns-allinone-3.43/ns-3.43
-./ns3 run "tcp_reno_project --duration=5"
+./ns3 run "scratch/tcp_reno_project/tcp_reno --duration=5"
 ```
 
 Kết quả mong đợi:
