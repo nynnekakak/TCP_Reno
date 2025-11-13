@@ -68,31 +68,31 @@ def show_interactive_infographic(figures):
     for i, (title, source_fig) in enumerate(figures):
         print(f"   ├─ Page {i+1}: {title}")
         
-        # Page title
+        # Page title with more spacing
         page_title = tk.Label(content_frame,
                              text=title,
                              font=('Arial', 18, 'bold'),
                              bg='#E3F2FD', fg='#2C3E50',
                              relief=tk.RAISED, bd=3,
-                             pady=12)
-        page_title.pack(pady=(25, 15), padx=20, fill=tk.X)
+                             pady=15)
+        page_title.pack(pady=(30, 40), padx=20, fill=tk.X)
         
         # Create a frame for the figure with proper spacing
         fig_frame = tk.Frame(content_frame, bg='white', relief=tk.SOLID, bd=1)
-        fig_frame.pack(pady=(0, 20), padx=20, fill=tk.BOTH)
+        fig_frame.pack(pady=(0, 30), padx=20, fill=tk.BOTH)
         
         # Remove all text elements from figure (titles, suptitles)
         # Keep only the plots and charts
         for text_obj in source_fig.texts:
             text_obj.set_visible(False)
         
-        # Adjust margins to use full space
-        source_fig.subplots_adjust(top=0.95, bottom=0.05)
+        # Adjust margins to use full space with more top padding
+        source_fig.subplots_adjust(top=0.93, bottom=0.05)
         
         # Embed matplotlib figure
         canvas_fig = FigureCanvasTkAgg(source_fig, master=fig_frame)
         canvas_fig.draw()
-        canvas_fig.get_tk_widget().pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        canvas_fig.get_tk_widget().pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
         
         # Add divider (except last page)
         if i < total_pages - 1:
