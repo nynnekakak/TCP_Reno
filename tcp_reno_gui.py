@@ -23,6 +23,9 @@ class TCPRenoGUI:
         self.analyze_dir = self.project_dir / "analyze"
         self.results_dir = self.project_dir / "results"
         
+        # NS-3 path - auto-detect or use default
+        self.ns3_dir = self.find_ns3_directory()
+        
         # Simulation process
         self.simulation_process = None
         self.is_running = False
@@ -30,6 +33,23 @@ class TCPRenoGUI:
         # Setup GUI
         self.setup_styles()
         self.create_widgets()
+        
+    def find_ns3_directory(self):
+        """Auto-detect NS-3 installation directory"""
+        # Common NS-3 locations
+        possible_paths = [
+            Path.home() / "ns-allinone-3.43" / "ns-3.43",
+            Path("/usr/local/ns-allinone-3.43/ns-3.43"),
+            Path("/opt/ns-allinone-3.43/ns-3.43"),
+            Path.home() / "ns-3.43",
+        ]
+        
+        for path in possible_paths:
+            if path.exists() and (path / "ns3").exists():
+                return path
+        
+        # If not found, return default and let user configure
+        return Path.home() / "ns-allinone-3.43" / "ns-3.43"
         
     def setup_styles(self):
         """Configure ttk styles"""
@@ -156,11 +176,28 @@ class TCPRenoGUI:
         ttk.Entry(config_frame, textvariable=self.sim_time, 
                  width=15).grid(row=3, column=0, sticky=tk.W, padx=(20, 0))
         
+        # NS-3 Directory
+        ttk.Label(config_frame, text="NS-3 Directory:", 
+                 font=('Arial', 10, 'bold')).grid(row=4, column=0, sticky=tk.W, pady=(10, 5))
+        
+        ns3_frame = ttk.Frame(config_frame)
+        ns3_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E), padx=(20, 0))
+        
+        self.ns3_path = tk.StringVar(value=str(self.ns3_dir))
+        ns3_entry = ttk.Entry(ns3_frame, textvariable=self.ns3_path, width=50)
+        ns3_entry.grid(row=0, column=0, sticky=(tk.W, tk.E))
+        
+        ttk.Button(ns3_frame, text="Browse...", 
+                  command=self.browse_ns3_dir,
+                  width=10).grid(row=0, column=1, padx=(5, 0))
+        
+        ns3_frame.columnconfigure(0, weight=1)
+        
         # Real-time Visualization
         self.show_realtime = tk.BooleanVar(value=False)
         ttk.Checkbutton(config_frame, 
                        text="Show Real-time Visualization (plot_realtime.py)",
-                       variable=self.show_realtime).grid(row=4, column=0, columnspan=2, 
+                       variable=self.show_realtime).grid(row=6, column=0, columnspan=2, 
                                                          sticky=tk.W, pady=(10, 0))
         
         # Control buttons
@@ -391,9 +428,19 @@ queue management algorithms: DropTail and RED (Random Early Detection).
    • Watch console output for progress
    • Click "⏹️ Stop Simulation" to abort if needed
 
-3️⃣ What happens:
+3️⃣ NS-3 Directory:
+   ⚠️  IMPORTANT: You must specify the correct NS-3 installation path!
+   
+   Example paths:
+   • Linux: ~/ns-allinone-3.43/ns-3.43
+   • Windows: C:\Users\YourName\ns-allinone-3.43\ns-3.43
+   
+   The GUI will auto-detect common locations, but you can browse to select manually.
+
+4️⃣ What happens:
+   • Changes to NS-3 directory
    • Compiles NS-3 simulation (if needed)
-   • Runs TCP Reno simulation with configured parameters
+   • Runs: ./ns3 run "scratch/tcp_reno_project/tcp_reno --simTime=XX"
    • Generates trace files in results/ directory
    • Shows real-time CWND plots (if enabled)
 
@@ -479,8 +526,15 @@ Analysis generates:
 ──────────────────
 
 Problem: Simulation fails to run
-→ Check NS-3 installation path
-→ Verify tcp_reno.cc is in scratch/tcp_reno_project/
+→ Check NS-3 directory path is correct (click Browse button)
+→ Verify NS-3 is installed: should see "ns3" script in the directory
+→ Verify tcp_reno.cc is in: NS-3-DIR/scratch/tcp_reno_project/tcp_reno.cc
+→ Make sure you copied the project files to NS-3 scratch folder
+
+Problem: "NS-3 directory not found" error
+→ Click Browse button and select: ~/ns-allinone-3.43/ns-3.43
+→ On Linux/Mac: must have execute permission on ns3 script
+→ On Windows: use full path like C:\Users\Name\ns-allinone-3.43\ns-3.43
 
 Problem: Analysis shows no data
 → Run simulation first to generate trace files
@@ -495,15 +549,29 @@ Problem: Real-time plot doesn't show
 📞 PROJECT STRUCTURE
 ────────────────────
 
-TCP_Reno/
+TCP_Reno/ (Your workspace)
 ├── tcp_reno.cc              # NS-3 simulation code
-├── tcp_reno_gui.py          # This GUI application
+├── tcp_reno_gui.py          # This GUI application ⭐
 ├── plot_realtime.py         # Real-time visualization
 ├── CMakeLists.txt           # Build configuration
 ├── analyze/                 # Analysis tools
 │   ├── main.py             # CLI interface
 │   └── analyzer/           # Analysis modules
 └── results/                 # Generated data and plots
+
+NS-3 Directory Structure (separate location!)
+~/ns-allinone-3.43/ns-3.43/
+├── ns3                      # NS-3 build script
+├── scratch/
+│   └── tcp_reno_project/   # ⚠️ YOU MUST COPY FILES HERE!
+│       ├── tcp_reno.cc     # Copy from TCP_Reno/
+│       └── CMakeLists.txt  # Copy from TCP_Reno/
+
+⚠️  SETUP STEPS:
+1. Copy tcp_reno.cc and CMakeLists.txt to NS-3's scratch/tcp_reno_project/
+2. In GUI, set NS-3 directory to ~/ns-allinone-3.43/ns-3.43
+3. Run simulation - GUI will execute from NS-3 directory
+4. Results will be saved to TCP_Reno/results/
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -567,12 +635,38 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         thread.daemon = True
         thread.start()
         
+    def browse_ns3_dir(self):
+        """Browse for NS-3 directory"""
+        directory = filedialog.askdirectory(
+            title="Select NS-3 Directory",
+            initialdir=str(Path.home()))
+        if directory:
+            self.ns3_path.set(directory)
+            self.ns3_dir = Path(directory)
+    
     def _run_simulation_thread(self):
         """Thread worker for running simulation"""
         try:
+            # Get NS-3 directory
+            ns3_dir = Path(self.ns3_path.get())
+            
+            # Validate NS-3 directory
+            if not ns3_dir.exists():
+                self.log_to_console(f"\n❌ NS-3 directory not found: {ns3_dir}\n", 'error')
+                self.log_to_console("Please select correct NS-3 directory in configuration\n", 'warning')
+                self._simulation_finished(False)
+                return
+            
+            if not (ns3_dir / "ns3").exists():
+                self.log_to_console(f"\n❌ Invalid NS-3 directory (ns3 script not found)\n", 'error')
+                self.log_to_console(f"Expected: {ns3_dir / 'ns3'}\n", 'warning')
+                self._simulation_finished(False)
+                return
+            
             # Build NS-3 command
             sim_time = self.sim_time.get()
             
+            self.log_to_console(f"📂 NS-3 Directory: {ns3_dir}\n")
             self.log_to_console(f"📊 Simulation time: {sim_time} seconds\n")
             self.log_to_console(f"📦 Queue types: ", 'info')
             
@@ -582,31 +676,23 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 self.log_to_console("RED ", 'success')
             self.log_to_console("\n")
             
-            self.log_to_console("\n🔨 Building NS-3 project...\n", 'info')
+            self.log_to_console("\n🔨 Building and running NS-3 simulation...\n", 'info')
             
-            # Change to NS-3 directory and run
-            cmd = f'./ns3 run "scratch/tcp_reno_project/tcp_reno --simTime={sim_time}"'
-            
-            # Use PowerShell on Windows
+            # Build command based on OS
             if sys.platform == 'win32':
-                # For Windows, we need to run from NS-3 directory
-                ns3_dir = Path.home() / "ns-allinone-3.43" / "ns-3.43"
-                if not ns3_dir.exists():
-                    self.log_to_console(f"\n❌ NS-3 not found at {ns3_dir}\n", 'error')
-                    self.log_to_console("Please update NS-3 path in tcp_reno_gui.py\n", 'warning')
-                    self._simulation_finished(False)
-                    return
-                
-                full_cmd = f'cd {ns3_dir}; {cmd}'
-                process = subprocess.Popen(['powershell', '-Command', full_cmd],
+                # Windows with PowerShell
+                cmd = f'cd "{ns3_dir}"; ./ns3 run "scratch/tcp_reno_project/tcp_reno --simTime={sim_time}"'
+                process = subprocess.Popen(['powershell', '-Command', cmd],
                                          stdout=subprocess.PIPE,
                                          stderr=subprocess.STDOUT,
                                          text=True,
                                          bufsize=1)
             else:
-                # Linux/Mac
+                # Linux/Mac with bash
+                cmd = f'./ns3 run "scratch/tcp_reno_project/tcp_reno --simTime={sim_time}"'
                 process = subprocess.Popen(cmd,
                                          shell=True,
+                                         cwd=str(ns3_dir),
                                          stdout=subprocess.PIPE,
                                          stderr=subprocess.STDOUT,
                                          text=True,
