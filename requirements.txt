@@ -1,0 +1,16 @@
+# Python dependencies for TCP Reno Analysis Tools
+# Install with: pip install -r requirements.txt
+
+# Core plotting libraries
+matplotlib>=3.3.0
+numpy>=1.19.0
+seaborn>=0.11.0
+
+# Network graph visualization
+networkx>=2.5
+
+# Optional but recommended
+pandas>=1.1.0
+
+# For GUI (if needed)
+# pyqt5>=5.15.0
