@@ -16,7 +16,9 @@ class TCPRenoGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("TCP Reno Simulation & Analysis Tool")
-        self.root.geometry("1200x800")
+        self.root.geometry("1000x700")
+        # Make window resizable
+        self.root.minsize(900, 600)
         
         # Project paths
         self.project_dir = Path(__file__).parent
@@ -197,15 +199,35 @@ class TCPRenoGUI:
         
     def create_simulation_tab(self):
         """Create simulation configuration and execution tab"""
-        # Main container with scrollbar
-        main_frame = ttk.Frame(self.tab_simulation)
-        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-        
-        # Configure grid weights for proper display
+        # Configure tab grid
         self.tab_simulation.columnconfigure(0, weight=1)
         self.tab_simulation.rowconfigure(0, weight=1)
+        
+        # Create canvas with scrollbar for config section
+        canvas = tk.Canvas(self.tab_simulation, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(self.tab_simulation, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+        
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+        
+        # Enable mouse wheel scrolling
+        def _on_mousewheel(event):
+            canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        canvas.bind_all("<MouseWheel>", _on_mousewheel)
+        
+        canvas.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        scrollbar.grid(row=0, column=1, sticky=(tk.N, tk.S))
+        
+        # Main container (now inside scrollable frame)
+        main_frame = ttk.Frame(scrollable_frame)
+        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=10, pady=10)
         main_frame.columnconfigure(0, weight=1)
-        main_frame.rowconfigure(2, weight=1)
         
         # Configuration section
         config_frame = ttk.LabelFrame(main_frame, 
@@ -366,7 +388,7 @@ class TCPRenoGUI:
         console_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
         
         self.console = scrolledtext.ScrolledText(console_frame,
-                                                 width=100, height=20,
+                                                 width=90, height=15,
                                                  font=('Courier', 9),
                                                  bg='#2C3E50',
                                                  fg='#ECF0F1',
@@ -858,6 +880,8 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
             if self.queue_red.get():
                 queue_types.append("RED")
             
+            self.log_to_console(f"\n📋 Total queues to run: {len(queue_types)}\n", 'info')
+            
             # Run simulation for each queue type
             all_success = True
             for i, queue_type in enumerate(queue_types):
@@ -922,12 +946,20 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 # Wait for completion
                 return_code = process.wait()
                 
+                # Clean up process
+                self.simulation_process = None
+                
                 if return_code != 0:
                     self.log_to_console(f"\n❌ Simulation {queue_type} failed with code {return_code}\n", 'error')
+                    self.log_to_console(f"💡 Check if results directory exists and is writable\n", 'warning')
                     all_success = False
                     break
                 else:
                     self.log_to_console(f"\n✅ {queue_type} simulation completed!\n", 'success')
+                    # Small delay between simulations
+                    if i < len(queue_types) - 1:
+                        self.log_to_console(f"\n⏳ Waiting 2 seconds before next simulation...\n", 'info')
+                        time.sleep(2)
             
             if all_success and self.is_running:
                 self.log_to_console("\n" + "="*60 + "\n", 'info')
