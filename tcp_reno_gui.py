@@ -26,6 +26,9 @@ class TCPRenoGUI:
         # NS-3 path - auto-detect or use default
         self.ns3_dir = self.find_ns3_directory()
         
+        # Python command - detect correct one
+        self.python_cmd = self.detect_python_command()
+        
         # Simulation process
         self.simulation_process = None
         self.is_running = False
@@ -50,6 +53,31 @@ class TCPRenoGUI:
         
         # If not found, return default and let user configure
         return Path.home() / "ns-allinone-3.43" / "ns-3.43"
+    
+    def detect_python_command(self):
+        """Detect correct Python command (python3 or python)"""
+        try:
+            # Try python3 first (common on Linux)
+            result = subprocess.run(['python3', '--version'], 
+                                  capture_output=True, 
+                                  timeout=2)
+            if result.returncode == 0:
+                return 'python3'
+        except:
+            pass
+        
+        try:
+            # Try python (common on Windows)
+            result = subprocess.run(['python', '--version'], 
+                                  capture_output=True, 
+                                  timeout=2)
+            if result.returncode == 0:
+                return 'python'
+        except:
+            pass
+        
+        # Default to python3 on Linux, python on Windows
+        return 'python3' if sys.platform != 'win32' else 'python'
         
     def setup_styles(self):
         """Configure ttk styles"""
@@ -153,6 +181,12 @@ class TCPRenoGUI:
         # Main container with scrollbar
         main_frame = ttk.Frame(self.tab_simulation)
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Configure grid weights for proper display
+        self.tab_simulation.columnconfigure(0, weight=1)
+        self.tab_simulation.rowconfigure(0, weight=1)
+        main_frame.columnconfigure(0, weight=1)
+        main_frame.rowconfigure(2, weight=1)
         
         # Configuration section
         config_frame = ttk.LabelFrame(main_frame, 
@@ -288,11 +322,10 @@ class TCPRenoGUI:
         self.btn_stop.grid(row=0, column=1, padx=5)
         
         # Output console
-        console_frame = ttk.LabelFrame(self.tab_simulation,
+        console_frame = ttk.LabelFrame(main_frame,
                                       text="📟 Console Output",
                                       padding=10)
         console_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
-        self.tab_simulation.rowconfigure(2, weight=1)
         
         self.console = scrolledtext.ScrolledText(console_frame,
                                                  width=100, height=20,
@@ -895,12 +928,12 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         queue_type = self.analysis_queue.get()
         
         commands = {
-            'dashboard': f'python main.py --queue {queue_type} --dashboard',
-            'timeline': f'python main.py --queue {queue_type} --timeline',
-            'print': f'python main.py --queue {queue_type} --print',
-            'comparison': 'python main.py --compare --dashboard',
-            'infographic-pdf': 'python main.py --infographic',
-            'infographic-gui': 'python main.py --infographic --gui'
+            'dashboard': f'{self.python_cmd} main.py --queue {queue_type} --dashboard',
+            'timeline': f'{self.python_cmd} main.py --queue {queue_type} --timeline',
+            'print': f'{self.python_cmd} main.py --queue {queue_type} --print',
+            'comparison': f'{self.python_cmd} main.py --compare --dashboard',
+            'infographic-pdf': f'{self.python_cmd} main.py --infographic',
+            'infographic-gui': f'{self.python_cmd} main.py --infographic --gui'
         }
         
         cmd = commands.get(analysis_type)
