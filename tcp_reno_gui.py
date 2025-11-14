@@ -859,8 +859,18 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 ssthresh = int(self.ssthresh.get())
                 tcp_queue_size = int(self.tcp_queue_size.get())
                 error_rate = float(self.error_rate.get())
-            except ValueError:
-                self.log_to_console("\n❌ Invalid parameter values\n", 'error')
+                
+                # Validate ranges
+                if sim_time <= 0:
+                    raise ValueError("Duration must be positive")
+                if not 1 <= num_flows <= 3:
+                    raise ValueError("Number of flows must be 1-3")
+                if error_rate < 0 or error_rate > 1:
+                    raise ValueError("Error rate must be between 0 and 1")
+                    
+            except ValueError as e:
+                self.log_to_console(f"\n❌ Invalid parameter: {str(e)}\n", 'error')
+                self.log_to_console("Please check your input values\n", 'warning')
                 self._simulation_finished(False)
                 return
             
@@ -1155,9 +1165,16 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
 
 def main():
     """Main entry point"""
-    root = tk.Tk()
-    app = TCPRenoGUI(root)
-    root.mainloop()
+    try:
+        root = tk.Tk()
+        app = TCPRenoGUI(root)
+        root.mainloop()
+    except Exception as e:
+        import traceback
+        print(f"❌ Error starting GUI: {str(e)}")
+        print("\nFull traceback:")
+        traceback.print_exc()
+        input("\nPress Enter to exit...")
 
 
 if __name__ == "__main__":
