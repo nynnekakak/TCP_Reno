@@ -12,7 +12,116 @@ import sys
 from pathlib import Path
 import time
 
+# Tooltip class for hover help
+class ToolTip:
+    """Create a tooltip for a given widget"""
+    def __init__(self, widget, text):
+        self.widget = widget
+        self.text = text
+        self.tooltip = None
+        self.widget.bind("<Enter>", self.show_tooltip)
+        self.widget.bind("<Leave>", self.hide_tooltip)
+    
+    def show_tooltip(self, event=None):
+        x, y, _, _ = self.widget.bbox("insert")
+        x += self.widget.winfo_rootx() + 25
+        y += self.widget.winfo_rooty() + 25
+        
+        self.tooltip = tk.Toplevel(self.widget)
+        self.tooltip.wm_overrideredirect(True)
+        self.tooltip.wm_geometry(f"+{x}+{y}")
+        
+        label = tk.Label(self.tooltip, text=self.text, 
+                        justify=tk.LEFT,
+                        background="#FFFFCC", 
+                        foreground="#000000",
+                        relief=tk.SOLID, 
+                        borderwidth=1,
+                        font=("Arial", 9),
+                        wraplength=400,
+                        padx=8, pady=6)
+        label.pack()
+    
+    def hide_tooltip(self, event=None):
+        if self.tooltip:
+            self.tooltip.destroy()
+            self.tooltip = None
+
 class TCPRenoGUI:
+    # Parameter descriptions and help text
+    PARAM_INFO = {
+        'duration': {
+            'name': 'Duration (s)',
+            'desc': 'Thời gian chạy simulation (giây)',
+            'help': 'Thời gian mô phỏng sẽ chạy. Giá trị càng lớn, càng thu thập được nhiều dữ liệu về hành vi TCP, nhưng mất nhiều thời gian hơn.\n\nĐề xuất: 20-100 giây\nVí dụ: 20 (cho test nhanh), 60 (cho phân tích chi tiết)'
+        },
+        'num_flows': {
+            'name': 'Number of Flows',
+            'desc': 'Số luồng TCP đồng thời (1-3)',
+            'help': 'Số lượng kết nối TCP chạy song song qua bottleneck link. Nhiều flows → tranh chấp bandwidth nhiều hơn → dễ quan sát congestion.\n\nĐề xuất: 3 flows\n• 1 flow: Quan sát thuần túy 1 kết nối\n• 2-3 flows: Quan sát sự cạnh tranh và fairness'
+        },
+        'mtu': {
+            'name': 'MTU (Maximum Transmission Unit)',
+            'desc': 'Kích thước tối đa của gói IP (bytes)',
+            'help': 'Kích thước tối đa của một IP packet (bao gồm header). MTU càng lớn → packet càng lớn → hiệu quả truyền tải cao hơn nhưng nếu mất packet thì mất nhiều data hơn.\n\nĐề xuất: 1500 bytes (chuẩn Ethernet)\nPhạm vi: 576-9000 bytes\n\n• 1500: Ethernet chuẩn\n• 1420-1460: Khi có VPN/tunneling\n• 9000: Jumbo frames (mạng datacenter)'
+        },
+        'cwnd': {
+            'name': 'Initial CWND',
+            'desc': 'Congestion Window ban đầu (segments)',
+            'help': 'Kích thước Congestion Window khi bắt đầu kết nối. CWND quy định số segments có thể gửi trước khi nhận ACK.\n\nĐề xuất: 1 segment (theo RFC 5681)\nPhạm vi: 1-10 segments\n\n• 1: Slow start từ đầu (chuẩn TCP Reno)\n• 10: Initial Window cải tiến (RFC 6928)\n\nCWND sẽ tăng exponentially trong slow start phase, sau đó linear trong congestion avoidance.'
+        },
+        'ssthresh': {
+            'name': 'Slow Start Threshold',
+            'desc': 'Ngưỡng chuyển từ Slow Start sang Congestion Avoidance',
+            'help': 'Ngưỡng quyết định khi nào TCP chuyển từ Slow Start (tăng gấp đôi CWND) sang Congestion Avoidance (tăng tuyến tính).\n\nĐề xuất: 65535 segments (vô hạn thực tế)\nPhạm vi: 2-65535 segments\n\n• 65535: Để TCP tự động điều chỉnh dựa trên packet loss\n• Giá trị nhỏ hơn: Buộc vào CA mode sớm hơn\n\nKhi có packet loss, ssthresh = cwnd/2, sau đó CWND reset về 1.'
+        },
+        'queue_size': {
+            'name': 'Queue Size',
+            'desc': 'Kích thước buffer tại bottleneck router (packets)',
+            'help': 'Số lượng packets tối đa có thể chờ trong queue tại router bottleneck. Queue càng lớn → delay càng cao nhưng ít loss hơn.\n\nĐề xuất: 25 packets\nPhạm vi: 10-100 packets\n\n• Nhỏ (10-20): Ít delay, nhiều loss → RED hiệu quả\n• Trung bình (25-50): Cân bằng\n• Lớn (>50): Bufferbloat → delay cao\n\nQueue đầy → DropTail drop hết packets mới, RED drop ngẫu nhiên sớm hơn.'
+        },
+        'bottleneck_bw': {
+            'name': 'Bottleneck Bandwidth',
+            'desc': 'Băng thông của link nghẽn (bottleneck)',
+            'help': 'Băng thông của link chậm nhất trong mạng - nơi xảy ra congestion. Đây là điểm chính để quan sát hành vi queue.\n\nĐề xuất: 5Mbps\nFormat: số + đơn vị (bps, Kbps, Mbps, Gbps)\n\n• 1-5Mbps: Dễ tạo congestion\n• 10-100Mbps: Mạng trung bình\n• 1Gbps+: Mạng tốc độ cao\n\nBottleneck < Sender/Receiver BW → packets tích tụ trong queue → quan sát được TCP congestion control.'
+        },
+        'bottleneck_delay': {
+            'name': 'Bottleneck Delay',
+            'desc': 'Độ trễ lan truyền của bottleneck link',
+            'help': 'Propagation delay của bottleneck link (thời gian 1 bit đi từ đầu này sang đầu kia). Delay cao → RTT cao → TCP phản ứng chậm hơn.\n\nĐề xuất: 10ms\nPhạm vi: 1-100ms\n\n• 1-10ms: LAN, datacenter\n• 10-50ms: WAN trong nước\n• 50-200ms: Quốc tế, vệ tinh\n\nTotal RTT = 2×(sender_delay + bottleneck_delay + receiver_delay) + queueing delay'
+        },
+        'sender_bw': {
+            'name': 'Sender Bandwidth',
+            'desc': 'Băng thông link từ sender đến router',
+            'help': 'Băng thông kết nối từ máy gửi tới router. Thường lớn hơn bottleneck để không tạo nghẽn tại đây.\n\nĐề xuất: 10Mbps (gấp đôi bottleneck)\nFormat: số + đơn vị (Mbps, Gbps)\n\n• Nên >= 2× bottleneck BW\n• Nếu sender BW < bottleneck → nghẽn ngay tại sender (không đúng mục đích test)'
+        },
+        'receiver_bw': {
+            'name': 'Receiver Bandwidth',
+            'desc': 'Băng thông link từ router đến receiver',
+            'help': 'Băng thông kết nối từ router tới máy nhận. Thường lớn hơn bottleneck để không tạo nghẽn tại đây.\n\nĐề xuất: 10Mbps (gấp đôi bottleneck)\nFormat: số + đơn vị (Mbps, Gbps)\n\n• Nên >= 2× bottleneck BW\n• Nếu receiver BW < bottleneck → nghẽn tại receiver (không đúng mục đích test)'
+        },
+        'error_rate': {
+            'name': 'Packet Error Rate',
+            'desc': 'Tỷ lệ mất gói ngẫu nhiên (0.0-1.0)',
+            'help': 'Xác suất một packet bị drop ngẫu nhiên do lỗi đường truyền (không phải do queue full). Dùng để mô phỏng mạng không tin cậy.\n\nĐề xuất: 0 (mạng lý tưởng)\nPhạm vi: 0.0-1.0\n\n• 0: Không có lỗi truyền (chỉ loss do queue)\n• 0.001-0.01 (0.1-1%): Mạng kém\n• 0.01-0.05 (1-5%): Mạng wireless/mobile\n• >0.1: Mạng rất tồi\n\nError rate cao → nhiều retransmission → throughput giảm → TCP congestion window giảm.'
+        },
+        'sack': {
+            'name': 'SACK (Selective Acknowledgment)',
+            'desc': 'Cho phép ACK từng segment riêng lẻ',
+            'help': 'SACK (RFC 2018) cho phép receiver thông báo chính xác segments nào đã nhận được, giúp sender chỉ retransmit các segments bị mất thay vì toàn bộ window.\n\nĐề xuất: Enabled (true)\n\n• Enabled: Hiệu quả cao hơn, ít retransmit lãng phí\n• Disabled: TCP truyền thống, phải retransmit nhiều segments\n\nVí dụ: Mất segment 5 trong chuỗi 1-10\n→ Với SACK: Chỉ gửi lại segment 5\n→ Không SACK: Phải gửi lại 5-10'
+        },
+        'nagle': {
+            'name': "Nagle's Algorithm",
+            'desc': 'Gộp các gói nhỏ thành gói lớn',
+            'help': "Nagle's Algorithm (RFC 896) trì hoãn gửi các packets nhỏ, đợi gộp thành packets lớn hơn hoặc đợi ACK của packet trước. Giảm overhead nhưng tăng latency.\n\nĐề xuất: Disabled (false)\n\n• Enabled: Giảm số packets → ít overhead\n  → Tốt cho: Telnet, SSH (gõ từng ký tự)\n\n• Disabled: Gửi ngay lập tức\n  → Tốt cho: Bulk transfer, game online (cần low latency)\n\nVới TCP Reno test, thường disable để quan sát pure TCP behavior."
+        },
+        'queue_type': {
+            'name': 'Queue Management Algorithm',
+            'desc': 'Thuật toán quản lý hàng đợi tại router',
+            'help': 'Cơ chế quyết định khi nào và packet nào bị drop khi queue đầy:\n\n📦 DropTail (FIFO):\n• Drop packets khi queue đầy 100%\n• Đơn giản nhưng gây "global synchronization"\n• Tất cả flows cùng lúc giảm CWND → underutilization\n\n🔴 RED (Random Early Detection):\n• Drop ngẫu nhiên packets khi queue đạt ngưỡng (MinTh)\n• Tăng xác suất drop khi queue càng đầy\n• Phòng ngừa global sync, cải thiện fairness\n• Phức tạp hơn nhưng hiệu quả cao hơn\n\n💡 So sánh: RED thường cho throughput ổn định hơn và delay thấp hơn DropTail.'
+        }
+    }
+    
     def __init__(self, root):
         self.root = root
         self.root.title("TCP Reno Simulation & Analysis Tool")
@@ -245,17 +354,26 @@ class TCPRenoGUI:
                                      padding=15)
         config_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
         
-        # Queue Types
-        ttk.Label(config_frame, text="Queue Types to Simulate:", 
-                 font=('Arial', 10, 'bold')).grid(row=0, column=0, columnspan=2, sticky=tk.W, pady=5)
+        # Queue Types with help
+        queue_label = ttk.Label(config_frame, text="Queue Types to Simulate:", 
+                 font=('Arial', 10, 'bold'))
+        queue_label.grid(row=0, column=0, columnspan=2, sticky=tk.W, pady=5)
+        
+        help_btn = ttk.Button(config_frame, text="?", width=3,
+                             command=lambda: messagebox.showinfo("Queue Types Help", 
+                                                                 self.PARAM_INFO['queue_type']['help']))
+        help_btn.grid(row=0, column=2, sticky=tk.W, padx=5)
         
         self.queue_droptail = tk.BooleanVar(value=True)
         self.queue_red = tk.BooleanVar(value=True)
         
-        ttk.Checkbutton(config_frame, text="DropTail", 
-                       variable=self.queue_droptail).grid(row=1, column=0, sticky=tk.W, padx=(20, 0))
-        ttk.Checkbutton(config_frame, text="RED", 
-                       variable=self.queue_red).grid(row=1, column=1, sticky=tk.W)
+        dt_cb = ttk.Checkbutton(config_frame, text="DropTail", variable=self.queue_droptail)
+        dt_cb.grid(row=1, column=0, sticky=tk.W, padx=(20, 0))
+        ToolTip(dt_cb, "DropTail: Simple FIFO queue, drops when full")
+        
+        red_cb = ttk.Checkbutton(config_frame, text="RED", variable=self.queue_red)
+        red_cb.grid(row=1, column=1, sticky=tk.W)
+        ToolTip(red_cb, "RED: Random Early Detection, proactive dropping")
         
         # Basic Parameters
         ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=2, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
@@ -263,18 +381,33 @@ class TCPRenoGUI:
                  font=('Arial', 10, 'bold')).grid(row=3, column=0, columnspan=2, sticky=tk.W, pady=5)
         
         # Row 4: Duration and Num Flows
-        ttk.Label(config_frame, text="Duration (s):").grid(row=4, column=0, sticky=tk.W, padx=(20, 0), pady=5)
-        self.sim_time = tk.StringVar(value="20")
-        ttk.Entry(config_frame, textvariable=self.sim_time, width=12).grid(row=4, column=1, sticky=tk.W, pady=5)
+        dur_label = ttk.Label(config_frame, text="Duration (s):")
+        dur_label.grid(row=4, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(dur_label, self.PARAM_INFO['duration']['desc'])
         
-        ttk.Label(config_frame, text="Num Flows:").grid(row=4, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.sim_time = tk.StringVar(value="20")
+        dur_entry = ttk.Entry(config_frame, textvariable=self.sim_time, width=12)
+        dur_entry.grid(row=4, column=1, sticky=tk.W, pady=5)
+        ToolTip(dur_entry, self.PARAM_INFO['duration']['help'])
+        
+        nf_label = ttk.Label(config_frame, text="Num Flows:")
+        nf_label.grid(row=4, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(nf_label, self.PARAM_INFO['num_flows']['desc'])
+        
         self.num_flows = tk.StringVar(value="3")
-        ttk.Spinbox(config_frame, from_=1, to=3, textvariable=self.num_flows, width=10).grid(row=4, column=3, sticky=tk.W, pady=5)
+        nf_spin = ttk.Spinbox(config_frame, from_=1, to=3, textvariable=self.num_flows, width=10)
+        nf_spin.grid(row=4, column=3, sticky=tk.W, pady=5)
+        ToolTip(nf_spin, self.PARAM_INFO['num_flows']['help'])
         
         # Row 5: MTU and CWND
-        ttk.Label(config_frame, text="MTU (bytes):").grid(row=5, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        mtu_label = ttk.Label(config_frame, text="MTU (bytes):")
+        mtu_label.grid(row=5, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(mtu_label, self.PARAM_INFO['mtu']['desc'])
+        
         self.mtu = tk.StringVar(value="1500")
-        ttk.Entry(config_frame, textvariable=self.mtu, width=12).grid(row=5, column=1, sticky=tk.W, pady=5)
+        mtu_entry = ttk.Entry(config_frame, textvariable=self.mtu, width=12)
+        mtu_entry.grid(row=5, column=1, sticky=tk.W, pady=5)
+        ToolTip(mtu_entry, self.PARAM_INFO['mtu']['help'])
         
         ttk.Label(config_frame, text="Init CWND:").grid(row=5, column=2, sticky=tk.W, padx=(20, 0), pady=5)
         self.cwnd = tk.StringVar(value="1")
@@ -313,9 +446,14 @@ class TCPRenoGUI:
         ttk.Entry(config_frame, textvariable=self.receiver_bw, width=10).grid(row=10, column=3, sticky=tk.W, pady=5)
         
         # Row 11: Error Rate
-        ttk.Label(config_frame, text="Error Rate:").grid(row=11, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        err_label = ttk.Label(config_frame, text="Error Rate:")
+        err_label.grid(row=11, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(err_label, self.PARAM_INFO['error_rate']['desc'])
+        
         self.error_rate = tk.StringVar(value="0")
-        ttk.Entry(config_frame, textvariable=self.error_rate, width=12).grid(row=11, column=1, sticky=tk.W, pady=5)
+        err_entry = ttk.Entry(config_frame, textvariable=self.error_rate, width=12)
+        err_entry.grid(row=11, column=1, sticky=tk.W, pady=5)
+        ToolTip(err_entry, self.PARAM_INFO['error_rate']['help'])
         
         # Options
         ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=12, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
@@ -323,12 +461,14 @@ class TCPRenoGUI:
                  font=('Arial', 10, 'bold')).grid(row=13, column=0, columnspan=2, sticky=tk.W, pady=5)
         
         self.enable_sack = tk.BooleanVar(value=True)
-        ttk.Checkbutton(config_frame, text="Enable SACK", 
-                       variable=self.enable_sack).grid(row=14, column=0, columnspan=2, sticky=tk.W, padx=(20, 0), pady=2)
+        sack_cb = ttk.Checkbutton(config_frame, text="Enable SACK", variable=self.enable_sack)
+        sack_cb.grid(row=14, column=0, columnspan=2, sticky=tk.W, padx=(20, 0), pady=2)
+        ToolTip(sack_cb, self.PARAM_INFO['sack']['help'])
         
         self.enable_nagle = tk.BooleanVar(value=False)
-        ttk.Checkbutton(config_frame, text="Enable Nagle", 
-                       variable=self.enable_nagle).grid(row=14, column=2, columnspan=2, sticky=tk.W, pady=2)
+        nagle_cb = ttk.Checkbutton(config_frame, text="Enable Nagle", variable=self.enable_nagle)
+        nagle_cb.grid(row=14, column=2, columnspan=2, sticky=tk.W, pady=2)
+        ToolTip(nagle_cb, self.PARAM_INFO['nagle']['help'])
         
         # NS-3 Directory
         ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=15, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
@@ -822,6 +962,28 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         thread.daemon = True
         thread.start()
         
+    def create_labeled_entry_with_help(self, parent, row, col, param_key, variable, **kwargs):
+        """Create label + entry + help icon with tooltip"""
+        info = self.PARAM_INFO.get(param_key, {})
+        
+        # Label
+        label = ttk.Label(parent, text=info.get('name', param_key) + ":")
+        label.grid(row=row, column=col, sticky=tk.W, padx=(20, 0), pady=5)
+        
+        # Add tooltip to label if description exists
+        if 'desc' in info:
+            ToolTip(label, info['desc'])
+        
+        # Entry widget
+        entry = ttk.Entry(parent, textvariable=variable, **kwargs)
+        entry.grid(row=row, column=col+1, sticky=tk.W, pady=5)
+        
+        # Add tooltip to entry with full help text
+        if 'help' in info:
+            ToolTip(entry, info['help'])
+        
+        return label, entry
+    
     def browse_ns3_dir(self):
         """Browse for NS-3 directory"""
         directory = filedialog.askdirectory(
@@ -907,6 +1069,9 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 self.log_to_console(f"{'='*60}\n", 'info')
                 
                 # Build command with all parameters
+                # Use consistent decimal format for error_rate (ensure . not ,)
+                error_rate_str = str(error_rate).replace(',', '.')
+                
                 cmd_params = [
                     f"--queueType={queue_type}",
                     f"--duration={sim_time}",
@@ -915,7 +1080,7 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                     f"--cwnd={cwnd}",
                     f"--ssthresh={ssthresh}",
                     f"--tcp_queue_size={tcp_queue_size}",
-                    f"--error_p={error_rate}",
+                    f"--error_p={error_rate_str}",
                     f"--bottleneck_bandwidth={self.bottleneck_bw.get()}",
                     f"--bottleneck_delay={self.bottleneck_delay.get()}",
                     f"--s_bandwidth={self.sender_bw.get()}",
@@ -925,6 +1090,9 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 ]
                 
                 cmd_string = " ".join(cmd_params)
+                
+                # Log the command for debugging
+                self.log_to_console(f"\n📝 Command: ./ns3 run \"scratch/tcp_reno_project/tcp_reno {cmd_string}\"\n\n", 'info')
                 
                 # Build command based on OS
                 if sys.platform == 'win32':
