@@ -23,23 +23,25 @@ class ToolTip:
         self.widget.bind("<Leave>", self.hide_tooltip)
     
     def show_tooltip(self, event=None):
-        x, y, _, _ = self.widget.bbox("insert")
-        x += self.widget.winfo_rootx() + 25
-        y += self.widget.winfo_rooty() + 25
+        # Get widget position
+        x = self.widget.winfo_rootx() + 25
+        y = self.widget.winfo_rooty() + self.widget.winfo_height() + 5
         
+        # Create tooltip window
         self.tooltip = tk.Toplevel(self.widget)
         self.tooltip.wm_overrideredirect(True)
         self.tooltip.wm_geometry(f"+{x}+{y}")
         
+        # Create label with text
         label = tk.Label(self.tooltip, text=self.text, 
                         justify=tk.LEFT,
-                        background="#FFFFCC", 
+                        background="#FFFFDD", 
                         foreground="#000000",
                         relief=tk.SOLID, 
                         borderwidth=1,
                         font=("Arial", 9),
-                        wraplength=400,
-                        padx=8, pady=6)
+                        wraplength=500,
+                        padx=10, pady=8)
         label.pack()
     
     def hide_tooltip(self, event=None):
@@ -103,7 +105,7 @@ class TCPRenoGUI:
         'error_rate': {
             'name': 'Packet Error Rate',
             'desc': 'Tỷ lệ mất gói ngẫu nhiên (0.0-1.0)',
-            'help': 'Xác suất một packet bị drop ngẫu nhiên do lỗi đường truyền (không phải do queue full). Dùng để mô phỏng mạng không tin cậy.\n\nĐề xuất: 0 (mạng lý tưởng)\nPhạm vi: 0.0-1.0\n\n• 0: Không có lỗi truyền (chỉ loss do queue)\n• 0.001-0.01 (0.1-1%): Mạng kém\n• 0.01-0.05 (1-5%): Mạng wireless/mobile\n• >0.1: Mạng rất tồi\n\nError rate cao → nhiều retransmission → throughput giảm → TCP congestion window giảm.'
+            'help': 'Xác suất một packet bị drop ngẫu nhiên do lỗi đường truyền (không phải do queue full). Dùng để mô phỏng mạng không tin cậy.\n\n⚠️ LUU Ý: Error rate quá cao có thể làm simulation THẤT BẠI!\n\nĐề xuất: 0 hoặc 0.001-0.01 (0.1-1%)\nPhạm vi an toàn: 0.0-0.02\n\n• 0: Không có lỗi truyền (chỉ loss do queue)\n• 0.001-0.01 (0.1-1%): Mạng kém, vẫn hoạt động\n• 0.01-0.02 (1-2%): Mạng wireless/mobile\n• >0.02 (>2%): NGUY HIỂM - có thể không thiết lập được TCP connection!\n\n❗ Error rate 0.05 (5%) sẽ drop 5% packets, kể cả SYN packets → TCP không thể handshake → simulation thất bại với 0 throughput.\n\nNếu muốn test với loss cao, dùng queue size nhỏ thay vì error rate.'
         },
         'sack': {
             'name': 'SACK (Selective Acknowledgment)',
@@ -409,18 +411,33 @@ class TCPRenoGUI:
         mtu_entry.grid(row=5, column=1, sticky=tk.W, pady=5)
         ToolTip(mtu_entry, self.PARAM_INFO['mtu']['help'])
         
-        ttk.Label(config_frame, text="Init CWND:").grid(row=5, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        cwnd_label = ttk.Label(config_frame, text="Init CWND:")
+        cwnd_label.grid(row=5, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(cwnd_label, self.PARAM_INFO['cwnd']['desc'])
+        
         self.cwnd = tk.StringVar(value="1")
-        ttk.Entry(config_frame, textvariable=self.cwnd, width=10).grid(row=5, column=3, sticky=tk.W, pady=5)
+        cwnd_entry = ttk.Entry(config_frame, textvariable=self.cwnd, width=10)
+        cwnd_entry.grid(row=5, column=3, sticky=tk.W, pady=5)
+        ToolTip(cwnd_entry, self.PARAM_INFO['cwnd']['help'])
         
         # Row 6: SSThresh and Queue Size
-        ttk.Label(config_frame, text="SSThresh:").grid(row=6, column=0, sticky=tk.W, padx=(20, 0), pady=5)
-        self.ssthresh = tk.StringVar(value="65535")
-        ttk.Entry(config_frame, textvariable=self.ssthresh, width=12).grid(row=6, column=1, sticky=tk.W, pady=5)
+        sst_label = ttk.Label(config_frame, text="SSThresh:")
+        sst_label.grid(row=6, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(sst_label, self.PARAM_INFO['ssthresh']['desc'])
         
-        ttk.Label(config_frame, text="Queue Size:").grid(row=6, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.ssthresh = tk.StringVar(value="65535")
+        sst_entry = ttk.Entry(config_frame, textvariable=self.ssthresh, width=12)
+        sst_entry.grid(row=6, column=1, sticky=tk.W, pady=5)
+        ToolTip(sst_entry, self.PARAM_INFO['ssthresh']['help'])
+        
+        qs_label = ttk.Label(config_frame, text="Queue Size:")
+        qs_label.grid(row=6, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(qs_label, self.PARAM_INFO['queue_size']['desc'])
+        
         self.tcp_queue_size = tk.StringVar(value="25")
-        ttk.Entry(config_frame, textvariable=self.tcp_queue_size, width=10).grid(row=6, column=3, sticky=tk.W, pady=5)
+        qs_entry = ttk.Entry(config_frame, textvariable=self.tcp_queue_size, width=10)
+        qs_entry.grid(row=6, column=3, sticky=tk.W, pady=5)
+        ToolTip(qs_entry, self.PARAM_INFO['queue_size']['help'])
         
         # Network Parameters
         ttk.Separator(config_frame, orient=tk.HORIZONTAL).grid(row=7, column=0, columnspan=4, sticky=(tk.W, tk.E), pady=10)
@@ -428,22 +445,42 @@ class TCPRenoGUI:
                  font=('Arial', 10, 'bold')).grid(row=8, column=0, columnspan=2, sticky=tk.W, pady=5)
         
         # Row 9: Bottleneck
-        ttk.Label(config_frame, text="Bottleneck BW:").grid(row=9, column=0, sticky=tk.W, padx=(20, 0), pady=5)
-        self.bottleneck_bw = tk.StringVar(value="5Mbps")
-        ttk.Entry(config_frame, textvariable=self.bottleneck_bw, width=12).grid(row=9, column=1, sticky=tk.W, pady=5)
+        bb_label = ttk.Label(config_frame, text="Bottleneck BW:")
+        bb_label.grid(row=9, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(bb_label, self.PARAM_INFO['bottleneck_bw']['desc'])
         
-        ttk.Label(config_frame, text="Delay:").grid(row=9, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.bottleneck_bw = tk.StringVar(value="5Mbps")
+        bb_entry = ttk.Entry(config_frame, textvariable=self.bottleneck_bw, width=12)
+        bb_entry.grid(row=9, column=1, sticky=tk.W, pady=5)
+        ToolTip(bb_entry, self.PARAM_INFO['bottleneck_bw']['help'])
+        
+        bd_label = ttk.Label(config_frame, text="Delay:")
+        bd_label.grid(row=9, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(bd_label, self.PARAM_INFO['bottleneck_delay']['desc'])
+        
         self.bottleneck_delay = tk.StringVar(value="10ms")
-        ttk.Entry(config_frame, textvariable=self.bottleneck_delay, width=10).grid(row=9, column=3, sticky=tk.W, pady=5)
+        bd_entry = ttk.Entry(config_frame, textvariable=self.bottleneck_delay, width=10)
+        bd_entry.grid(row=9, column=3, sticky=tk.W, pady=5)
+        ToolTip(bd_entry, self.PARAM_INFO['bottleneck_delay']['help'])
         
         # Row 10: Sender/Receiver
-        ttk.Label(config_frame, text="Sender BW:").grid(row=10, column=0, sticky=tk.W, padx=(20, 0), pady=5)
-        self.sender_bw = tk.StringVar(value="10Mbps")
-        ttk.Entry(config_frame, textvariable=self.sender_bw, width=12).grid(row=10, column=1, sticky=tk.W, pady=5)
+        sb_label = ttk.Label(config_frame, text="Sender BW:")
+        sb_label.grid(row=10, column=0, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(sb_label, self.PARAM_INFO['sender_bw']['desc'])
         
-        ttk.Label(config_frame, text="Receiver BW:").grid(row=10, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        self.sender_bw = tk.StringVar(value="10Mbps")
+        sb_entry = ttk.Entry(config_frame, textvariable=self.sender_bw, width=12)
+        sb_entry.grid(row=10, column=1, sticky=tk.W, pady=5)
+        ToolTip(sb_entry, self.PARAM_INFO['sender_bw']['help'])
+        
+        rb_label = ttk.Label(config_frame, text="Receiver BW:")
+        rb_label.grid(row=10, column=2, sticky=tk.W, padx=(20, 0), pady=5)
+        ToolTip(rb_label, self.PARAM_INFO['receiver_bw']['desc'])
+        
         self.receiver_bw = tk.StringVar(value="10Mbps")
-        ttk.Entry(config_frame, textvariable=self.receiver_bw, width=10).grid(row=10, column=3, sticky=tk.W, pady=5)
+        rb_entry = ttk.Entry(config_frame, textvariable=self.receiver_bw, width=10)
+        rb_entry.grid(row=10, column=3, sticky=tk.W, pady=5)
+        ToolTip(rb_entry, self.PARAM_INFO['receiver_bw']['help'])
         
         # Row 11: Error Rate
         err_label = ttk.Label(config_frame, text="Error Rate:")
@@ -1029,6 +1066,9 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                     raise ValueError("Number of flows must be 1-3")
                 if error_rate < 0 or error_rate > 1:
                     raise ValueError("Error rate must be between 0 and 1")
+                if error_rate > 0.02:
+                    self.log_to_console(f"⚠️  WARNING: High error rate ({error_rate*100:.1f}%) may prevent TCP connection establishment!\n", 'warning')
+                    self.log_to_console("   Recommended: 0-0.01 (0-1%) for stable connections\n", 'warning')
                     
             except ValueError as e:
                 self.log_to_console(f"\n❌ Invalid parameter: {str(e)}\n", 'error')
