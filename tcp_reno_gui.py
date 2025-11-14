@@ -216,10 +216,20 @@ class TCPRenoGUI:
         canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
         canvas.configure(yscrollcommand=scrollbar.set)
         
-        # Enable mouse wheel scrolling
+        # Enable mouse wheel scrolling (Windows and Linux)
         def _on_mousewheel(event):
             canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        def _on_mousewheel_linux(event):
+            if event.num == 4:
+                canvas.yview_scroll(-1, "units")
+            elif event.num == 5:
+                canvas.yview_scroll(1, "units")
+        
+        # Bind for Windows
         canvas.bind_all("<MouseWheel>", _on_mousewheel)
+        # Bind for Linux
+        canvas.bind_all("<Button-4>", _on_mousewheel_linux)
+        canvas.bind_all("<Button-5>", _on_mousewheel_linux)
         
         canvas.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         scrollbar.grid(row=0, column=1, sticky=(tk.N, tk.S))
@@ -337,13 +347,6 @@ class TCPRenoGUI:
                   width=10).grid(row=0, column=1, padx=(5, 0))
         
         ns3_frame.columnconfigure(0, weight=1)
-        
-        # Real-time Visualization
-        self.show_realtime = tk.BooleanVar(value=False)
-        ttk.Checkbutton(config_frame, 
-                       text="Show Real-time Visualization (plot_realtime.py)",
-                       variable=self.show_realtime).grid(row=18, column=0, columnspan=4, 
-                                                         sticky=tk.W, padx=(20, 0), pady=(10, 0))
         
         # Control buttons
         button_frame = ttk.Frame(main_frame)
