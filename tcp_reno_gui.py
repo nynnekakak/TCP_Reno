@@ -29,6 +29,25 @@ class TCPRenoGUI:
         # Python command - detect correct one
         self.python_cmd = self.detect_python_command()
         
+        # Default parameters (recommended values)
+        self.default_params = {
+            'sim_time': '20',
+            'num_flows': '3',
+            'mtu': '1500',
+            'cwnd': '1',
+            'ssthresh': '65535',
+            'tcp_queue_size': '25',
+            'bottleneck_bw': '5Mbps',
+            'bottleneck_delay': '10ms',
+            'sender_bw': '10Mbps',
+            'receiver_bw': '10Mbps',
+            'error_rate': '0',
+            'enable_sack': True,
+            'enable_nagle': False,
+            'queue_droptail': True,
+            'queue_red': True
+        }
+        
         # Simulation process
         self.simulation_process = None
         self.is_running = False
@@ -306,7 +325,7 @@ class TCPRenoGUI:
         
         # Control buttons
         button_frame = ttk.Frame(main_frame)
-        button_frame.grid(row=1, column=0, pady=10)
+        button_frame.grid(row=1, column=0, pady=(0, 10))
         
         self.btn_run = ttk.Button(button_frame, 
                                   text="▶️ Run Simulation",
@@ -320,6 +339,25 @@ class TCPRenoGUI:
                                    state=tk.DISABLED,
                                    width=20)
         self.btn_stop.grid(row=0, column=1, padx=5)
+        
+        ttk.Button(button_frame,
+                  text="🔄 Reset to Defaults",
+                  command=self.reset_parameters,
+                  width=20).grid(row=0, column=2, padx=5)
+        
+        # Progress section (below buttons) - separate frame
+        progress_outer = ttk.Frame(main_frame)
+        progress_outer.grid(row=1, column=0, pady=(55, 0), sticky=(tk.W, tk.E))
+        
+        progress_frame = ttk.Frame(progress_outer)
+        progress_frame.pack(expand=True)
+        
+        self.progress_label = ttk.Label(progress_frame, text="Ready to run", 
+                                       font=('Arial', 9, 'italic'), foreground='#7F8C8D')
+        self.progress_label.grid(row=0, column=0, pady=(0, 5))
+        
+        self.progress_bar = ttk.Progressbar(progress_frame, length=700, mode='indeterminate')
+        self.progress_bar.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=20)
         
         # Output console
         console_frame = ttk.LabelFrame(main_frame,
@@ -713,6 +751,25 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
     
     # ============= SIMULATION METHODS =============
     
+    def reset_parameters(self):
+        """Reset all parameters to default recommended values"""
+        self.sim_time.set(self.default_params['sim_time'])
+        self.num_flows.set(self.default_params['num_flows'])
+        self.mtu.set(self.default_params['mtu'])
+        self.cwnd.set(self.default_params['cwnd'])
+        self.ssthresh.set(self.default_params['ssthresh'])
+        self.tcp_queue_size.set(self.default_params['tcp_queue_size'])
+        self.bottleneck_bw.set(self.default_params['bottleneck_bw'])
+        self.bottleneck_delay.set(self.default_params['bottleneck_delay'])
+        self.sender_bw.set(self.default_params['sender_bw'])
+        self.receiver_bw.set(self.default_params['receiver_bw'])
+        self.error_rate.set(self.default_params['error_rate'])
+        self.enable_sack.set(self.default_params['enable_sack'])
+        self.enable_nagle.set(self.default_params['enable_nagle'])
+        self.queue_droptail.set(self.default_params['queue_droptail'])
+        self.queue_red.set(self.default_params['queue_red'])
+        messagebox.showinfo("Reset", "All parameters reset to recommended defaults!")
+    
     def run_simulation(self):
         """Run NS-3 simulation"""
         if self.is_running:
@@ -732,6 +789,8 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         self.btn_run.configure(state=tk.DISABLED)
         self.btn_stop.configure(state=tk.NORMAL)
         self.status_var.set("⏳ Simulation running...")
+        self.progress_label.config(text="🔄 Starting simulation...")
+        self.progress_bar.start(10)
         
         # Run in thread to avoid blocking UI
         thread = threading.Thread(target=self._run_simulation_thread)
@@ -802,6 +861,10 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
             # Run simulation for each queue type
             all_success = True
             for i, queue_type in enumerate(queue_types):
+                # Update progress label
+                self.root.after(0, self.progress_label.config, 
+                               {'text': f"🚀 Running {i+1}/{len(queue_types)}: {queue_type}"})
+                
                 self.log_to_console(f"\n{'='*60}\n", 'info')
                 self.log_to_console(f"🚀 Running simulation {i+1}/{len(queue_types)}: {queue_type}\n", 'info')
                 self.log_to_console(f"{'='*60}\n", 'info')
@@ -895,12 +958,15 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         self.is_running = False
         self.btn_run.configure(state=tk.NORMAL)
         self.btn_stop.configure(state=tk.DISABLED)
+        self.progress_bar.stop()
         
         if success:
             self.status_var.set("✅ Simulation completed successfully")
+            self.progress_label.config(text="✅ All simulations completed!")
             self.refresh_file_list()
         else:
             self.status_var.set("❌ Simulation failed or was stopped")
+            self.progress_label.config(text="❌ Simulation stopped or failed")
     
     def log_to_console(self, message, tag='normal'):
         """Thread-safe logging to console"""
