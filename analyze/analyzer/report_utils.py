@@ -260,13 +260,7 @@ def create_page1_overview(analyzer):
     fig = plt.figure(figsize=(16, 11))
     fig.patch.set_facecolor('#FFFFFF')
     
-    # Title
-    fig.text(0.5, 0.96, 'TCP RENO PERFORMANCE ANALYSIS', 
-            ha='center', va='top', fontsize=32, fontweight='bold',
-            color='#2C3E50')
-    fig.text(0.5, 0.92, 'Comparison: DropTail vs RED Queue Management',
-            ha='center', va='top', fontsize=16, style='italic',
-            color='#7F8C8D')
+    # Title removed - handled by Tkinter GUI
     
     gs = GridSpec(3, 1, figure=fig, 
                   hspace=0.4, left=0.08, right=0.92, 
@@ -380,9 +374,7 @@ def create_page2_cwnd(analyzer):
     fig = plt.figure(figsize=(16, 11))
     fig.patch.set_facecolor('#FFFFFF')
     
-    fig.text(0.5, 0.96, 'CONGESTION WINDOW EVOLUTION', 
-            ha='center', va='top', fontsize=32, fontweight='bold',
-            color='#2C3E50')
+    # Title removed - handled by Tkinter GUI
     
     gs = GridSpec(2, 1, figure=fig, 
                   hspace=0.3, left=0.08, right=0.92, 
@@ -432,9 +424,7 @@ def create_page3_performance(analyzer):
     fig = plt.figure(figsize=(16, 11))
     fig.patch.set_facecolor('#FFFFFF')
     
-    fig.text(0.5, 0.96, 'PERFORMANCE COMPARISON', 
-            ha='center', va='top', fontsize=32, fontweight='bold',
-            color='#2C3E50')
+    # Title removed - handled by Tkinter GUI
     
     gs = GridSpec(2, 2, figure=fig, 
                   hspace=0.35, wspace=0.35,
@@ -542,7 +532,8 @@ def create_page4_packets(analyzer):
     fig = plt.figure(figsize=(16, 11))
     fig.patch.set_facecolor('#FFFFFF')
     
-    fig.text(0.5, 0.96, 'PACKET STATISTICS', 
+    # Title removed - handled by Tkinter GUI
+    # fig.text(0.5, 0.96, 'PACKET STATISTICS', 
             ha='center', va='top', fontsize=32, fontweight='bold',
             color='#2C3E50')
     
@@ -605,7 +596,8 @@ def create_page5_recommendation(analyzer):
     fig = plt.figure(figsize=(16, 11))
     fig.patch.set_facecolor('#FFFFFF')
     
-    fig.text(0.5, 0.96, 'FINAL RECOMMENDATION', 
+    # Title removed - handled by Tkinter GUI
+    # fig.text(0.5, 0.96, 'FINAL RECOMMENDATION', 
             ha='center', va='top', fontsize=32, fontweight='bold',
             color='#2C3E50')
     

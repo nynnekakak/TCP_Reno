@@ -178,9 +178,10 @@ def create_dashboard(analyzer, queue_type, show_gui=False):
     
     ax6.set_title('Summary Statistics', fontsize=13, fontweight='bold', pad=15)
 
-    if not show_gui:
-        fig.suptitle(f'TCP Reno Performance Dashboard - {queue_type} Queue', 
-                    fontsize=20, fontweight='bold', y=0.96)
+    # Title removed - handled by Tkinter in GUI mode
+    # if not show_gui:
+    #     fig.suptitle(f'TCP Reno Performance Dashboard - {queue_type} Queue', 
+    #                 fontsize=20, fontweight='bold', y=0.96)
 
     output_file = analyzer.results_dir / f"{analyzer.prefix}_dashboard_{queue_type}.png"
     plt.savefig(output_file, dpi=300, bbox_inches='tight', 
@@ -351,9 +352,10 @@ def create_comparison_dashboard(analyzer, show_gui=False):
     
     ax6.set_title('Performance Summary', fontsize=14, fontweight='bold', pad=15)
     
-    if not show_gui:
-        fig.suptitle('TCP Reno: DropTail vs RED Queue Comparison', 
-                    fontsize=22, fontweight='bold', y=0.97)
+    # Title removed - handled by Tkinter in GUI mode
+    # if not show_gui:
+    #     fig.suptitle('TCP Reno: DropTail vs RED Queue Comparison', 
+    #                 fontsize=22, fontweight='bold', y=0.97)
 
     output_file = analyzer.results_dir / f"{analyzer.prefix}_comparison_dashboard.png"
     plt.savefig(output_file, dpi=300, bbox_inches='tight',
