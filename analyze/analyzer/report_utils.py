@@ -534,8 +534,8 @@ def create_page4_packets(analyzer):
     
     # Title removed - handled by Tkinter GUI
     # fig.text(0.5, 0.96, 'PACKET STATISTICS', 
-            ha='center', va='top', fontsize=32, fontweight='bold',
-            color='#2C3E50')
+    #         ha='center', va='top', fontsize=32, fontweight='bold',
+    #         color='#2C3E50')
     
     gs = GridSpec(2, 1, figure=fig, 
                   hspace=0.3, left=0.1, right=0.9, 
@@ -598,8 +598,8 @@ def create_page5_recommendation(analyzer):
     
     # Title removed - handled by Tkinter GUI
     # fig.text(0.5, 0.96, 'FINAL RECOMMENDATION', 
-            ha='center', va='top', fontsize=32, fontweight='bold',
-            color='#2C3E50')
+    #         ha='center', va='top', fontsize=32, fontweight='bold',
+    #         color='#2C3E50')
     
     ax = fig.add_subplot(111)
     ax.axis('off')
