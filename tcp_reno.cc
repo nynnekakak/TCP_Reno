@@ -12,6 +12,8 @@
 #include <string>
 #include <cstdlib>
 #include <unistd.h>
+#include <ctime>
+#include <sstream>
 
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
@@ -335,9 +337,23 @@ int main(int argc, char *argv[])
   // Set RNG run number
   RngSeedManager::SetRun(run);
 
-  std::string cwndFile = resultsDir + prefix_file_name + "_cwnd_trace_" + queueType + ".tr";
-  std::string stateFile = resultsDir + prefix_file_name + "_tcp_state_" + queueType + ".log";
-  std::string summaryFile = resultsDir + prefix_file_name + "_summary_" + queueType + ".txt";
+  // Generate timestamp for unique filenames
+  std::time_t now = std::time(nullptr);
+  std::tm* localTime = std::localtime(&now);
+  std::ostringstream timestamp;
+  timestamp << std::setfill('0') 
+            << std::setw(4) << (localTime->tm_year + 1900)
+            << std::setw(2) << (localTime->tm_mon + 1)
+            << std::setw(2) << localTime->tm_mday << "_"
+            << std::setw(2) << localTime->tm_hour
+            << std::setw(2) << localTime->tm_min
+            << std::setw(2) << localTime->tm_sec;
+  
+  std::string unique_prefix = prefix_file_name + "_" + timestamp.str();
+  
+  std::string cwndFile = resultsDir + unique_prefix + "_cwnd_trace_" + queueType + ".tr";
+  std::string stateFile = resultsDir + unique_prefix + "_tcp_state_" + queueType + ".log";
+  std::string summaryFile = resultsDir + unique_prefix + "_summary_" + queueType + ".txt";
 
   g_cwndStream.open(cwndFile);
   g_stateStream.open(stateFile);
@@ -527,13 +543,13 @@ int main(int argc, char *argv[])
   if (ascii_tracing)
   {
     AsciiTraceHelper ascii;
-    p2pBottleneck.EnableAsciiAll(ascii.CreateFileStream(resultsDir + prefix_file_name + "_ascii.tr"));
+    p2pBottleneck.EnableAsciiAll(ascii.CreateFileStream(resultsDir + unique_prefix + "_ascii.tr"));
     LogEvent("ASCII_TRACING", "Enabled");
   }
 
   if (pcap_tracing)
   {
-    p2pBottleneck.EnablePcapAll(resultsDir + prefix_file_name + "_pcap", false);
+    p2pBottleneck.EnablePcapAll(resultsDir + unique_prefix + "_pcap", false);
     LogEvent("PCAP_TRACING", "Enabled");
   }
 

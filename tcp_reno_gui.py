@@ -590,7 +590,7 @@ class TCPRenoGUI:
         """Create analysis and visualization tab"""
         # Instructions
         info_frame = ttk.Frame(self.tab_analysis)
-        info_frame.grid(row=0, column=0, columnspan=2, pady=(0, 20), sticky=tk.W)
+        info_frame.grid(row=0, column=0, columnspan=2, pady=(0, 10), sticky=tk.W)
         
         ttk.Label(info_frame,
                  text="📊 Choose analysis and visualization options:",
@@ -602,11 +602,27 @@ class TCPRenoGUI:
                  font=('Arial', 9, 'italic'),
                  foreground='#7F8C8D').grid(row=1, column=0, sticky=tk.W, pady=(5, 0))
         
+        # Run selector
+        run_frame = ttk.Frame(self.tab_analysis)
+        run_frame.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(0, 15))
+        
+        ttk.Label(run_frame, text="🔍 Select Run to Analyze:",
+                 font=('Arial', 10, 'bold')).grid(row=0, column=0, padx=5, sticky=tk.W)
+        
+        self.analysis_run_filter = ttk.Combobox(run_frame, width=50, state='readonly')
+        self.analysis_run_filter.grid(row=0, column=1, padx=5)
+        self.analysis_run_filter['values'] = ['Latest Run']
+        self.analysis_run_filter.current(0)
+        
+        ttk.Button(run_frame, text="🔄",
+                  command=self.update_analysis_runs,
+                  width=3).grid(row=0, column=2, padx=5)
+        
         # Left panel - Single Queue Analysis
         left_frame = ttk.LabelFrame(self.tab_analysis,
                                    text="📈 Single Queue Analysis",
                                    padding=15)
-        left_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N), padx=(0, 10))
+        left_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N), padx=(0, 10))
         
         ttk.Label(left_frame, text="Select Queue Type:",
                  font=('Arial', 10, 'bold')).grid(row=0, column=0, sticky=tk.W, pady=(0, 5))
@@ -642,7 +658,7 @@ class TCPRenoGUI:
         right_frame = ttk.LabelFrame(self.tab_analysis,
                                     text="⚖️ Comparison Analysis",
                                     padding=15)
-        right_frame.grid(row=1, column=1, sticky=(tk.W, tk.E, tk.N))
+        right_frame.grid(row=2, column=1, sticky=(tk.W, tk.E, tk.N))
         
         ttk.Label(right_frame,
                  text="Compare DropTail vs RED",
@@ -668,8 +684,8 @@ class TCPRenoGUI:
         output_frame = ttk.LabelFrame(self.tab_analysis,
                                      text="📟 Analysis Output",
                                      padding=10)
-        output_frame.grid(row=2, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=20)
-        self.tab_analysis.rowconfigure(2, weight=1)
+        output_frame.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=20)
+        self.tab_analysis.rowconfigure(3, weight=1)
         
         self.analysis_output = scrolledtext.ScrolledText(output_frame,
                                                         width=100, height=15,
@@ -682,24 +698,41 @@ class TCPRenoGUI:
         
     def create_results_tab(self):
         """Create results browser tab"""
+        # Filter section
+        filter_frame = ttk.Frame(self.tab_results)
+        filter_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
+        
+        ttk.Label(filter_frame, text="🔍 Filter by Run:",
+                 font=('Arial', 10, 'bold')).grid(row=0, column=0, padx=5, sticky=tk.W)
+        
+        self.run_filter = ttk.Combobox(filter_frame, width=40, state='readonly')
+        self.run_filter.grid(row=0, column=1, padx=5)
+        self.run_filter.bind('<<ComboboxSelected>>', lambda e: self.refresh_file_list())
+        
+        ttk.Button(filter_frame, text="🔄 Refresh",
+                  command=self.update_run_filter,
+                  width=15).grid(row=0, column=2, padx=5)
+        
         # File list
         list_frame = ttk.LabelFrame(self.tab_results,
                                    text="📁 Generated Files",
                                    padding=10)
-        list_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
-        self.tab_results.rowconfigure(0, weight=1)
+        list_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
+        self.tab_results.rowconfigure(1, weight=1)
         
         # Treeview for file list
         self.file_tree = ttk.Treeview(list_frame, 
-                                     columns=('Type', 'Size', 'Modified'),
+                                     columns=('Type', 'Queue', 'Size', 'Modified'),
                                      height=15)
         self.file_tree.heading('#0', text='File Name')
         self.file_tree.heading('Type', text='Type')
+        self.file_tree.heading('Queue', text='Queue Type')
         self.file_tree.heading('Size', text='Size')
         self.file_tree.heading('Modified', text='Last Modified')
         
-        self.file_tree.column('#0', width=300)
-        self.file_tree.column('Type', width=150)
+        self.file_tree.column('#0', width=350)
+        self.file_tree.column('Type', width=120)
+        self.file_tree.column('Queue', width=100)
         self.file_tree.column('Size', width=100)
         self.file_tree.column('Modified', width=150)
         
@@ -716,25 +749,25 @@ class TCPRenoGUI:
         
         # Action buttons
         button_frame = ttk.Frame(self.tab_results)
-        button_frame.grid(row=1, column=0, pady=10)
-        
-        ttk.Button(button_frame,
-                  text="🔄 Refresh List",
-                  command=self.refresh_file_list,
-                  width=20).grid(row=0, column=0, padx=5)
+        button_frame.grid(row=2, column=0, pady=10)
         
         ttk.Button(button_frame,
                   text="📂 Open Results Folder",
                   command=self.open_results_folder,
+                  width=20).grid(row=0, column=0, padx=5)
+        
+        ttk.Button(button_frame,
+                  text="🗑️ Clear All Results",
+                  command=self.clear_results,
                   width=20).grid(row=0, column=1, padx=5)
         
         ttk.Button(button_frame,
-                  text="🗑️ Clear Results",
-                  command=self.clear_results,
+                  text="🗑️ Delete Selected Run",
+                  command=self.delete_selected_run,
                   width=20).grid(row=0, column=2, padx=5)
         
         # Auto-refresh file list
-        self.refresh_file_list()
+        self.update_run_filter()
         
     def create_help_tab(self):
         """Create help and documentation tab"""
@@ -1216,7 +1249,8 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         if success:
             self.status_var.set("✅ Simulation completed successfully")
             self.progress_label.config(text="✅ All simulations completed!")
-            self.refresh_file_list()
+            self.update_run_filter()
+            self.update_analysis_runs()
         else:
             self.status_var.set("❌ Simulation failed or was stopped")
             self.progress_label.config(text="❌ Simulation stopped or failed")
@@ -1233,6 +1267,47 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
     
     # ============= ANALYSIS METHODS =============
     
+    def update_analysis_runs(self):
+        """Update run filter in analysis tab"""
+        if not self.results_dir.exists():
+            self.analysis_run_filter['values'] = ['Latest Run']
+            self.analysis_run_filter.current(0)
+            return
+        
+        # Find all unique run identifiers
+        runs = set()
+        import re
+        
+        for file_path in self.results_dir.glob('*'):
+            if file_path.is_file():
+                # Extract timestamp from filename
+                match = re.search(r'P2P-project_(\d{8}_\d{6})', file_path.name)
+                if match:
+                    timestamp = match.group(1)
+                    runs.add(timestamp)
+        
+        # Sort runs by timestamp (newest first)
+        sorted_runs = sorted(runs, reverse=True)
+        
+        # Format timestamps for display
+        formatted_runs = []
+        for run in sorted_runs:
+            if len(run) == 15:
+                formatted = f"{run[0:4]}-{run[4:6]}-{run[6:8]} {run[9:11]}:{run[11:13]}:{run[13:15]}"
+                formatted_runs.append(f"{formatted} ({run})")
+            else:
+                formatted_runs.append(run)
+        
+        # Add options
+        all_options = ['Latest Run', 'Legacy Files (no timestamp)'] + formatted_runs
+        
+        # Update combobox
+        current = self.analysis_run_filter.get()
+        self.analysis_run_filter['values'] = all_options
+        
+        if current not in all_options:
+            self.analysis_run_filter.current(0)
+    
     def run_analysis(self, analysis_type):
         """Run analysis command"""
         self.analysis_output.delete('1.0', tk.END)
@@ -1243,16 +1318,31 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                                  "No simulation data found!\nPlease run simulation first.")
             return
         
+        # Get selected run
+        run_selection = self.analysis_run_filter.get()
+        prefix = "P2P-project"
+        
+        import re
+        if run_selection and run_selection != 'Latest Run':
+            if run_selection == 'Legacy Files (no timestamp)':
+                prefix = "P2P-project"
+            else:
+                # Extract timestamp
+                match = re.search(r'\((\d{8}_\d{6})\)', run_selection)
+                if match:
+                    timestamp = match.group(1)
+                    prefix = f"P2P-project_{timestamp}"
+        
         # Build command
         queue_type = self.analysis_queue.get()
         
         commands = {
-            'dashboard': f'{self.python_cmd} main.py --queue {queue_type} --dashboard',
-            'timeline': f'{self.python_cmd} main.py --queue {queue_type} --timeline',
-            'print': f'{self.python_cmd} main.py --queue {queue_type} --print',
-            'comparison': f'{self.python_cmd} main.py --compare --dashboard',
-            'infographic-pdf': f'{self.python_cmd} main.py --infographic',
-            'infographic-gui': f'{self.python_cmd} main.py --infographic --gui'
+            'dashboard': f'{self.python_cmd} main.py --prefix "{prefix}" --queue {queue_type} --dashboard',
+            'timeline': f'{self.python_cmd} main.py --prefix "{prefix}" --queue {queue_type} --timeline',
+            'print': f'{self.python_cmd} main.py --prefix "{prefix}" --queue {queue_type} --print',
+            'comparison': f'{self.python_cmd} main.py --prefix "{prefix}" --compare --dashboard',
+            'infographic-pdf': f'{self.python_cmd} main.py --prefix "{prefix}" --infographic',
+            'infographic-gui': f'{self.python_cmd} main.py --prefix "{prefix}" --infographic --gui'
         }
         
         cmd = commands.get(analysis_type)
@@ -1301,6 +1391,54 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
     
     # ============= RESULTS METHODS =============
     
+    def update_run_filter(self):
+        """Update run filter combobox with available runs"""
+        if not self.results_dir.exists():
+            self.run_filter['values'] = ['All Runs']
+            self.run_filter.current(0)
+            self.refresh_file_list()
+            return
+        
+        # Find all unique run identifiers (timestamps)
+        runs = set()
+        import re
+        
+        for file_path in self.results_dir.glob('*'):
+            if file_path.is_file():
+                # Extract timestamp from filename
+                # Pattern: P2P-project_YYYYMMDD_HHMMSS_*
+                match = re.search(r'P2P-project_(\d{8}_\d{6})', file_path.name)
+                if match:
+                    timestamp = match.group(1)
+                    runs.add(timestamp)
+        
+        # Sort runs by timestamp (newest first)
+        sorted_runs = sorted(runs, reverse=True)
+        
+        # Format timestamps for display
+        formatted_runs = []
+        for run in sorted_runs:
+            # Format: YYYYMMDD_HHMMSS -> YYYY-MM-DD HH:MM:SS
+            if len(run) == 15:  # YYYYMMDD_HHMMSS
+                formatted = f"{run[0:4]}-{run[4:6]}-{run[6:8]} {run[9:11]}:{run[11:13]}:{run[13:15]}"
+                formatted_runs.append(f"{formatted} ({run})")
+            else:
+                formatted_runs.append(run)
+        
+        # Add "All Runs" option
+        all_options = ['All Runs', 'Legacy Files (no timestamp)'] + formatted_runs
+        
+        # Update combobox
+        current = self.run_filter.get()
+        self.run_filter['values'] = all_options
+        
+        # Set to first option if current is not valid
+        if current not in all_options:
+            self.run_filter.current(0)
+        
+        # Refresh file list
+        self.refresh_file_list()
+    
     def refresh_file_list(self):
         """Refresh file list in results browser"""
         # Clear current items
@@ -1311,9 +1449,35 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         if not self.results_dir.exists():
             return
         
+        # Get selected run filter
+        filter_value = self.run_filter.get()
+        import re
+        
+        # Extract timestamp from filter if selected
+        selected_timestamp = None
+        if filter_value and filter_value != 'All Runs':
+            if filter_value == 'Legacy Files (no timestamp)':
+                selected_timestamp = 'LEGACY'
+            else:
+                # Extract timestamp from formatted string
+                match = re.search(r'\((\d{8}_\d{6})\)', filter_value)
+                if match:
+                    selected_timestamp = match.group(1)
+        
         # List all files
-        for file_path in sorted(self.results_dir.glob('*')):
+        for file_path in sorted(self.results_dir.glob('*'), reverse=True):
             if file_path.is_file():
+                # Check if file matches filter
+                if selected_timestamp:
+                    if selected_timestamp == 'LEGACY':
+                        # Legacy files don't have timestamp
+                        if re.search(r'P2P-project_\d{8}_\d{6}', file_path.name):
+                            continue
+                    else:
+                        # Only show files with matching timestamp
+                        if selected_timestamp not in file_path.name:
+                            continue
+                
                 # Get file info
                 stat = file_path.stat()
                 size_kb = stat.st_size / 1024
@@ -1323,9 +1487,11 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 # Determine file type
                 ext = file_path.suffix.lower()
                 if ext == '.tr':
-                    file_type = '📊 Trace File'
+                    file_type = '📊 Trace'
                 elif ext == '.txt':
                     file_type = '📝 Summary'
+                elif ext == '.log':
+                    file_type = '📋 State Log'
                 elif ext == '.png':
                     file_type = '🖼️ Plot'
                 elif ext == '.pdf':
@@ -1333,10 +1499,18 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
                 else:
                     file_type = '📄 File'
                 
+                # Determine queue type
+                queue_type = ''
+                if 'DropTail' in file_path.name:
+                    queue_type = 'DropTail'
+                elif 'RED' in file_path.name:
+                    queue_type = 'RED'
+                
                 # Add to tree
                 self.file_tree.insert('', tk.END,
                                     text=file_path.name,
-                                    values=(file_type, 
+                                    values=(file_type,
+                                          queue_type,
                                           f'{size_kb:.1f} KB',
                                           mod_time))
     
@@ -1353,20 +1527,74 @@ Click on the "🎮 Run Simulation" tab to begin your learning journey!
         else:
             subprocess.run(['xdg-open', str(self.results_dir)])
     
+    def delete_selected_run(self):
+        """Delete files from selected run"""
+        if not self.results_dir.exists():
+            return
+        
+        filter_value = self.run_filter.get()
+        if filter_value == 'All Runs':
+            messagebox.showinfo("Info", "Please select a specific run to delete.")
+            return
+        
+        import re
+        
+        # Extract timestamp
+        selected_timestamp = None
+        if filter_value == 'Legacy Files (no timestamp)':
+            selected_timestamp = 'LEGACY'
+        else:
+            match = re.search(r'\((\d{8}_\d{6})\)', filter_value)
+            if match:
+                selected_timestamp = match.group(1)
+        
+        if not selected_timestamp:
+            messagebox.showerror("Error", "Could not identify run to delete.")
+            return
+        
+        # Confirm deletion
+        result = messagebox.askyesno("Confirm Delete", 
+                                     f"Delete all files from run:\n{filter_value}\n\nThis cannot be undone!")
+        if not result:
+            return
+        
+        try:
+            deleted_count = 0
+            for file_path in self.results_dir.glob('*'):
+                if file_path.is_file():
+                    # Check if file belongs to selected run
+                    if selected_timestamp == 'LEGACY':
+                        # Delete legacy files (no timestamp)
+                        if not re.search(r'P2P-project_\d{8}_\d{6}', file_path.name):
+                            file_path.unlink()
+                            deleted_count += 1
+                    else:
+                        # Delete files with matching timestamp
+                        if selected_timestamp in file_path.name:
+                            file_path.unlink()
+                            deleted_count += 1
+            
+            messagebox.showinfo("Success", f"Deleted {deleted_count} files from selected run!")
+            self.update_run_filter()
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to delete files:\n{str(e)}")
+    
     def clear_results(self):
         """Clear all results"""
         if not self.results_dir.exists():
             return
         
         result = messagebox.askyesno("Confirm", 
-                                    "Delete all files in results folder?\nThis cannot be undone!")
+                                    "Delete ALL files in results folder?\nThis cannot be undone!")
         if result:
             try:
+                deleted_count = 0
                 for file_path in self.results_dir.glob('*'):
                     if file_path.is_file():
                         file_path.unlink()
-                messagebox.showinfo("Success", "Results cleared!")
-                self.refresh_file_list()
+                        deleted_count += 1
+                messagebox.showinfo("Success", f"Deleted {deleted_count} files!")
+                self.update_run_filter()
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to clear results:\n{str(e)}")
 

@@ -4,7 +4,50 @@ Các hàm tiện ích cho load và parse dữ liệu
 """
 
 import re
+import glob
 from pathlib import Path
+
+
+def find_latest_file(results_dir, prefix, queue_type, suffix):
+    """
+    Tìm file mới nhất với timestamp
+    
+    Args:
+        results_dir (Path): Thư mục chứa kết quả
+        prefix (str): Prefix của files
+        queue_type (str): Loại hàng đợi (DropTail/RED)
+        suffix (str): Suffix của file (vd: cwnd_trace, summary, tcp_state)
+    
+    Returns:
+        Path: Đường dẫn đến file mới nhất hoặc None
+    """
+    # Tìm tất cả files match pattern với timestamp
+    pattern = f"{prefix}_*_{suffix}_{queue_type}"
+    if suffix == "cwnd_trace":
+        pattern += ".tr"
+    elif suffix == "tcp_state":
+        pattern += ".log"
+    elif suffix == "summary":
+        pattern += ".txt"
+    
+    files = list(results_dir.glob(pattern))
+    
+    # Nếu không tìm thấy file với timestamp, thử tìm file cũ không có timestamp
+    if not files:
+        old_pattern = f"{prefix}_{suffix}_{queue_type}"
+        if suffix == "cwnd_trace":
+            old_pattern += ".tr"
+        elif suffix == "tcp_state":
+            old_pattern += ".log"
+        elif suffix == "summary":
+            old_pattern += ".txt"
+        old_file = results_dir / old_pattern
+        if old_file.exists():
+            return old_file
+        return None
+    
+    # Trả về file mới nhất (sắp xếp theo tên, timestamp sẽ sắp xếp đúng)
+    return sorted(files)[-1]
 
 
 def load_data(results_dir, prefix, queue_type):
@@ -33,8 +76,9 @@ def load_data(results_dir, prefix, queue_type):
     }
 
     # Load CWND trace
-    cwnd_file = results_dir / f"{prefix}_cwnd_trace_{queue_type}.tr"
-    if cwnd_file.exists():
+    cwnd_file = find_latest_file(results_dir, prefix, queue_type, "cwnd_trace")
+    if cwnd_file and cwnd_file.exists():
+        print(f"📄 Đang đọc: {cwnd_file.name}")
         with open(cwnd_file, 'r') as f:
             for line in f:
                 parts = line.strip().split()
@@ -43,11 +87,12 @@ def load_data(results_dir, prefix, queue_type):
                     data['cwnd'].append(float(parts[1]))
         print(f"✅ Đã tải {len(data['time'])} điểm dữ liệu CWND")
     else:
-        print(f"❌ Không tìm thấy file CWND: {cwnd_file}")
+        print(f"❌ Không tìm thấy file CWND cho {queue_type}")
 
     # Load state changes
-    state_file = results_dir / f"{prefix}_tcp_state_{queue_type}.log"
-    if state_file.exists():
+    state_file = find_latest_file(results_dir, prefix, queue_type, "tcp_state")
+    if state_file and state_file.exists():
+        print(f"📄 Đang đọc: {state_file.name}")
         with open(state_file, 'r') as f:
             for line in f:
                 if line.startswith('#') or line.startswith('-'):
@@ -75,8 +120,9 @@ def load_data(results_dir, prefix, queue_type):
         print(f"❌ Không tìm thấy file state log")
 
     # Load summary
-    summary_file = results_dir / f"{prefix}_summary_{queue_type}.txt"
-    if summary_file.exists():
+    summary_file = find_latest_file(results_dir, prefix, queue_type, "summary")
+    if summary_file and summary_file.exists():
+        print(f"📄 Đang đọc: {summary_file.name}")
         with open(summary_file, 'r') as f:
             content = f.read()
             data['summary'] = parse_summary(content)
