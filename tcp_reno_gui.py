@@ -127,11 +127,25 @@ class TCPRenoGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("TCP Reno Simulation & Analysis Tool")
-        self.root.geometry("950x650")
-        # Allow window resizing
-        self.root.minsize(800, 500)
-        # Make window resizable
-        self.root.minsize(900, 600)
+        
+        # Auto-detect screen size and set window size accordingly
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        
+        # Use 70% of screen size, but have min/max limits
+        window_width = min(max(int(screen_width * 0.7), 800), 1200)
+        window_height = min(max(int(screen_height * 0.75), 550), 900)
+        
+        # Center window on screen
+        x = (screen_width - window_width) // 2
+        y = (screen_height - window_height) // 2
+        
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        self.root.minsize(800, 550)
+        
+        # Store sizes for dynamic adjustment
+        self.window_width = window_width
+        self.window_height = window_height
         
         # Project paths
         self.project_dir = Path(__file__).parent
@@ -170,6 +184,25 @@ class TCPRenoGUI:
         # Setup GUI
         self.setup_styles()
         self.create_widgets()
+        
+        # Bind window resize event to update display info
+        self.root.bind('<Configure>', self.on_window_resize)
+        self.last_width = window_width
+        self.last_height = window_height
+    
+    def on_window_resize(self, event):
+        """Handle window resize events"""
+        # Only respond to window resizes, not widget resizes
+        if event.widget == self.root:
+            new_width = event.width
+            new_height = event.height
+            
+            # Check if size actually changed significantly (>50px)
+            if abs(new_width - self.last_width) > 50 or abs(new_height - self.last_height) > 50:
+                self.last_width = new_width
+                self.last_height = new_height
+                self.window_width = new_width
+                self.window_height = new_height
         
     def find_ns3_directory(self):
         """Auto-detect NS-3 installation directory"""
@@ -560,17 +593,24 @@ class TCPRenoGUI:
                                        font=('Arial', 9, 'italic'), foreground='#7F8C8D')
         self.progress_label.grid(row=0, column=0, pady=(0, 5))
         
-        self.progress_bar = ttk.Progressbar(progress_frame, length=600, mode='indeterminate')
+        # Progress bar length based on window width
+        progress_length = max(int(self.window_width * 0.6), 500)
+        self.progress_bar = ttk.Progressbar(progress_frame, length=progress_length, mode='indeterminate')
         self.progress_bar.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=10)
         
-        # Output console
+        # Output console - size based on window height
         console_frame = ttk.LabelFrame(main_frame,
                                       text="📟 Console Output",
                                       padding=10)
         console_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), pady=10)
         
+        # Calculate console dimensions based on window size
+        console_width = max(int(self.window_width / 11), 70)
+        console_height = max(int(self.window_height / 60), 8)
+        
         self.console = scrolledtext.ScrolledText(console_frame,
-                                                 width=85, height=10,
+                                                 width=console_width, 
+                                                 height=console_height,
                                                  font=('Courier', 8),
                                                  bg='#2C3E50',
                                                  fg='#ECF0F1',
@@ -688,8 +728,13 @@ class TCPRenoGUI:
         output_frame.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=20)
         self.tab_analysis.rowconfigure(3, weight=1)
         
+        # Analysis output - dynamic size
+        analysis_width = max(int(self.window_width / 10), 80)
+        analysis_height = max(int(self.window_height / 50), 12)
+        
         self.analysis_output = scrolledtext.ScrolledText(output_frame,
-                                                        width=100, height=15,
+                                                        width=analysis_width, 
+                                                        height=analysis_height,
                                                         font=('Courier', 9),
                                                         bg='#ECF0F1',
                                                         fg='#2C3E50')
@@ -721,21 +766,29 @@ class TCPRenoGUI:
         list_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
         self.tab_results.rowconfigure(1, weight=1)
         
-        # Treeview for file list
+        # Treeview for file list - dynamic height
+        tree_height = max(int(self.window_height / 50), 12)
         self.file_tree = ttk.Treeview(list_frame, 
                                      columns=('Type', 'Queue', 'Size', 'Modified'),
-                                     height=15)
+                                     height=tree_height)
         self.file_tree.heading('#0', text='File Name')
         self.file_tree.heading('Type', text='Type')
         self.file_tree.heading('Queue', text='Queue Type')
         self.file_tree.heading('Size', text='Size')
         self.file_tree.heading('Modified', text='Last Modified')
         
-        self.file_tree.column('#0', width=350)
-        self.file_tree.column('Type', width=120)
-        self.file_tree.column('Queue', width=100)
-        self.file_tree.column('Size', width=100)
-        self.file_tree.column('Modified', width=150)
+        # Dynamic column widths based on window size
+        col_width_file = max(int(self.window_width * 0.35), 300)
+        col_width_type = max(int(self.window_width * 0.12), 100)
+        col_width_queue = max(int(self.window_width * 0.10), 80)
+        col_width_size = max(int(self.window_width * 0.10), 80)
+        col_width_modified = max(int(self.window_width * 0.15), 120)
+        
+        self.file_tree.column('#0', width=col_width_file)
+        self.file_tree.column('Type', width=col_width_type)
+        self.file_tree.column('Queue', width=col_width_queue)
+        self.file_tree.column('Size', width=col_width_size)
+        self.file_tree.column('Modified', width=col_width_modified)
         
         self.file_tree.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
@@ -772,8 +825,13 @@ class TCPRenoGUI:
         
     def create_help_tab(self):
         """Create help and documentation tab"""
+        # Dynamic size for help text
+        help_width = max(int(self.window_width / 10), 85)
+        help_height = max(int(self.window_height / 25), 20)
+        
         help_text = scrolledtext.ScrolledText(self.tab_help,
-                                             width=100, height=30,
+                                             width=help_width, 
+                                             height=help_height,
                                              font=('Arial', 10),
                                              wrap=tk.WORD)
         help_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
