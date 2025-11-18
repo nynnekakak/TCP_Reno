@@ -127,7 +127,9 @@ class TCPRenoGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("TCP Reno Simulation & Analysis Tool")
-        self.root.geometry("1000x700")
+        self.root.geometry("950x650")
+        # Allow window resizing
+        self.root.minsize(800, 500)
         # Make window resizable
         self.root.minsize(900, 600)
         
@@ -558,33 +560,32 @@ class TCPRenoGUI:
                                        font=('Arial', 9, 'italic'), foreground='#7F8C8D')
         self.progress_label.grid(row=0, column=0, pady=(0, 5))
         
-        self.progress_bar = ttk.Progressbar(progress_frame, length=700, mode='indeterminate')
-        self.progress_bar.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=20)
+        self.progress_bar = ttk.Progressbar(progress_frame, length=600, mode='indeterminate')
+        self.progress_bar.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=10)
         
         # Output console
         console_frame = ttk.LabelFrame(main_frame,
                                       text="📟 Console Output",
                                       padding=10)
-        console_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10)
+        console_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), pady=10)
         
         self.console = scrolledtext.ScrolledText(console_frame,
-                                                 width=90, height=15,
-                                                 font=('Courier', 9),
+                                                 width=85, height=10,
+                                                 font=('Courier', 8),
                                                  bg='#2C3E50',
                                                  fg='#ECF0F1',
                                                  insertbackground='white')
-        self.console.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.console.grid(row=0, column=0, sticky=(tk.W, tk.E))
         console_frame.columnconfigure(0, weight=1)
-        console_frame.rowconfigure(0, weight=1)
         
-        # Status bar
+        # Status bar (inside scrollable frame now)
         self.status_var = tk.StringVar(value="Ready to run simulation")
-        status_bar = ttk.Label(self.tab_simulation,
+        status_bar = ttk.Label(main_frame,
                              textvariable=self.status_var,
                              relief=tk.SUNKEN,
                              padding=5,
                              font=('Arial', 9))
-        status_bar.grid(row=3, column=0, sticky=(tk.W, tk.E))
+        status_bar.grid(row=3, column=0, sticky=(tk.W, tk.E), pady=(5, 0))
         
     def create_analysis_tab(self):
         """Create analysis and visualization tab"""
